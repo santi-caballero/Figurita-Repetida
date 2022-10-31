@@ -10,8 +10,8 @@ Les juramos que son figuritas re originales que no imprimos en una hp en el quin
 <p>Bautista González Lazo</p>
 <p>Francisco Alvarez Raineri</p>
  
-// FiguritaRepetida
-	// back
+// FiguritaRepetida<br>
+	// back<br>
 		// db
 			index.js
 			// models
