@@ -9,10 +9,8 @@ Les juramos que son figuritas re originales que no imprimos en una hp en el quin
 <p>Leandro Echezuri</p>
 <p>Bautista González Lazo</p>
 <p>Francisco Alvarez Raineri</p>
-
-<!--- 
+ 
 // FiguritaRepetida
-
 	// back
 		// db
 			index.js
@@ -32,7 +30,6 @@ Les juramos que son figuritas re originales que no imprimos en una hp en el quin
 			Compras
 			Figuritas
 		server.js
-
 	/ front
 		app.js
 		index.html
@@ -48,4 +45,3 @@ Les juramos que son figuritas re originales que no imprimos en una hp en el quin
 				Messi
 			/ styles
 				yafue.css
- --->
