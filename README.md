@@ -10,27 +10,27 @@ Les juramos que son figuritas re originales que no imprimos en una hp en el quin
 <p>Bautista González Lazo</p>
 <p>Francisco Alvarez Raineri</p>
  
-// FiguritaRepetida<br>
+/ FiguritaRepetida<br>
 	// back<br>
-		// db<br>
+		/// db<br>
 			index.js<br>
-			// models<br>
+			//// models<br>
 				Usuarios<br>
 				Jugador<br>
 				Compra<br>
 				Especiales<br>
 				index.js<br>	
-		// public<br>
+		/// public<br>
 			index.html<br>
-			/ imagenes<br>
-		/ routes<br>
+			//// imagenes<br>
+		/// routes<br>
 			index.js<br>
 			Usuarios<br>
 			Favoritos<br>
 			Compras<br>
 			Figuritas<br>
 		server.js<br>
-	/ front<br>
+	// front<br>
 		app.js<br>
 		index.html<br>
 		/ src<br>
