@@ -10,17 +10,19 @@ Les juramos que son figuritas re originales que no imprimos en una hp en el quin
 <p>Bautista González Lazo</p>
 <p>Francisco Alvarez Raineri</p>
 
-/ FiguritaRepetida
-	/ back
-		/ db
+<!--- 
+// FiguritaRepetida
+
+	// back
+		// db
 			index.js
-			/ models
+			// models
 				Usuarios
 				Jugador
 				Compra
 				Especiales
 				index.js		
-		/ public
+		// public
 			index.html
 			/ imagenes
 		/ routes
@@ -46,3 +48,4 @@ Les juramos que son figuritas re originales que no imprimos en una hp en el quin
 				Messi
 			/ styles
 				yafue.css
+ --->
