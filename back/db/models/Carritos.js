@@ -15,11 +15,9 @@ Carritos.init(
     },
     metodopago: {
       type: S.STRING,
-      allownull: false,
     },
     fecha: {
       type: S.DATE,
-      allownull: false,
     },
   },
   {
@@ -27,5 +25,10 @@ Carritos.init(
     modelName: "carritos",
   }
 );
+
+Carritos.prototype.comprar = function (carrito) {
+  carrito.update({ comprado: true });
+  return Carritos.create({ usuarioId: carrito.usuarioId }).then((res) => res);
+};
 
 module.exports = Carritos;

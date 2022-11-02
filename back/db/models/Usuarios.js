@@ -1,5 +1,6 @@
 const db = require("../index");
 const S = require("sequelize");
+const Carritos = require("./Carritos");
 
 class Usuarios extends S.Model {}
 
@@ -24,7 +25,6 @@ Usuarios.init(
     },
     direccion: {
       type: S.STRING,
-      allownull: false,
     },
     password: {
       type: S.STRING,
@@ -32,7 +32,6 @@ Usuarios.init(
     },
     rol: {
       type: S.STRING,
-      allownull: false,
     },
     favoritos: {
       type: S.ARRAY(S.STRING),
@@ -42,6 +41,16 @@ Usuarios.init(
   {
     sequelize: db,
     modelName: "usuario",
+    hooks: {
+      afterCreate: (usuario) => {
+        Carritos.create({ usuarioId: usuario.id });
+      },
+      afterBulkCreate: (res) => {
+        res.forEach((usuario) => {
+          Carritos.create({ usuarioId: usuario.id });
+        });
+      },
+    },
   }
 );
 
