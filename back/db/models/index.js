@@ -3,22 +3,14 @@ const Productos = require("./Productos");
 const Pedidos = require("./Pedidos");
 const Carritos = require("./Carritos");
 
-Carritos.belongsTo(Usuarios, { as: "usuario" });
-Usuarios.hasMany(Carritos);
+Carritos.belongsTo(Usuarios, { as: "usuario" }); //Carrito solo puede tpertenecer a un usuario
+Usuarios.hasMany(Carritos); //Usuario tiene varios carritos
 
-Pedidos.hasMany(Productos);
-Productos.belongsToMany(Pedidos, { through: "ProductoPedido" });
+Pedidos.belongsTo(Productos); //Pedido pertenece al producto
+Productos.hasMany(Pedidos);
+//Productos.belongsToMany(Pedidos, { through: "ProductoPedido" }); //Cada producto aparece en multiples pedidos
 
-Carritos.hasMany(Productos);
-Pedidos.belongsTo(Carritos);
-
-//Usuario tiene un carrito
-//Carrito solo puede tpertenecer a un usuario
-
-//Pedidos tiene un productos
-//Cada figurita aparece en multiples pedidos
-
-//Carrito contiene muchos pedidos
-// Un pedido solo puede estar en un carrito
+Pedidos.belongsTo(Carritos); // Un pedido solo puede estar en un carrito
+Carritos.hasMany(Pedidos); //Carrito contiene muchos pedidos
 
 module.exports = { Usuarios, Productos, Pedidos, Carritos };

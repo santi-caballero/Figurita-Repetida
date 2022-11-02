@@ -33,6 +33,9 @@ Productos.init(
     rareza: {
       type: S.INTEGER,
     },
+    urlImagen: {
+      type: S.STRING,
+    },
   },
   {
     sequelize: db,
