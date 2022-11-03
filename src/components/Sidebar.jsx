@@ -17,7 +17,7 @@ import {
 } from "@mui/material";
 
 import ArrowCircleRightSharpIcon from "@mui/icons-material/ArrowCircleRightSharp";
-const drawerWidth = 240;
+const drawerWidth = 310;
 
 const Sidebar = () => {
   const navigate = useNavigate();

@@ -16,7 +16,7 @@ import { useNavigate } from "react-router";
 
 export default function CardProduct() {
   //COMO PROP TIENE QUE VENIR EL PRODUCT DE GRID, PARA EN CARD MOSTRAR LA IMAGEN
-  const navigate= useNavigate();
+  const navigate = useNavigate();
   const [favorite, setFavorite] = useState({});
   const [producto, setProducto] = useState({});
 
@@ -27,10 +27,10 @@ export default function CardProduct() {
     precio: 5,
     stock: 40,
     rareza: 1,
-    urlImagen:"",
+    urlImagen: "",
     posicion: "delantero",
     tipo: "jugador",
-  }
+  };
 
   const addToFavorite = () => {
     axios.post("url crear un fav").then((fav) => {
@@ -39,30 +39,30 @@ export default function CardProduct() {
   };
 
   const addProdToCart = () => {
-    axios
-      .post("api/productos", {
-        tipo:prod.tipo,
-        nombre:prod.nombre,
-        apellido:prod.apellido,
-        posicion:prod.posicion,
-        pais:prod.pais,
-        stock:prod.stock,
-        precio:prod.precio,
-        rareza:prod.rareza,
-        urlImagen:prod.urlImagen,
-      })
-      console.log("CARRITOOOOOOOOO")
-      // .then((prod) => {
-      //   setProducto(prod.data);
-      // });
+    axios.post("api/productos", {
+      tipo: prod.tipo,
+      nombre: prod.nombre,
+      apellido: prod.apellido,
+      posicion: prod.posicion,
+      pais: prod.pais,
+      stock: prod.stock,
+      precio: prod.precio,
+      rareza: prod.rareza,
+      urlImagen: prod.urlImagen,
+    });
+    console.log("CARRITOOOOOOOOO");
+    // .then((prod) => {
+    //   setProducto(prod.data);
+    // });
   };
 
   return (
     <Card sx={{ maxWidth: 345 }} className="cardContainer">
       <CardMedia
-        onClick={()=>navigate("/productos/4")}
+        onClick={() => navigate("/productos/4")}
         component="img"
-        height="450"
+        height="300"
+        width="250"
         image={fotoMessi}
         // URL DE LA FIGURITA  o PRODUCTO.IMG
         alt="Lionel Messi"
@@ -81,10 +81,10 @@ export default function CardProduct() {
       </CardContent> */}
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
-          <FavoriteIcon onClick={()=>addToFavorite()} />
+          <FavoriteIcon onClick={() => addToFavorite()} />
         </IconButton>
         <IconButton aria-label="share">
-          <AddShoppingCartIcon onClick={()=>addProdToCart()} />
+          <AddShoppingCartIcon onClick={() => addProdToCart()} />
         </IconButton>
       </CardActions>
     </Card>
