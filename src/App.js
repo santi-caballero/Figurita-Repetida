@@ -5,11 +5,11 @@ import { Route, Routes } from "react-router";
 import axios from "axios";
 import Login from "./components/Login";
 import Register from "./components/Register";
-
-
+import Sidebar from "./components/Sidebar";
 function App() {
   return (
     <div>
+      <Sidebar />
       <Routes>
         <Route path="/" element={<h1>home</h1>} />
         <Route path="/search" element={<h1>search</h1>} />
