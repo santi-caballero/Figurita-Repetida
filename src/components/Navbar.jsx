@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   AppBar,
   Toolbar,
@@ -12,9 +12,21 @@ import {
   MenuItem,
 } from "@mui/material";
 import ShoppingCartSharpIcon from "@mui/icons-material/ShoppingCartSharp";
+import axios from "axios";
 
 const Navbar = () => {
-  const [user, setUser] = useState(true);
+  const [user, setUser] = useState([]);
+  useEffect(() => {
+    axios
+      .get("/api/usuario/me")
+      //   .then((result) => console.log(result, "RESULTADO DEL USER"))
+      .then((result) => setUser(result.data))
+      .catch((error) => console.log(error));
+  }, []);
+
+  const handleLogOut = () => {
+    axios.post("/api/usuario/logout").then((result) => setUser(result.data));
+  };
 
   const Search = styled("div")(({ theme }) => ({
     backgroundColor: "white",
@@ -27,7 +39,7 @@ const Navbar = () => {
 
   return (
     <AppBar sx={{ background: "#009c7" }} position="static">
-      {user ? (
+      {user.email ? (
         <Toolbar>
           <Link href="/">
             <Typography sx={{ color: "red" }}>LOGO</Typography>
@@ -35,7 +47,7 @@ const Navbar = () => {
           <Search sx={{ marginLeft: "20%" }}>
             <InputBase placeholder="Buscar..." />
           </Search>
-          <Typography sx={{ marginLeft: "15%" }}>{user.usuario}</Typography>
+          <Typography sx={{ marginLeft: "15%" }}>{user.username}</Typography>
           <Avatar
             src="/broken-image.jpg"
             sx={{ marginLeft: "auto", background: "#155b87" }}
@@ -64,7 +76,7 @@ const Navbar = () => {
             <Link href="/:user/favorites" underline="none" color="inherit">
               <MenuItem>Mis favoritos</MenuItem>
             </Link>
-            <MenuItem>Cerrar sesion</MenuItem>
+            <MenuItem onClick={handleLogOut}>Cerrar sesion</MenuItem>
           </Menu>
         </Toolbar>
       ) : (

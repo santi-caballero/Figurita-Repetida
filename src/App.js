@@ -32,8 +32,7 @@ function App() {
           <Route path="/:user/checkout" element={<h1>checkout</h1>} />
         </Routes>{" "}
       </div>
-    </div>
-  );
-}
+      </div>
+)}
 
 export default App;

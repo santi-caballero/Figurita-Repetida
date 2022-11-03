@@ -4,9 +4,11 @@ const routes = require("./routes/index");
 const port = 3001;
 const { Usuarios, Productos, Pedidos, Carritos } = require("./db/models");
 const seed = require("./db/seeds");
+const cookieParser = require("cookie-parser");
 
 const app = express();
 app.use(express.json());
+app.use(cookieParser());
 
 app.use("/api", routes);
 
