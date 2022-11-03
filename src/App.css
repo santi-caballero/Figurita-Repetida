@@ -36,3 +36,20 @@
     transform: rotate(360deg);
   }
 }
+
+.divhome {
+  justify-content: right;
+  width: 60%;
+  height: 100px;
+}
+.todo {
+  display: flex;
+  flex-direction: row;
+}
+.side {
+  margin: 0px;
+  width: 20%;
+}
+.content {
+  width: 100%;
+}
