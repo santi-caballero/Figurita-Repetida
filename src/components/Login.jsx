@@ -28,7 +28,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("/user/login", { email: email, password: password })
+      .post("/api/usuario/login", { email: email, password: password })
       .then(() => navigate("/"))
       .catch(() => alert("Mail o contraseña incorrectos!"));
   };
