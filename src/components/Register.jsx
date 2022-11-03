@@ -40,14 +40,15 @@ const Register = () => {
   };
 
   const handleSubmit = (event) => {
-    console.log(event);
+    const nombreYapellido = name.split(" ");
     axios
       .post("/api/usuario/registro", {
         username,
-        name,
+        rol: userType,
+        nombre: nombreYapellido[0],
+        apellido: nombreYapellido[1],
         password,
         email,
-        userType,
       })
       .then(() => navigate("/"))
       .catch(() => alert("Falló el registro"));
