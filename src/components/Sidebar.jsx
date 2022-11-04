@@ -32,20 +32,18 @@ const Sidebar = () => {
     >
       <Box sx={{ overflow: "auto" }}>
         <List>
-          {["Todas", "Selecciones", "Rareza", "Especiales", "Buscar"].map(
-            (text) => (
-              <ListItem key={text} disablePadding>
-                <Link to={`/search/${text}`} style={{ textDecoration: "none" }}>
-                  <ListItemButton>
-                    <ListItemIcon sx={{ color: "#0077B6" }}>
-                      <ArrowCircleRightSharpIcon />
-                    </ListItemIcon>
-                    <ListItemText primary={text} />
-                  </ListItemButton>
-                </Link>
-              </ListItem>
-            )
-          )}
+          {["Todas", "Selecciones", "Rareza", "Especiales"].map((text) => (
+            <ListItem key={text} disablePadding>
+              <Link to={`/search/${text}`} style={{ textDecoration: "none" }}>
+                <ListItemButton>
+                  <ListItemIcon sx={{ color: "#0077B6" }}>
+                    <ArrowCircleRightSharpIcon />
+                  </ListItemIcon>
+                  <ListItemText primary={text} />
+                </ListItemButton>
+              </Link>
+            </ListItem>
+          ))}
         </List>
         {/* <Divider />
         <List>
