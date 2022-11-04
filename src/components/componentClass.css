@@ -3,10 +3,10 @@
   max-width: 1000px;
   margin: 4px auto 10px 50px;
   align-content: center;
-  color: #03045E;
-  background-color: #ADE8F4;
+  color: #03045e;
+  background-color: #ade8f4;
 
-  display: grid;
+  display: flex;
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
 }

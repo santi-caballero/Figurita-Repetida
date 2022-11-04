@@ -1,13 +1,59 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+.grid {
+  display: flex;
+  flex-direction: row;
+}
+.grid-container {
+  background-color: whitesmoke;
+  border-radius: 15px;
+  width: 70%;
+  max-width: 1200px;
+  margin: 30px auto 100px auto;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  border: 1px solid #000000;
+  box-shadow: inset 0 -3em 3em rgba(232, 229, 229, 0.1),
+    0 0 0 1px rgba(239, 236, 236, 0.24),
+    0.3em 0.3em 1em rgba(224, 218, 218, 0.3);
+}
+
+.pelicula {
+  border-radius: 20px;
+  width: 180px;
+  height: 380px;
+
+  margin: 8px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+.titulo {
+  width: 100%;
+  font-size: 16px;
+  text-align: center;
+  margin-bottom: 12px;
+  align-items: center;
+}
+.poster {
+  max-height: 250px;
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 1.5px rgb(0, 0, 0),
+    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
 }
