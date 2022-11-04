@@ -140,10 +140,17 @@ const CustomSelect = React.forwardRef(function CustomSelect(props, ref) {
 
 export default function UnstyledSelectSimple() {
   return (
-    <CustomSelect defaultValue={10}>
-      <StyledOption value={10}>Ten</StyledOption>
-      <StyledOption value={20}>Twenty</StyledOption>
-      <StyledOption value={30}>Thirty</StyledOption>
+    <CustomSelect defaultValue={0}>
+      <StyledOption value={0}>0 unidades</StyledOption>
+      <StyledOption value={1}>1 unidad</StyledOption>
+      <StyledOption value={2}>2 unidades</StyledOption>
+      <StyledOption value={3}>3 unidades</StyledOption>
+      <StyledOption value={4}>4 unidades</StyledOption>
+      <StyledOption value={5}>5 unidades</StyledOption>
+      <StyledOption value={6}>6 unidades</StyledOption>
+      <StyledOption value={7}>7 unidades</StyledOption>
+      <StyledOption value={8}>8 unidades</StyledOption>
+      <StyledOption value={9}>9 unidades</StyledOption>
     </CustomSelect>
   );
 }

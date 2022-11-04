@@ -1,10 +1,10 @@
 .gridContainer {
-  width: 90%;
+  width: 100%;
   max-width: 1000px;
   margin: 4px auto 10px 50px;
   align-content: center;
-  color: aliceblue;
-  background-color: blue;
+  color: #03045E;
+  background-color: #ADE8F4;
 
   display: grid;
   grid-template-columns: repeat(4, 1fr);
