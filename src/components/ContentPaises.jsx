@@ -8,8 +8,8 @@ const ContentPaises = ({ Todas }) => {
   const productosArgentina = [];
   const productosUruguay = [];
   const mapeadas = Todas.map((producto) => {
-    if (producto.pais == "argentina") productosArgentina.push(producto);
-    if (producto.pais == "uruguay") productosUruguay.push(producto);
+    if (producto.pais == "Argentina") productosArgentina.push(producto);
+    if (producto.pais == "Uruguay") productosUruguay.push(producto);
   });
 
   return (
