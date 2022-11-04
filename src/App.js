@@ -32,8 +32,9 @@ function App() {
       </div>
       <div className="content">
         <Navbar />
+
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home productos={allProducts} />} />
           <Route
             path="/search/Todas"
             element={<Grid productos={allProducts} />}
