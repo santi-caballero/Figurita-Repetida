@@ -57,7 +57,7 @@ export default function CardProduct() {
   };
 
   return (
-    <Card sx={{ maxWidth: 345 }} className="cardContainer">
+    <Card sx={{ maxWidth: 345}} className="cardContainer" >
       <CardMedia
         onClick={() => navigate("/productos/4")}
         component="img"
