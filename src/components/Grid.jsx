@@ -1,8 +1,8 @@
 import React from "react";
 import Card from "../commons/Card";
-import fotoMessi from "../commons/utils/messi.jpeg";
-import "./componentClass.css";
-import Link from "react";
+
+import "../style/componentClass.css";
+
 import { Container, Grid } from "@mui/material";
 
 const Grilla = ({ productos }) => {

@@ -52,8 +52,8 @@ const Login = () => {
           <h2>Iniciar sesión en Figurita Repetida</h2>
         </Grid>
         <TextField
-          label="Nombre de usuario"
-          placeholder="Enter username"
+          label="E-mail"
+          placeholder="Enter E-Mail"
           fullWidth
           required
           onChange={emailOnChange}

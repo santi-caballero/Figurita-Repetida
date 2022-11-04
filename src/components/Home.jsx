@@ -1,10 +1,11 @@
 import React from "react";
-import GridMaterial from "./GridMaterial";
+import Grilla from "./Grid";
 
-const Home = () => {
+const Home = ({ productos }) => {
   return (
     <div>
-      <GridMaterial />
+      <div className="carrousel">Futuro Carrousel</div>
+      <Grilla productos={productos} />
     </div>
   );
 };
