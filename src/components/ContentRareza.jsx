@@ -9,7 +9,7 @@ const ContentRareza = ({ Todas }) => {
   const productosRareza1 = [];
   const mapeadas = Todas.map((producto) => {
     if (producto.rareza == 0) productosRarezaCero.push(producto);
-    if (producto.tipo == 1) productosRareza1.push(producto);
+    if (producto.rareza == 1) productosRareza1.push(producto);
   });
 
   return (

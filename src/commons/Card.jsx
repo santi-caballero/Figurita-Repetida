@@ -14,23 +14,11 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router";
 
-export default function CardProduct() {
+export default function CardProduct({ product }) {
   //COMO PROP TIENE QUE VENIR EL PRODUCT DE GRID, PARA EN CARD MOSTRAR LA IMAGEN
   const navigate = useNavigate();
   const [favorite, setFavorite] = useState({});
   const [producto, setProducto] = useState({});
-
-  const prod = {
-    nombre: "Prueba",
-    apellido: "Post",
-    pais: "Nigeria",
-    precio: 5,
-    stock: 40,
-    rareza: 1,
-    urlImagen: "",
-    posicion: "delantero",
-    tipo: "jugador",
-  };
 
   const addToFavorite = () => {
     axios.post("url crear un fav").then((fav) => {
@@ -38,53 +26,54 @@ export default function CardProduct() {
     });
   };
 
-  const addProdToCart = () => {
-    axios.post("api/productos", {
-      tipo: prod.tipo,
-      nombre: prod.nombre,
-      apellido: prod.apellido,
-      posicion: prod.posicion,
-      pais: prod.pais,
-      stock: prod.stock,
-      precio: prod.precio,
-      rareza: prod.rareza,
-      urlImagen: prod.urlImagen,
-    });
-    console.log("CARRITOOOOOOOOO");
-    // .then((prod) => {
-    //   setProducto(prod.data);
-    // });
-  };
+  // const addProdToCart = () => {
+  //   axios.post("api/productos", {
+  //     tipo: prod.tipo,
+  //     nombre: prod.nombre,
+  //     apellido: prod.apellido,
+  //     posicion: prod.posicion,
+  //     pais: prod.pais,
+  //     stock: prod.stock,
+  //     precio: prod.precio,
+  //     rareza: prod.rareza,
+  //     urlImagen: prod.urlImagen,
+  //   });
+  //   console.log("CARRITOOOOOOOOO");
+  //   // .then((prod) => {
+  //   //   setProducto(prod.data);
+  //   // });
+  // };
 
   return (
-    <Card sx={{ maxWidth: 345}} className="cardContainer" >
+    <Card sx={{ maxWidth: 345 }} className="cardContainer">
       <CardMedia
+        sx={{ paddingTop: "0.1px", marginTop: "20px" }}
         onClick={() => navigate("/productos/4")}
         component="img"
-        height="300"
-        width="250"
-        image={fotoMessi}
+        image={product.urlImagen}
         // URL DE LA FIGURITA  o PRODUCTO.IMG
-        alt="Lionel Messi"
+        alt="Foto Figu"
         //NOMBRE DE LA FIGURITA
       />
-      {/* <CardContent>
+      <CardContent>
         <Typography variant="body2" color="text.secondary">
-          Lionel Andres Messi
+          {product.nombre} {product.apellido}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Argentina
+          {product.pais}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Delantero
+          {product.posicion}
         </Typography>
-      </CardContent> */}
+      </CardContent>
+      {/* onClick={() => addToFavorite()} */}
+      {/* onClick={() => addProdToCart()} */}
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
-          <FavoriteIcon onClick={() => addToFavorite()} />
+          <FavoriteIcon />
         </IconButton>
         <IconButton aria-label="share">
-          <AddShoppingCartIcon onClick={() => addProdToCart()} />
+          <AddShoppingCartIcon />
         </IconButton>
       </CardActions>
     </Card>

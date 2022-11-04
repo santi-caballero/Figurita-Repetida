@@ -34,7 +34,11 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/search" element={<Grid />} />
+          <Route
+            path="/search/Todas"
+            element={<Grid productos={allProducts} />}
+          />
+
           <Route
             path="/search/Selecciones"
             element={<ContentPaises Todas={allProducts} />}
