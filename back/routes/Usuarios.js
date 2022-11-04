@@ -35,7 +35,7 @@ router.post("/registro", (req, res) => {
 
 router.post("/login", (req, res) => {
   const { email, password } = req.body;
-  console.log(req.body);
+
   Usuarios.findOne({ where: { email } }).then((user) => {
     if (!user) return res.status(401).send("Usuario Inexistente");
     user.validarPassword(password).then((isValid) => {
