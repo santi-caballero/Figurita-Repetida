@@ -19,7 +19,6 @@ const Navbar = () => {
   useEffect(() => {
     axios
       .get("/api/usuario/me")
-      //   .then((result) => console.log(result, "RESULTADO DEL USER"))
       .then((result) => setUser(result.data))
       .catch((error) => console.log(error));
   }, []);

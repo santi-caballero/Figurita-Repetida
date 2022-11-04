@@ -50,7 +50,7 @@ const Register = () => {
         password,
         email,
       })
-      .then(() => navigate("/"))
+      .then(() => navigate("/login"))
       .catch(() => alert("Falló el registro"));
     //Body: Obj {username, tipo, nombre, contraseña, email}
   };

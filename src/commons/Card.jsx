@@ -26,29 +26,13 @@ export default function CardProduct({ product }) {
     });
   };
 
-  // const addProdToCart = () => {
-  //   axios.post("api/productos", {
-  //     tipo: prod.tipo,
-  //     nombre: prod.nombre,
-  //     apellido: prod.apellido,
-  //     posicion: prod.posicion,
-  //     pais: prod.pais,
-  //     stock: prod.stock,
-  //     precio: prod.precio,
-  //     rareza: prod.rareza,
-  //     urlImagen: prod.urlImagen,
-  //   });
-  //   console.log("CARRITOOOOOOOOO");
-  //   // .then((prod) => {
-  //   //   setProducto(prod.data);
-  //   // });
-  // };
+
 
   return (
     <Card sx={{ maxWidth: 345 }} className="cardContainer">
       <CardMedia
         sx={{ paddingTop: "0.1px", marginTop: "20px" }}
-        onClick={() => navigate("/productos/4")}
+        onClick={() => navigate(`/productos/${product.id}`)}
         component="img"
         image={product.urlImagen}
         // URL DE LA FIGURITA  o PRODUCTO.IMG

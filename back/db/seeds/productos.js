@@ -6,9 +6,10 @@ const productosFalsos = [
     nombre: "Lionel",
     apellido: "Messi",
     posicion: "delantero",
-    pais: "argentina",
+    pais: "Argentina",
     stock: 0,
     precio: 2000000000,
+    rareza: 1,
     urlImagen:
       "https://www.cronista.com/files/image/479/479650/632c94d41dc87.jpg",
   },
@@ -17,9 +18,10 @@ const productosFalsos = [
     nombre: "Franco",
     apellido: "Armani",
     posicion: "portero",
-    pais: "argentina",
+    pais: "Argentina",
     stock: 200,
     precio: 100,
+    rareza: 0,
     urlImagen:
       "https://http2.mlstatic.com/D_NQ_NP_827829-MLA51882763339_102022-V.jpg",
   },
@@ -28,9 +30,10 @@ const productosFalsos = [
     nombre: "Cristian",
     apellido: "Romero",
     posicion: "defensor",
-    pais: "argentina",
+    pais: "Argentina",
     stock: 10,
     precio: 200,
+    rareza: 0,
     urlImagen:
       "https://http2.mlstatic.com/D_NQ_NP_731723-MLA51863587656_102022-V.jpg",
   },
@@ -39,6 +42,7 @@ const productosFalsos = [
     nombre: "Al Rihla",
     stock: 1,
     precio: 2000,
+    rareza: 1,
     urlImagen:
       "https://http2.mlstatic.com/D_NQ_NP_720396-MLA51796279764_102022-V.jpg",
   },
@@ -47,6 +51,7 @@ const productosFalsos = [
     nombre: "Lusail Stadium",
     stock: 10,
     precio: 2000,
+    rareza: 1,
     urlImagen:
       "https://figuritasqatar.com.ar/wp-content/uploads/lusail-stadium-2.png",
   },
@@ -55,9 +60,10 @@ const productosFalsos = [
     nombre: "Darwin",
     apellido: "Núñez",
     posicion: "delantero",
-    pais: "uruguay",
+    pais: "Uruguay",
     stock: 999,
     precio: 1,
+    rareza: 1,
     urlImagen:
       "https://figuritasqatar.com.ar/wp-content/uploads/darwin-nunez-231x300.png",
   },
