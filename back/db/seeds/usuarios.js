@@ -43,6 +43,13 @@ const usuariosFalsos = [
     email: "franciscoalvarezraineri@gmail.com",
     password: "PushAMain",
   },
+  {
+    username: "1",
+    nombre: "1",
+    apellido: "1",
+    email: "1@1.com",
+    password: "1",
+  },
 ];
 
 module.exports = function () {
