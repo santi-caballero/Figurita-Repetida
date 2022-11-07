@@ -17,13 +17,11 @@ router.get("/:id", (req, res) => {
 });
 
 router.get("/buscar/:nombre", (req, res) => {
-  // TRAIGO UNA QUERY Y LA GUARDO EN PALABRA
-  const palabra = req.params.nombre;
   Productos.findAll({
     where: {
       [Op.or]: [
-        { apellido: { [Op.substring]: palabra } },
-        { nombre: { [Op.substring]: palabra } },
+        { apellido: { [Op.substring]: req.params.nombre } },
+        { nombre: { [Op.substring]: req.params.nombre } },
       ],
     },
   })
@@ -31,16 +29,15 @@ router.get("/buscar/:nombre", (req, res) => {
     .catch((err) => console.log(err));
 });
 
-router.get("/filtro/parametros", (req, res) => {
-  const { tipo, rareza, posicion, apellido, nombre } = req.body;
-  const arr = [];
-  if (tipo) arr.push({ tipo });
-  if (rareza) arr.push({ rareza });
-  if (posicion) arr.push({ posicion });
-  if (apellido) arr.push({ apellido });
-  if (nombre) arr.push({ nombre });
+router.get("/filtrar/categorias", (req, res) => {
+  const { tipo, rareza, posicion, pais } = req.body;
+  const busqueda = [];
+  if (tipo) busqueda.push({ tipo });
+  if (rareza) busqueda.push({ rareza });
+  if (posicion) busqueda.push({ posicion });
+  if (pais) busqueda.push({ pais });
   Productos.findAll({
-    where: { [Op.and]: arr },
+    where: { [Op.and]: busqueda },
   })
     .then((result) => res.status(200).send(result))
     .catch((err) => console.log(err));
