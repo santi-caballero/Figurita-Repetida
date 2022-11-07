@@ -14,12 +14,9 @@ import Home from "./components/Home";
 import ContentPaises from "./components/ContentPaises";
 import ContentEspeciales from "./components/ContentEspeciales";
 import ContentRareza from "./components/ContentRareza";
-<<<<<<< HEAD
 import ContentBusqueda from "./components/ContentBusqueda";
 
-=======
 import SidebarPrueba from "./components/SidebarPrueba";
->>>>>>> fe9093b9 (Cambiando estetica)
 function App() {
   const [allProducts, setAllProducts] = useState([]);
 

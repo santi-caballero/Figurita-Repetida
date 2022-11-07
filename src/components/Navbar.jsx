@@ -14,11 +14,8 @@ import {
 } from "@mui/material";
 import ShoppingCartSharpIcon from "@mui/icons-material/ShoppingCartSharp";
 import axios from "axios";
-<<<<<<< HEAD
 import { useNavigate } from "react-router";
-=======
 import SidebarPrueba from "./SidebarPrueba";
->>>>>>> fe9093b9 (Cambiando estetica)
 
 const Navbar = () => {
   const [user, setUser] = useState([]);
@@ -111,7 +108,6 @@ const Navbar = () => {
               FIGURITA REPETIDA
             </Typography>
           </Link>
-<<<<<<< HEAD
           <form onSubmit={handleSubmit}>
             <TextField
               sx={{
@@ -126,11 +122,8 @@ const Navbar = () => {
               onChange={handleChange}
             />
           </form>
-          <Button variant="contained" sx={{ marginLeft: "auto" }} href="/login">
-=======
-          <Search sx={{ marginLeft: "20%" }}>
-            <InputBase placeholder="Busca tu figurita..." />
-          </Search>
+
+
           <Button
             variant="contained"
             sx={{
@@ -142,7 +135,6 @@ const Navbar = () => {
             }}
             href="/login"
           >
->>>>>>> fe9093b9 (Cambiando estetica)
             Iniciar sesion
           </Button>
           <Button
