@@ -9,10 +9,12 @@ import {
   Link,
   Avatar,
   Menu,
+  TextField,
   MenuItem,
 } from "@mui/material";
 import ShoppingCartSharpIcon from "@mui/icons-material/ShoppingCartSharp";
 import axios from "axios";
+import { useNavigate } from "react-router";
 
 const Navbar = () => {
   const [user, setUser] = useState([]);
@@ -26,7 +28,7 @@ const Navbar = () => {
   const handleLogOut = () => {
     axios.post("/api/usuario/logout").then((result) => setUser(result.data));
   };
-
+  const navigate = useNavigate();
   const Search = styled("div")(({ theme }) => ({
     backgroundColor: "white",
     padding: "0 50px",
@@ -35,6 +37,18 @@ const Navbar = () => {
   }));
 
   const [open, setOpen] = useState(false);
+  const [input, setInput] = useState("");
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    setInput(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    navigate(`/buscar/${input}`);
+    document.getElementById("inputito").value = "";
+  };
 
   return (
     <AppBar sx={{ background: "#009c7" }} position="static">
@@ -43,9 +57,15 @@ const Navbar = () => {
           <Link href="/">
             <Typography sx={{ color: "red" }}>LOGO</Typography>
           </Link>
-          <Search sx={{ marginLeft: "20%" }}>
-            <InputBase placeholder="Buscar..." />
-          </Search>
+          <form onSubmit={handleSubmit}>
+            <TextField
+              id="inputito"
+              type="search"
+              variant="outlined"
+              placeholder="Buscar..."
+              onChange={handleChange}
+            />
+          </form>
           <Typography sx={{ marginLeft: "15%" }}>{user.username}</Typography>
           <Avatar
             src="/broken-image.jpg"
@@ -83,9 +103,20 @@ const Navbar = () => {
           <Link href="/">
             <Typography sx={{ color: "red" }}>LOGO</Typography>
           </Link>
-          <Search sx={{ marginLeft: "20%" }}>
-            <InputBase placeholder="Busca tu figurita..." />
-          </Search>
+          <form onSubmit={handleSubmit}>
+            <TextField
+              sx={{
+                marginLeft: "30%",
+                background: "white",
+              }}
+              fullWidth
+              id="inputito"
+              type="search"
+              variant="outlined"
+              placeholder="Buscar..."
+              onChange={handleChange}
+            />
+          </form>
           <Button variant="contained" sx={{ marginLeft: "auto" }} href="/login">
             Iniciar sesion
           </Button>

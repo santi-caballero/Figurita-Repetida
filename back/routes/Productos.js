@@ -17,6 +17,9 @@ router.get("/:id", (req, res) => {
 });
 
 router.get("/buscar/:nombre", (req, res) => {
+  let palabra = req.params.nombre;
+  palabra = palabra.charAt(0).toUpperCase() + palabra.slice(1);
+
   Productos.findAll({
     where: {
       [Op.or]: [
