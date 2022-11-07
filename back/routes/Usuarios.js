@@ -49,18 +49,19 @@ router.post("/login", (req, res) => {
     });
   });
 });
+
 router.post("/logout", (req, res) => {
   res.clearCookie("token").status(204).send({});
 });
 
-router.put("/buscar:id", (req, res) => {
+router.put("/editar/:id", (req, res) => {
   const id = req.params.id;
   Usuarios.update(req.body, { where: { id } }).then((result) =>
     res.status(202).send(result)
   );
 });
 
-router.delete("/buscar:id", (req, res) => {
+router.delete("/eliminar/:id", (req, res) => {
   const id = req.params.id;
   Usuarios.destroy({ where: { id } }).then((result) => res.sendStatus(204));
 });
