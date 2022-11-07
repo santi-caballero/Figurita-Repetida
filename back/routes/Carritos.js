@@ -1,41 +1,58 @@
 const express = require("express");
-const { Carritos } = require("../db/models/index");
+const { Carritos, Pedidos, Productos } = require("../db/models/index");
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  Carritos.findAll()
+router.get("/:usuarioId", (req, res) => {
+  const usuarioId = req.params.usuarioId;
+  Carritos.findOne({
+    where: { usuarioId, comprado: false },
+    include: [{ model: Pedidos, include: [Productos] }],
+  })
+    .then((carrito) => {
+      carrito.calcularPrecioTotal(carrito);
+      res.status(200).send(carrito);
+    })
+    .catch((err) => console.log(err));
+});
+
+router.get("/historial/:usuarioId", (req, res) => {
+  const usuarioId = req.params.usuarioId;
+  Carritos.findAll({
+    where: { usuarioId, comprado: true },
+    include: [{ model: Pedidos, include: [Productos] }],
+  })
     .then((result) => res.status(200).send(result))
     .catch((err) => console.log(err));
 });
 
-router.get("/:id", (req, res) => {
-  const id = req.params.id;
-  Carritos.findOne({ where: { id } })
-    .then((result) => res.status(200).send(result))
-    .catch((err) => console.log(err));
-});
-
-// router.post("/:id", (req, res) => {
-//   Carritos.create(req.body)
-//   .then((res)=> {
-//     res.usuarioId = req.params.id
-//   })
-//     .then((result) => res.status(201).send(result))
-//     .catch((err) => console.log(err));
-// });
-
-// router.put("/:id", (req, res) => {
-//   const id = req.params.id;
-//   Carritos.update(req.body, { where: { id } }).then((result) =>
-//     res.status(202).send(result)
-//   );
-// });
-
-router.delete("/:id", (req, res) => {
-  const id = req.params.id;
-  Carritos.destroy({ where: { id } }).then((result) =>
-    res.status(204).send(result)
+router.post("/agregar", (req, res) => {
+  const { usuarioId, productoId, cantidad } = req.body;
+  Carritos.findOne({ where: { usuarioId, comprado: false } }).then(
+    (carrito) => {
+      Pedidos.create({
+        productoId,
+        carritoId: carrito.id,
+        cantidad: cantidad,
+      }).then((result) => res.send(result));
+    }
   );
+});
+
+router.delete("/borrarUno/:pedidoId", (req, res) => {
+  const pedidoId = req.params.pedidoId;
+  Pedidos.destroy({ where: { id: pedidoId } }).then(() => res.sendStatus(204));
+});
+
+router.delete("/borrarTodos/:carritoId", (req, res) => {
+  const carritoId = req.params.carritoId;
+  Pedidos.destroy({ where: { carritoId } }).then(() => res.sendStatus(204));
+});
+
+router.put("/comprar/:carritoId", (req, res) => {
+  const carritoId = req.params.carritoId;
+  Carritos.findOne({ where: { id: carritoId } }).then((carrito) => {
+    carrito.comprar(carrito).then((result) => res.send(result));
+  });
 });
 
 module.exports = router;
