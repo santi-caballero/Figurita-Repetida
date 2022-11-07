@@ -34,13 +34,25 @@ export default function CardProduct({ product }) {
         alt="Foto Figu"
       />
       <CardContent>
-        <Typography variant="body2" color="text.secondary">
+        <Typography
+          fontFamily={"'Anton', sans-serif"}
+          variant="body2"
+          color="text.secondary"
+        >
           {product.nombre} {product.apellido}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography
+          fontFamily={"'Anton', sans-serif"}
+          variant="body2"
+          color="text.secondary"
+        >
           {product.pais}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography
+          fontFamily={"'Anton', sans-serif"}
+          variant="body2"
+          color="text.secondary"
+        >
           {product.posicion}
         </Typography>
       </CardContent>
