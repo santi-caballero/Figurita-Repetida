@@ -35,16 +35,23 @@ const Login = () => {
 
   const paperStyle = {
     padding: 20,
-    height: "70vh",
+    height: "40vh",
     width: 280,
-    margin: "20px auto",
+    margin: "20px auto ",
+    marginTop: "50px",
   };
 
   const avatarStyle = { backgroundColor: "#ff9f1c" };
   const btnstyle = { margin: "8px 0" };
   return (
     <Grid>
-      <Paper elevation={10} style={paperStyle}>
+      <Paper
+        sx={{
+          borderRadius: 3,
+        }}
+        elevation={10}
+        style={paperStyle}
+      >
         <Grid align="center">
           <Avatar style={avatarStyle}>
             <LockOutlinedIcon />
@@ -75,6 +82,12 @@ const Login = () => {
           style={btnstyle}
           fullWidth
           onClick={handleSubmit}
+          sx={{
+            borderRadius: 3,
+            background: "#CAF0F8",
+            fontWeight: "bold",
+            color: "#023E8A",
+          }}
         >
           Iniciar sesión
         </Button>

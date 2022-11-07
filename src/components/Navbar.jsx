@@ -14,7 +14,11 @@ import {
 } from "@mui/material";
 import ShoppingCartSharpIcon from "@mui/icons-material/ShoppingCartSharp";
 import axios from "axios";
+<<<<<<< HEAD
 import { useNavigate } from "react-router";
+=======
+import SidebarPrueba from "./SidebarPrueba";
+>>>>>>> fe9093b9 (Cambiando estetica)
 
 const Navbar = () => {
   const [user, setUser] = useState([]);
@@ -51,11 +55,13 @@ const Navbar = () => {
   };
 
   return (
-    <AppBar sx={{ background: "#009c7" }} position="static">
+    <AppBar sx={{ background: "#0077B6" }} position="static">
       {user.email ? (
         <Toolbar>
           <Link href="/">
-            <Typography sx={{ color: "red" }}>LOGO</Typography>
+            <Typography variant="h6" fontFamily={"'Bungee Spice', cursive"}>
+              FIGURITA REPETIDA
+            </Typography>
           </Link>
           <form onSubmit={handleSubmit}>
             <TextField
@@ -101,8 +107,11 @@ const Navbar = () => {
       ) : (
         <Toolbar>
           <Link href="/">
-            <Typography sx={{ color: "red" }}>LOGO</Typography>
+            <Typography variant="h4" fontFamily={"'Bungee Spice', cursive"}>
+              FIGURITA REPETIDA
+            </Typography>
           </Link>
+<<<<<<< HEAD
           <form onSubmit={handleSubmit}>
             <TextField
               sx={{
@@ -118,10 +127,32 @@ const Navbar = () => {
             />
           </form>
           <Button variant="contained" sx={{ marginLeft: "auto" }} href="/login">
+=======
+          <Search sx={{ marginLeft: "20%" }}>
+            <InputBase placeholder="Busca tu figurita..." />
+          </Search>
+          <Button
+            variant="contained"
+            sx={{
+              color: "#023E8A",
+              marginLeft: "auto",
+              borderRadius: 3,
+              background: "#CAF0F8",
+              fontWeight: "bold",
+            }}
+            href="/login"
+          >
+>>>>>>> fe9093b9 (Cambiando estetica)
             Iniciar sesion
           </Button>
           <Button
-            sx={{ marginLeft: "5px" }}
+            sx={{
+              color: "#023E8A",
+              marginLeft: "5px",
+              borderRadius: 3,
+              background: "#CAF0F8",
+              fontWeight: "bold",
+            }}
             variant="contained"
             href="/register"
           >

@@ -23,62 +23,102 @@ export default function SingleProduct() {
   }, [producto]);
 
   return (
-    <div className="singleProductGeneral">
-      <div className="singleProductLeft">
-        <Typography variant="h4" color={"#03045E"}>
-          Figurita Repetida
-        </Typography>
-        <img
-          src={producto.urlImagen}
-          alt="Foto de producto"
-          className="singleProductLeftImagen"
-        />
-        {/* ACA EN VEZ DE CARD VA LA IMAGEN DE LA FIGU NO LA CARD, SIMPLEMENTE PARA VER COMO QUEDA ESTA LA CARD */}
-        <div className="singleProductDescription">
-          <Typography variant="h5" color={"#03045E"}>
-            DESCRIPCION:
+    <div className="todo">
+      <div className="singleProductGeneral">
+        <div className="singleProductLeft">
+          <Typography
+            fontFamily={"'Bungee Spice', cursive"}
+            variant="h4"
+            color={"#03045E"}
+          >
+            {producto.nombre} {producto.apellido}
           </Typography>
-          <div>
-            <Typography variant="h6" color={"#03045E"}>
-              NOMBRE: {producto.nombre}
+          <img
+            src={producto.urlImagen}
+            alt="Foto de producto"
+            className="singleProductLeftImagen"
+          />
+          {/* ACA EN VEZ DE CARD VA LA IMAGEN DE LA FIGU NO LA CARD, SIMPLEMENTE PARA VER COMO QUEDA ESTA LA CARD */}
+          <div className="singleProductDescription">
+            <Typography
+              fontFamily={"'Anton', sans-serif"}
+              variant="h5"
+              color={"#03045E"}
+            >
+              DESCRIPCION:
             </Typography>
-            {producto.tipo === "jugador" ? (
-              <>
-                <Typography variant="h6" color={"#03045E"}>
-                  APELLIDO: {producto.apellido}
-                </Typography>
-                <Typography variant="h6" color={"#03045E"}>
-                  POSICION: {producto.posicion}
-                </Typography>
-                <Typography variant="h6" color={"#03045E"}>
-                  PAIS: {producto.pais}
-                </Typography>
-              </>
-            ) : null}
+            <div>
+              {producto.tipo === "jugador" ? (
+                <>
+                  <Typography
+                    fontFamily={"'Anton', sans-serif"}
+                    variant="h6"
+                    color={"#03045E"}
+                  >
+                    POSICION: {producto.posicion}
+                  </Typography>
+                  <Typography
+                    fontFamily={"'Anton', sans-serif"}
+                    variant="h6"
+                    color={"#03045E"}
+                  >
+                    PAIS: {producto.pais}
+                  </Typography>
+                </>
+              ) : null}
+            </div>
           </div>
         </div>
-      </div>
-      <div className="singleProductRigth">
-        <Stack spacing={2} className="singleProductButtons">
-          <Typography color={"#03045E"} marginLeft="10px">
-            Precio: ${producto.precio}
-          </Typography>
-          <Typography color={"#03045E"} marginLeft="10px">
-            Añadir al carrito:
-          </Typography>
-          <UnstyledSelectsMultiple />
-          <Button
-            onClick={() => addProdToCart()}
-            variant="contained"
-            endIcon={<AddShoppingCartIcon />}
-          >
-            <Typography color={"#03045E"}>ADD TO CART</Typography>
-          </Button>
-          <Button variant="contained" startIcon={<FavoriteIcon />}>
-            <Typography color={"#03045E"}>ADD TO FAVORITES</Typography>
-            <IconButton aria-label="add to favorites"></IconButton>
-          </Button>
-        </Stack>
+
+        <div className="singleProductRigth">
+          <Stack spacing={2} className="singleProductButtons">
+            <Typography
+              fontFamily={"'Anton', sans-serif"}
+              color={"#03045E"}
+              marginLeft="10px"
+            >
+              Precio: ${producto.precio}
+            </Typography>
+            <Typography
+              fontFamily={"'Anton', sans-serif"}
+              color={"#03045E"}
+              marginLeft="10px"
+            >
+              Añadir al carrito:
+            </Typography>
+            <UnstyledSelectsMultiple />
+            <Button
+              sx={{
+                borderRadius: 3,
+                background: "#CAF0F8",
+
+                color: "#023E8A",
+              }}
+              onClick={() => addProdToCart()}
+              variant="contained"
+              endIcon={<AddShoppingCartIcon />}
+            >
+              <Typography fontWeight="bold" color={"#03045E"}>
+                ADD TO CART
+              </Typography>
+            </Button>
+            <Button
+              sx={{
+                borderRadius: 3,
+                background: "#CAF0F8",
+                fontWeight: "bold",
+                color: "#023E8A",
+              }}
+              variant="contained"
+              startIcon={<FavoriteIcon />}
+            >
+              <Typography fontWeight="bold" color={"#03045E"}>
+                ADD TO FAVORITES
+              </Typography>
+              <IconButton aria-label="add to favorites"></IconButton>
+            </Button>
+          </Stack>
+        </div>
       </div>
     </div>
   );
