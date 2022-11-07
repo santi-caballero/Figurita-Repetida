@@ -14,6 +14,8 @@ import Home from "./components/Home";
 import ContentPaises from "./components/ContentPaises";
 import ContentEspeciales from "./components/ContentEspeciales";
 import ContentRareza from "./components/ContentRareza";
+import ContentBusqueda from "./components/ContentBusqueda";
+
 function App() {
   const [allProducts, setAllProducts] = useState([]);
 
@@ -51,6 +53,10 @@ function App() {
           <Route
             path="/search/Rareza"
             element={<ContentRareza Todas={allProducts} />}
+          />
+          <Route
+            path="/buscar/:nombre"
+            element={<ContentBusqueda Todas={allProducts} />}
           />
           <Route path="/figurita/:id" element={<h1>figurita</h1>} />
           <Route path="/productos/:id" element={<SingleProduct />} />
