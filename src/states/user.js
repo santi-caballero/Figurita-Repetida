@@ -1,4 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
 const initialState = {
   username: null,
@@ -6,7 +7,53 @@ const initialState = {
   nombre: null,
   apellido: null,
   id: null,
+  favoritos: [],
 };
+
+//creo la fn async obtenerFavoritos
+//Luego en los extraReducers del slice manejo el estado local de user con los estados de la promesa (fullfilled, rejected, pending )
+// [obtenerFavoritos.fullfilled]: (state, action) =>
+
+export const login = createAsyncThunk("user/login", async (user, thunkAPI) => {
+  try {
+    const { email, password } = user;
+    // console.log("mis datos de usuario", email, "==", password);
+    const respuesta = await axios.post("/api/usuario/login", {
+      email: email,
+      password: password,
+    });
+    return respuesta.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue("Credenciales incorrectas");
+  }
+});
+
+export const obtenerFavoritos = createAsyncThunk(
+  "user/obtenerFavoritos",
+  async (idUser, thunkAPI) => {
+    try {
+      console.log("mi user es", idUser);
+      const respuesta = await axios.get(`/api/favoritos/${idUser}`);
+      return respuesta.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const agregarFavorito = createAsyncThunk(
+  "user/agregarFavorito",
+  async (data, thunkAPI) => {
+    const { idUser, idProducto } = data;
+    try {
+      console.log("Mi usuario es: ", idUser, "mi producto es: ", idProducto);
+      const respuesta = await axios.post("/api/favoritos");
+      return respuesta.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
 
 const userSlice = createSlice({
   name: "user",
@@ -14,6 +61,21 @@ const userSlice = createSlice({
   reducers: {
     getUser: (state, action) => (state.user = action.payload), //cambio el estado actual de user por el nuevo usuario
     setUser: (state, action) => state.user, //simplemente retorno el usuario
+  },
+  extraReducers: {
+    [obtenerFavoritos.fulfilled]: (state, action) => {
+      state.favoritos = action.payload;
+    },
+    [agregarFavorito.fulfilled]: (state, action) => {
+      console.log("Mi payload al agregar favorito es ", action.payload);
+      state.favoritos.push(action.payload);
+    },
+    [login.fulfilled]: (state, action) => {
+      state.user = action.payload;
+    },
+    [login.rejected]: (state) => {
+      return state;
+    },
   },
 });
 

@@ -1,4 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
 const initialState = {
   cartItems: [],
@@ -6,10 +7,40 @@ const initialState = {
   total: 0,
 };
 
+export const agregarItem = createAsyncThunk(
+  "cart/agregarItem",
+  async (data, thunkAPI) => {
+    const { idUser, cantidad, idProducto } = data;
+    try {
+      console.log("me esta llegando", idUser, cantidad, idProducto);
+      const respuesta = await axios.post("api/carritos/agregar");
+
+      return respuesta.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const obtenerItems = createAsyncThunk(
+  "cart/obtenerItems",
+  async (idUser, thunkAPI) => {
+    try {
+      console.log("me esta llegando", idUser);
+      const respuesta = await axios.get(`api/carritos/${idUser}`);
+
+      return respuesta.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
 //* Tenemos que tener cuidado con nuestro manejo de estados en los reducers
 //* Meaning? si nosotros retornamos un estado, nuestro estado total se convierte en eso que retornamos
 //* Por ejemplo, si para limpiar el carrito usamos por ej: return { cartItems: []}
 //! Todo el estado de carrito pasa a ser eso que retornamos, y perdemos cantidad y total
+
 const cartSlice = createSlice({
   name: "cart",
   initialState,
@@ -46,6 +77,16 @@ const cartSlice = createSlice({
       state.cantidad = cantidad;
       state.total = total;
     }, //En app usar un useEffect que cuando cambien los items del carrito, llamo a calcular total con un dispatch
+  },
+  extraReducers: {
+    [agregarItem.fulfilled]: (state, action) => {
+      console.log(action);
+      //state.cartItems = action.payload;
+    },
+    [obtenerItems.fulfilled]: (state, action) => {
+      console.log(action);
+      state.cartItems = action.payload;
+    },
   },
 });
 export const {

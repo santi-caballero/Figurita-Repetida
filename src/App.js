@@ -17,8 +17,26 @@ import ContentRareza from "./components/ContentRareza";
 import ContentBusqueda from "./components/ContentBusqueda";
 
 import SidebarPrueba from "./components/SidebarPrueba";
+import { useDispatch, useSelector } from "react-redux";
+import { calcularTotal, obtenerItems } from "./states/cart";
+import { useSelect } from "@mui/base";
 function App() {
   const [allProducts, setAllProducts] = useState([]);
+
+  //! ========================================================
+  const dispatch = useDispatch();
+  const { cartItems } = useSelector((store) => store.cart);
+
+  // useEffect(() => {
+  //   dispatch(calcularTotal());
+  // }, [cartItems]);
+
+  // useEffect(() => {
+  //   dispatch(obtenerItems());
+  // }, []);
+
+  // console.log("mi carrito es", cartItems);
+  //! ========================================================
 
   useEffect(() => {
     axios
