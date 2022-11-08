@@ -149,7 +149,6 @@ export default function UnstyledSelectSimple() {
   const [valor, setValor] = useState([]);
   const handleValor = (numero) => {
     setValor(numero);
-    console.log("adasdsa");
   };
   return (
     <CustomSelect defaultValue={0}>
