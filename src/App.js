@@ -5,7 +5,7 @@ import { Route, Routes } from "react-router";
 import axios from "axios";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import Sidebar from "./components/Sidebar";
+import Sidebar from "./Reemplazados/Sidebar";
 import Grid from "./components/Grid";
 import SingleProduct from "./commons/SingleProduct";
 import CardProduct from "./commons/Card";
@@ -15,6 +15,7 @@ import ContentPaises from "./components/ContentPaises";
 import ContentEspeciales from "./components/ContentEspeciales";
 import ContentRareza from "./components/ContentRareza";
 import ContentBusqueda from "./components/ContentBusqueda";
+import Favoritos from "./components/Favoritos";
 
 import SidebarPrueba from "./components/SidebarPrueba";
 function App() {
@@ -62,7 +63,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/:user/favorites" element={<h1>favorites</h1>} />
-          <Route path="/:user/cart" element={<h1>cart</h1>} />
+          <Route path="/:user/cart" element={<Favoritos />} />
           <Route path="/:user/checkout" element={<h1>checkout</h1>} />
         </Routes>
       </div>
