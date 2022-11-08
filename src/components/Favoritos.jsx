@@ -4,6 +4,7 @@ import Carrousel from "./Carrousel";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
+import GrillaFavs from "./GrillaFavs";
 const Favoritos = () => {
   const [user, setUser] = useState([]);
   const [favoritos, setFavoritos] = useState([]);
@@ -20,12 +21,11 @@ const Favoritos = () => {
         setFavoritos(result.data);
       })
       .catch((error) => console.log(error));
-    console.log(favoritos);
   };
   return (
     <div>
       <Button onClick={() => handleFavs()}> Mostrar favs</Button>
-      {favoritos.length ? <Grilla productos={favoritos} /> : ""}
+      {favoritos.length ? <GrillaFavs productos={favoritos} /> : ""}
     </div>
   );
 };

@@ -4,6 +4,7 @@ import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
+import Alert from "@mui/material/Alert";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -11,7 +12,6 @@ import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 
 const Comprar = ({ cantidad, producto }) => {
-  const dispatch = useDispatch();
   const [user, setUser] = useState([]);
   useEffect(() => {
     axios
@@ -20,18 +20,21 @@ const Comprar = ({ cantidad, producto }) => {
       .catch((error) => console.log(error));
   }, []);
   const handleAddCarrito = () => {
-    console.log(producto);
-    // axios.post(`/api/carritos/agregar`, {
-    //   usuarioId: user.id,
-    //   productoId: idProducto,
-    //   cantidad: cantidad,
-    // });
+    if (cantidad) {
+      axios.post(`/api/carritos/agregar`, {
+        usuarioId: user.id,
+        productoId: producto.id,
+        cantidad: cantidad,
+      });
+    } else {
+      alert("Debe ingresar una cantidad");
+    }
   };
   const handleAddFavorito = () => {
-    // axios.post(`/api/favoritos`, {
-    //   usuarioId: user.id,
-    //   productoId: idProducto,
-    // });
+    axios.post(`/api/favoritos`, {
+      usuarioId: user.id,
+      productoId: producto.id,
+    });
   };
   return (
     <div className="singleProductRigth">

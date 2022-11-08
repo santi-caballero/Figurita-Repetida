@@ -75,7 +75,7 @@ const Navbar = () => {
             sx={{ marginLeft: "auto", background: "#155b87" }}
             onClick={(e) => setOpen(true)}
           />
-          <Link href="/:user/cart" target="_blank" marginLeft="3%">
+          <Link href="/:user/cart" marginLeft="3%">
             <ShoppingCartSharpIcon
               sx={{ color: "#155b87", width: 30, height: 30 }}
             />
@@ -122,7 +122,6 @@ const Navbar = () => {
               onChange={handleChange}
             />
           </form>
-
 
           <Button
             variant="contained"
