@@ -13,9 +13,8 @@ class Carritos extends S.Model {
         if (!acc) {
           return false;
         }
-        return pedido.producto.comprobarStock(pedido.producto);
+        return pedido.producto.comprobarStock(pedido.producto, pedido.cantidad);
       }, true);
-      console.log(comprobacion);
       if (comprobacion) {
         pedidos.forEach((pedido) => {
           Productos.findByPk(pedido.productoId).then((producto) => {
