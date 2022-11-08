@@ -2,6 +2,7 @@ const express = require("express");
 const { Productos } = require("../db/models/index");
 const router = express.Router();
 const { Op } = require("sequelize");
+const { validarAuth, validarRol } = require("../middleware/auth");
 
 router.get("/", (req, res) => {
   Productos.findAll()
@@ -23,8 +24,8 @@ router.get("/buscar/:nombre", (req, res) => {
   Productos.findAll({
     where: {
       [Op.or]: [
-        { apellido: { [Op.substring]: req.params.nombre } },
-        { nombre: { [Op.substring]: req.params.nombre } },
+        { apellido: { [Op.substring]: palabra } },
+        { nombre: { [Op.substring]: palabra } },
       ],
     },
   })
@@ -46,23 +47,26 @@ router.get("/filtrar/categorias", (req, res) => {
     .catch((err) => console.log(err));
 });
 
-router.post("/", (req, res) => {
+// Admin:
+
+router.post("/", validarAuth, validarRol, (req, res) => {
   Productos.create(req.body)
     .then((result) => res.status(201).send(result))
     .catch((err) => console.log(err));
 });
-router.put("/:id", (req, res) => {
+
+router.put("/:id", validarAuth, validarRol, (req, res) => {
   const id = req.params.id;
-  Productos.update(req.body, { where: { id } }).then((result) =>
-    res.status(202).send(result)
-  );
+  Productos.update(req.body, { where: { id } })
+    .then((result) => res.status(202).send(result))
+    .catch((err) => console.log(err));
 });
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", validarAuth, validarRol, (req, res) => {
   const id = req.params.id;
-  Productos.destroy({ where: { id } }).then((result) =>
-    res.status(204).send(result)
-  );
+  Productos.destroy({ where: { id } })
+    .then((result) => res.status(204).send(result))
+    .catch((err) => console.log(err));
 });
 
 module.exports = router;

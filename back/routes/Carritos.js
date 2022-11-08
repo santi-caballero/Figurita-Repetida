@@ -38,12 +38,12 @@ router.post("/agregar", (req, res) => {
   );
 });
 
-router.delete("/borrarUno/:pedidoId", (req, res) => {
+router.delete("/borrar_uno/:pedidoId", (req, res) => {
   const pedidoId = req.params.pedidoId;
   Pedidos.destroy({ where: { id: pedidoId } }).then(() => res.sendStatus(204));
 });
 
-router.delete("/borrarTodos/:carritoId", (req, res) => {
+router.delete("/borrar_todos/:carritoId", (req, res) => {
   const carritoId = req.params.carritoId;
   Pedidos.destroy({ where: { carritoId } }).then(() => res.sendStatus(204));
 });
