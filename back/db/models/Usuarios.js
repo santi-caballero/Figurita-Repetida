@@ -48,6 +48,9 @@ Usuarios.init(
     rol: {
       type: S.STRING,
     },
+    urlPerfil: {
+      type: S.STRING,
+    },
   },
   {
     sequelize: db,

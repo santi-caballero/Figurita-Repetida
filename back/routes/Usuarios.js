@@ -1,28 +1,15 @@
 const express = require("express");
 const { Usuarios } = require("../db/models/index");
 const router = express.Router();
-const { generateToken, validateToken } = require("../config/token");
-const { validateAuth } = require("../middleware/auth");
+const { generarToken } = require("../config/token");
+const { validarAuth, validarRol } = require("../middleware/auth");
 
-router.get("/", (req, res) => {
-  Usuarios.findAll()
-    .then((result) => res.status(200).send(result))
-    .catch((err) => console.log(err));
-});
-
-router.get("/me", validateAuth, (req, res) => {
+router.get("/me", validarAuth, (req, res) => {
   Usuarios.findOne({
     where: {
-      email: req.user.email,
+      email: req.usuario.email,
     },
   })
-    .then((result) => res.status(200).send(result))
-    .catch((err) => console.log(err));
-});
-
-router.get("/buscar/:id", (req, res) => {
-  const id = req.params.id;
-  Usuarios.findOne({ where: { id } })
     .then((result) => res.status(200).send(result))
     .catch((err) => console.log(err));
 });
@@ -36,16 +23,18 @@ router.post("/registro", (req, res) => {
 router.post("/login", (req, res) => {
   const { email, password } = req.body;
 
-  Usuarios.findOne({ where: { email } }).then((user) => {
-    if (!user) return res.status(401).send("Usuario Inexistente");
-    user.validarPassword(password).then((isValid) => {
+  Usuarios.findOne({ where: { email } }).then((usuario) => {
+    if (!usuario) return res.status(401).send("Usuario Inexistente");
+    usuario.validarPassword(password).then((isValid) => {
       if (!isValid) return res.status(401).send("Contraseña Incorrecta");
       const payload = {
-        email: user.email,
-        username: user.username,
+        id: usuario.id,
+        email: usuario.email,
+        username: usuario.username,
+        rol: usuario.rol,
       };
-      const token = generateToken(payload);
-      res.cookie("token", token).status(200).send(user);
+      const token = generarToken(payload);
+      res.cookie("token", token).status(200).send(usuario);
     });
   });
 });
@@ -61,9 +50,47 @@ router.put("/editar/:id", (req, res) => {
   );
 });
 
-router.delete("/eliminar/:id", (req, res) => {
+// Admin
+
+router.get("/", validarAuth, validarRol, (req, res) => {
+  Usuarios.findAll()
+    .then((result) => res.status(200).send(result))
+    .catch((err) => console.log(err));
+});
+
+// Esto busca un usuario por Id, por ahora no tiene uso.
+/*router.get("/buscar/:id", validarAuth, validarRol, (req, res) => {
   const id = req.params.id;
-  Usuarios.destroy({ where: { id } }).then((result) => res.sendStatus(204));
+  Usuarios.findOne({ where: { id } })
+    .then((result) => res.status(200).send(result))
+    .catch((err) => console.log(err));
+});*/
+
+router.delete("/eliminar/:id", validarAuth, validarRol, (req, res) => {
+  const id = req.params.id;
+  Usuarios.destroy({ where: { id } }).then(() => res.sendStatus(204));
+});
+
+router.put("/promover/:id", validarAuth, validarRol, (req, res) => {
+  const id = req.params.id;
+  Usuarios.update({ rol: "admin" }, { where: { id } })
+    .then(() =>
+      Usuarios.findOne({ where: { id } }).then((usuario) =>
+        res.status(202).send(usuario)
+      )
+    )
+    .catch((err) => console.log(err));
+});
+
+router.put("/revocar/:id", validarAuth, validarRol, (req, res) => {
+  const id = req.params.id;
+  Usuarios.update({ rol: "usuario" }, { where: { id } })
+    .then(() =>
+      Usuarios.findOne({ where: { id } }).then((usuario) =>
+        res.status(202).send(usuario)
+      )
+    )
+    .catch((err) => console.log(err));
 });
 
 module.exports = router;
