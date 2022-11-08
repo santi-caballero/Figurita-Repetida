@@ -3,7 +3,7 @@ const S = require("sequelize");
 
 class Productos extends S.Model {
   comprobarStock(producto, cantidad) {
-    return producto.stock > cantidad;
+    return producto.stock >= cantidad;
   }
 }
 
