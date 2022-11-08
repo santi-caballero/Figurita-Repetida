@@ -1,44 +1,15 @@
 const express = require("express");
 const router = express.Router();
 const { Favoritos, Usuarios, Productos } = require("../db/models/index");
+const favoritosController = require("../controllers/favoritosController");
 
 //crear un favorito, deberia llegar como req.body usuarioId y productoId
-router.post("/", (req, res) => {
-  Favoritos.create(req.body)
-    .then((result) => res.status(201).send(result))
-    .catch((err) => console.log(err));
-});
-
+router.post("/", favoritosController.agregarFavorito)
 //todos los favoritos de un usuario
-router.get("/:id", (req, res) => {
-  const usuarioId = req.params.id;
-  Favoritos.findAll({
-    where: { usuarioId },
-    include: Productos,
-  })
-    .then((favorite) => {
-      res.status(200).send(favorite);
-    })
-    .catch((error) => console.log(error));
-});
-
+router.get("/:id", favoritosController.getAll)
 //borrar un favorito
-router.delete("/borrar_uno/:usuarioId/:productoId", (req, res) => {
-  const productoId = req.params.productoId;
-  const usuarioId = req.params.usuarioId;
-  Usuarios.findOne({ where: { id: usuarioId } }).then(() => {
-    Favoritos.destroy({ where: { productoId } }).then(() => {
-      res.sendStatus(204);
-    });
-  });
-});
-
+router.delete("/borrar_uno/:usuarioId/:productoId", favoritosController.deleteOne)
 //borrar todos los favoritos
-router.delete("/borrar_todos/:usuarioId", (req, res) => {
-  const usuarioId = req.params.usuarioId;
-  Favoritos.destroy({ where: { usuarioId } }).then(() => {
-    res.sendStatus(204);
-  });
-});
+router.delete("/borrar_todos/:usuarioId", favoritosController.deleteAll)
 
 module.exports = router;
