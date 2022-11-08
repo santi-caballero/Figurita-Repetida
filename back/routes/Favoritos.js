@@ -12,7 +12,10 @@ router.post("/", (req, res) => {
 //todos los favoritos de un usuario
 router.get("/:id", (req, res) => {
   const usuarioId = req.params.id;
-  Favoritos.findAll({ where: { usuarioId } })
+  Favoritos.findAll({
+    where: { usuarioId },
+    include: Productos,
+  })
     .then((favorite) => {
       res.status(200).send(favorite);
     })
