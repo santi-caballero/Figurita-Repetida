@@ -1,19 +1,23 @@
 const express = require("express");
 const { Carritos, Pedidos, Productos } = require("../db/models/index");
 const router = express.Router();
+const carritosController = require("../controllers/carritosController");
 
-router.get("/:usuarioId", (req, res) => {
-  const usuarioId = req.params.usuarioId;
-  Carritos.findOne({
-    where: { usuarioId, comprado: false },
-    include: [{ model: Pedidos, include: [Productos] }],
-  })
-    .then((carrito) => {
-      carrito.calcularPrecioTotal(carrito);
-      res.status(200).send(carrito);
-    })
-    .catch((err) => console.log(err));
-});
+router.get(
+  "/:usuarioId",
+  carritosController.getCarrito
+
+  // const usuarioId = req.params.usuarioId;
+  // Carritos.findOne({
+  //   where: { usuarioId, comprado: false },
+  //   include: [{ model: Pedidos, include: [Productos] }],
+  // })
+  //   .then((carrito) => {
+  //     carrito.calcularPrecioTotal(carrito);
+  //     res.status(200).send(carrito);
+  //   })
+  //   .catch((err) => console.log(err));
+);
 
 router.get("/historial/:usuarioId", (req, res) => {
   const usuarioId = req.params.usuarioId;
@@ -27,15 +31,21 @@ router.get("/historial/:usuarioId", (req, res) => {
 
 router.post("/agregar", (req, res) => {
   const { usuarioId, productoId, cantidad } = req.body;
-  Carritos.findOne({ where: { usuarioId, comprado: false } }).then(
-    (carrito) => {
-      Pedidos.create({
-        productoId,
-        carritoId: carrito.id,
-        cantidad: cantidad,
-      }).then((result) => res.send(result));
+  Productos.findByPk(productoId).then((producto) => {
+    if (producto.stock > cantidad) {
+      Carritos.findOne({ where: { usuarioId, comprado: false } }).then(
+        (carrito) => {
+          Pedidos.create({
+            productoId,
+            carritoId: carrito.id,
+            cantidad: cantidad,
+          }).then((result) => res.send(result));
+        }
+      );
+    } else {
+      res.status(200).send("NO HAY MAS STOCK");
     }
-  );
+  });
 });
 
 router.delete("/borrar_uno/:pedidoId", (req, res) => {

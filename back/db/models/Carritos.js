@@ -5,20 +5,44 @@ const Productos = require("./Productos");
 
 class Carritos extends S.Model {
   comprar(carrito) {
-    carrito.update({ comprado: true });
-    return Carritos.create({ usuarioId: carrito.usuarioId }).then((res) => res);
+    return Pedidos.findAll({
+      where: { carritoId: carrito.id },
+      include: Productos,
+    }).then((pedidos) => {
+      const comprobacion = pedidos.reduce((acc, pedido) => {
+        if (!acc) {
+          return false;
+        }
+        return pedido.producto.comprobarStock(pedido.producto);
+      }, true);
+      console.log(comprobacion);
+      if (comprobacion) {
+        pedidos.forEach((pedido) => {
+          Productos.findByPk(pedido.productoId).then((producto) => {
+            producto.update({ stock: producto.stock - pedido.cantidad });
+          });
+        });
+        carrito.update({ comprado: true });
+        return Carritos.create({ usuarioId: carrito.usuarioId }).then(
+          (res) => res
+        );
+      } else {
+        return carrito;
+      }
+    });
   }
+
   calcularPrecioTotal(carrito) {
     Pedidos.findAll({
       where: { carritoId: carrito.id },
       include: Productos,
     }).then((pedidos) => {
       console.log("ENTRE A PEDIDOS");
-      carrito.preciototal = pedidos.reduce((suma, pedido) => {
-        return suma + pedido.producto.precio;
+      const precioTotal = pedidos.reduce((suma, pedido) => {
+        return suma + pedido.producto.precio * pedido.cantidad;
       }, 0);
+      carrito.update({ preciototal: precioTotal });
     });
-    return carrito;
   }
 }
 
