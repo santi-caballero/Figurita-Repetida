@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const { Favoritos, Usuarios, Productos } = require("../db/models/index");
 const favoritosController = require("../controllers/favoritosController");
 
 //crear un favorito, deberia llegar como req.body usuarioId y productoId
