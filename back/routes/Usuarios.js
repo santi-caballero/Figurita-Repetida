@@ -50,7 +50,7 @@ router.put("/editar/:id", (req, res) => {
   );
 });
 
-// Admin
+// Admin:
 
 router.get("/", validarAuth, validarRol, (req, res) => {
   Usuarios.findAll()
@@ -84,13 +84,18 @@ router.put("/promover/:id", validarAuth, validarRol, (req, res) => {
 
 router.put("/revocar/:id", validarAuth, validarRol, (req, res) => {
   const id = req.params.id;
-  Usuarios.update({ rol: "usuario" }, { where: { id } })
-    .then(() =>
-      Usuarios.findOne({ where: { id } }).then((usuario) =>
-        res.status(202).send(usuario)
+  // Comprobar si la id del usuario logueado que está en la cookie es la misma que la que llegó por parametro. Lleva solo dos iguales porque uno es string y el otro numero y no me fije cual es cual.
+  if (id == req.usuario.id) {
+    res.status(200).send("El usuario no puede revocarse a si mismo");
+  } else {
+    Usuarios.update({ rol: "usuario" }, { where: { id } })
+      .then(() =>
+        Usuarios.findOne({ where: { id } }).then((usuario) =>
+          res.status(202).send(usuario)
+        )
       )
-    )
-    .catch((err) => console.log(err));
+      .catch((err) => console.log(err));
+  }
 });
 
 module.exports = router;
