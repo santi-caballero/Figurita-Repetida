@@ -2,9 +2,6 @@ const db = require("../index");
 const S = require("sequelize");
 
 class Productos extends S.Model {
-  comprobarStock(producto, cantidad) {
-    return producto.stock >= cantidad;
-  }
   static generarTagsString(producto) {
     // Por fuerza bruta, genera un string con todas las propiedades disponibles, las que no tienen valor, no devulven nada.
     return `${producto.tipo.toLowerCase()} ${producto.nombre.toLowerCase()} ${
@@ -13,7 +10,7 @@ class Productos extends S.Model {
       producto.pais ? producto.pais.toLowerCase() : ""
     }`;
   }
-  static generarTagsArray(producto) {
+  /*static generarTagsArray(producto) {
     let tags = [];
     tags.push(producto.tipo.toLowerCase());
     tags.push(producto.nombre.toLowerCase());
@@ -21,7 +18,7 @@ class Productos extends S.Model {
     if (producto.posicion) tags.push(producto.posicion.toLowerCase());
     if (producto.pais) tags.push(producto.pais.toLowerCase());
     return tags;
-  }
+  }*/
 }
 
 Productos.init(
@@ -40,9 +37,9 @@ Productos.init(
     nombreCompleto: {
       type: S.VIRTUAL,
       get() {
-        return `${this.getDataValue("nombre")} ${this.getDataValue(
-          "apellido"
-        )}`;
+        return `${this.getDataValue("nombre")} ${
+          this.getDataValue("apellido") || ""
+        }`;
       },
     },
     posicion: {
