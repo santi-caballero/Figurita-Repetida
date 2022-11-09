@@ -43,6 +43,24 @@ class usuariosController {
 
   static async editarUsuario(req, res) {
     const id = req.params.id;
+    if (req.body.password) {
+      res.status(200).send("no podes cambiar la contraseña");
+    } else {
+      Usuarios.update(req.body, { where: { id } }).then((result) =>
+        res.status(202).send(result)
+      );
+    }
+  }
+
+  //ADMIN
+  static async adminGetAll(req, res) {
+    Usuarios.findAll()
+      .then((result) => res.status(200).send(result))
+      .catch((err) => console.log(err));
+  }
+
+  static async editarUsuario(req, res) {
+    const id = req.params.id;
     Usuarios.update(req.body, { where: { id } }).then((result) =>
       res.status(202).send(result)
     );
