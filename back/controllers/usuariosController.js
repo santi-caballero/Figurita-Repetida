@@ -1,27 +1,26 @@
-const { Favoritos, Usuarios, Productos } = require("../db/models/index");
+const usuariosServices = require("../services/usuariosServices");
 const { generarToken } = require("../config/token");
 
 class usuariosController {
   static async me(req, res) {
-    Usuarios.findOne({
-      where: {
-        email: req.usuario.email,
-      },
-    })
+    const email = req.usuario.email;
+    usuariosServices
+      .me(email)
       .then((result) => res.status(200).send(result))
       .catch((err) => console.log(err));
   }
 
   static async registro(req, res) {
-    Usuarios.create(req.body)
+    const body = req.body;
+    usuariosServices
+      .registro(body)
       .then((result) => res.status(201).send(result))
       .catch((err) => console.log(err));
   }
 
   static async login(req, res) {
     const { email, password } = req.body;
-
-    Usuarios.findOne({ where: { email } }).then((usuario) => {
+    usuariosServices.login(email).then((usuario) => {
       if (!usuario) return res.status(401).send("Usuario Inexistente");
       usuario.validarPassword(password).then((isValid) => {
         if (!isValid) return res.status(401).send("Contraseña Incorrecta");
@@ -43,51 +42,39 @@ class usuariosController {
 
   static async editarUsuario(req, res) {
     const id = req.params.id;
+    const body = req.body;
     if (req.body.password) {
       res.status(200).send("no podes cambiar la contraseña");
     } else {
-      Usuarios.update(req.body, { where: { id } }).then((result) =>
-        res.status(202).send(result)
-      );
+      usuariosServices
+        .editarUsuario(body, id)
+        .then((result) => res.status(202).send(result));
     }
   }
 
   //ADMIN
   static async adminGetAll(req, res) {
-    Usuarios.findAll()
-      .then((result) => res.status(200).send(result))
-      .catch((err) => console.log(err));
-  }
-
-  static async editarUsuario(req, res) {
-    const id = req.params.id;
-    Usuarios.update(req.body, { where: { id } }).then((result) =>
-      res.status(202).send(result)
-    );
-  }
-  //ADMIN
-
-  static async adminGetAll(req, res) {
-    Usuarios.findAll()
+    usuariosServices.adminGetAll
       .then((result) => res.status(200).send(result))
       .catch((err) => console.log(err));
   }
 
   static async adminDeleteOne(req, res) {
     const id = req.params.id;
-    if (id == req.usuario.id) {
+    if (id === req.usuario.id) {
       res.status(200).send("El usuario no puede eliminarse a si mismo");
     } else {
-      Usuarios.destroy({ where: { id } }).then(() => res.sendStatus(204));
+      usuariosServices.adminDeleteOne(id).then(() => res.sendStatus(204));
     }
   }
   static async adminPromoverUsuario(req, res) {
     const id = req.params.id;
-    Usuarios.update({ rol: "admin" }, { where: { id } })
+    usuariosServices
+      .adminPromoverUsuarioRol(id)
       .then(() =>
-        Usuarios.findOne({ where: { id } }).then((usuario) =>
-          res.status(202).send(usuario)
-        )
+        usuariosServices
+          .adminPromoverUsuario(id)
+          .then((usuario) => res.status(202).send(usuario))
       )
       .catch((err) => console.log(err));
   }
@@ -95,14 +82,15 @@ class usuariosController {
   static async adminRevocarUsuario(req, res) {
     const id = req.params.id;
     // Comprobar si la id del usuario logueado que está en la cookie es la misma que la que llegó por parametro. Lleva solo dos iguales porque uno es string y el otro numero y no me fije cual es cual.
-    if (id == req.usuario.id) {
+    if (id === req.usuario.id) {
       res.status(200).send("El usuario no puede revocarse a si mismo");
     } else {
-      Usuarios.update({ rol: "usuario" }, { where: { id } })
+      usuariosServices
+        .adminRevocarUsuarioRol(id)
         .then(() =>
-          Usuarios.findOne({ where: { id } }).then((usuario) =>
-            res.status(202).send(usuario)
-          )
+          usuariosServices
+            .adminRevocarUsuario(id)
+            .then((usuario) => res.status(202).send(usuario))
         )
         .catch((err) => console.log(err));
     }
