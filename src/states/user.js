@@ -22,17 +22,30 @@ export const login = createAsyncThunk("user/login", async (user, thunkAPI) => {
       email: email,
       password: password,
     });
+    console.log(respuesta.data);
     return respuesta.data;
   } catch (error) {
     return thunkAPI.rejectWithValue("Credenciales incorrectas");
   }
 });
 
+export const isLoggedIn = createAsyncThunk(
+  "user/isLoggedIn",
+  async (thunkAPI) => {
+    try {
+      const respuesta = await axios.get("/api/usuario/me");
+      return respuesta.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue("No se encuentra usuario");
+    }
+  }
+);
+
 export const obtenerFavoritos = createAsyncThunk(
   "user/obtenerFavoritos",
   async (idUser, thunkAPI) => {
     try {
-      console.log("mi user es", idUser);
+      console.log("mi user es11", idUser);
       const respuesta = await axios.get(`/api/favoritos/${idUser}`);
       return respuesta.data;
     } catch (error) {
@@ -69,12 +82,27 @@ const userSlice = createSlice({
     [agregarFavorito.fulfilled]: (state, action) => {
       console.log("Mi payload al agregar favorito es ", action.payload);
       state.favoritos.push(action.payload);
+      return state;
     },
     [login.fulfilled]: (state, action) => {
-      state.user = action.payload;
+      // console.log("me esta llegando", action.payload);
+      // state.user = action.payload;
+      //return state;
+      state.username = action.payload.username;
+      state.email = action.payload.email;
+      state.nombre = action.payload.nombre;
+      state.apellido = action.payload.apellido;
+      state.id = action.payload.id;
     },
     [login.rejected]: (state) => {
       return state;
+    },
+    [isLoggedIn.fulfilled]: (state, action) => {
+      state.username = action.payload.username;
+      state.email = action.payload.email;
+      state.nombre = action.payload.nombre;
+      state.apellido = action.payload.apellido;
+      state.id = action.payload.id;
     },
   },
 });

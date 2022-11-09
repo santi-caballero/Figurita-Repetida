@@ -5,27 +5,34 @@ import Button from "@mui/material/Button";
 import GrillaCarrito from "./GridCarrito";
 import DeleteIcon from "@mui/icons-material/Delete";
 import SendIcon from "@mui/icons-material/Send";
-import { Typography } from "@mui/material";
-
+import { useSelector, useDispatch } from "react-redux";
+import { calcularTotal, obtenerItems } from "../states/cart";
 const Carrito = () => {
-  const [user, setUser] = useState([]);
-  const [carrito, setCarrito] = useState([]);
-  let contenedor = [];
-  useEffect(() => {
-    axios
-      .get("/api/usuario/me")
-      .then((result) => setUser(result.data))
-      .catch((error) => console.log(error));
-  }, []);
-  const handleCarrito = () => {
-    axios
-      .get(`/api/carritos/${user.id}`)
-      .then((result) => {
-        setCarrito(result.data);
-      })
-      .catch((error) => console.log(error));
-    contenedor = carrito.pedidos;
-  };
+  // const [user, setUser] = useState([]);
+  // const [carrito, setCarrito] = useState([]);
+  // let contenedor = [];
+
+  const user = useSelector((store) => store.user);
+  const carrito = useSelector((store) => store.cart);
+  const { cartItems } = useSelector((store) => store.cart);
+  const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   {
+  //     user.id == null
+  //       ? console.log("es null", user)
+  //       : dispatch(obtenerItems(user.id));
+  //   }
+  // }, [user.id]);
+
+  // useEffect(() => {
+  //   {
+  //     user.id == null
+  //       ? console.log("es null", user)
+  //       : dispatch(calcularTotal());
+  //   }
+  // }, [cartItems]);
+
   const handleCompra = () => {
     if (carrito.id) {
       axios
@@ -36,7 +43,6 @@ const Carrito = () => {
       alert("Debe ingresar productos en su carrito");
     }
   };
-
   const handleLimpiar = () => {
     axios
       .delete(`/api/carritos/borrarTodos/${carrito.id}`)
@@ -60,9 +66,9 @@ const Carrito = () => {
         {" "}
         Actualizar Carrito
       </Button>
-      {contenedor ? <GrillaCarrito productos={carrito.pedidos} /> : ""}
+      {carrito.cartItems ? <GrillaCarrito productos={carrito.cartItems} /> : ""}
       <Typography mr="3%" mb="3%" align="right" variant="h4" component="h4">
-        Total a pagar: ${carrito.preciototal}
+        Total a pagar: ${carrito.total}
       </Typography>
       ;
       <Button
@@ -104,5 +110,4 @@ const Carrito = () => {
     </div>
   );
 };
-
 export default Carrito;

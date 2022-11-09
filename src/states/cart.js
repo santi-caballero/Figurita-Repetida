@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const initialState = {
+  id: null,
   cartItems: [],
   cantidad: 0,
   total: 0,
@@ -13,7 +14,7 @@ export const agregarItem = createAsyncThunk(
     const { idUser, cantidad, idProducto } = data;
     try {
       console.log("me esta llegando", idUser, cantidad, idProducto);
-      const respuesta = await axios.post("api/carritos/agregar");
+      const respuesta = await axios.post("/api/carritos/agregar");
 
       return respuesta.data;
     } catch (error) {
@@ -27,8 +28,8 @@ export const obtenerItems = createAsyncThunk(
   async (idUser, thunkAPI) => {
     try {
       console.log("me esta llegando", idUser);
-      const respuesta = await axios.get(`api/carritos/${idUser}`);
-
+      const respuesta = await axios.get(`/api/carritos/${idUser}`);
+      console.log("el axios me esta devolviendo", respuesta.data);
       return respuesta.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -72,7 +73,7 @@ const cartSlice = createSlice({
       let total = 0;
       state.cartItems.forEach((item) => {
         cantidad += item.cantidad;
-        total += item.cantidad * item.precio;
+        total += item.cantidad * item.producto.precio;
       });
       state.cantidad = cantidad;
       state.total = total;
@@ -80,12 +81,16 @@ const cartSlice = createSlice({
   },
   extraReducers: {
     [agregarItem.fulfilled]: (state, action) => {
-      console.log(action);
-      //state.cartItems = action.payload;
+      console.log("Agregar item le llega", action.payload);
+      state.cartItems = action.payload;
     },
     [obtenerItems.fulfilled]: (state, action) => {
-      console.log(action);
-      state.cartItems = action.payload;
+      console.log("carrito tiene", action.payload);
+      state.cartItems = action.payload.pedidos;
+      state.id = action.payload.id;
+    },
+    [obtenerItems.rejected]: (state, action) => {
+      console.log("mi action es", action);
     },
   },
 });

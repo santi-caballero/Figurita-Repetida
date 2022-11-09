@@ -23,20 +23,36 @@ import SidebarPrueba from "./components/SidebarPrueba";
 import { useDispatch, useSelector } from "react-redux";
 import { calcularTotal, obtenerItems } from "./states/cart";
 import { useSelect } from "@mui/base";
+import { isLoggedIn, obtenerFavoritos } from "./states/user";
 function App() {
   const [allProducts, setAllProducts] = useState([]);
 
   //! ========================================================
   const dispatch = useDispatch();
   const { cartItems } = useSelector((store) => store.cart);
+  const user = useSelector((store) => store.user);
 
-  // useEffect(() => {
-  //   dispatch(calcularTotal());
-  // }, [cartItems]);
+  useEffect(() => {
+    {
+      user.id == null
+        ? console.log("es null", user)
+        : dispatch(calcularTotal());
+    }
+  }, [cartItems]);
 
-  // useEffect(() => {
-  //   dispatch(obtenerItems());
-  // }, []);
+  useEffect(() => {
+    {
+      user.id == null
+        ? console.log("es null", user)
+        : dispatch(obtenerItems(user.id));
+    }
+  }, [user.id]);
+
+  useEffect(() => {
+    {
+      user.id == null ? dispatch(isLoggedIn()) : console.log(user);
+    }
+  }, []);
 
   // console.log("mi carrito es", cartItems);
   //! ========================================================
