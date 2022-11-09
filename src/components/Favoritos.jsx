@@ -24,7 +24,21 @@ const Favoritos = () => {
   };
   return (
     <div>
-      <Button onClick={() => handleFavs()}> Mostrar favs</Button>
+      <Button
+        sx={{
+          marginLeft: "45%",
+          marginTop: "2%",
+
+          borderRadius: 3,
+          background: "#CAF0F8",
+          fontWeight: "bold",
+          color: "#023E8A",
+        }}
+        onClick={() => handleFavs()}
+      >
+        {" "}
+        Mostrar favs
+      </Button>
       {favoritos.length ? <GrillaFavs productos={favoritos} /> : ""}
     </div>
   );

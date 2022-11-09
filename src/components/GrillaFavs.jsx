@@ -11,6 +11,8 @@ const GrillaFavs = ({ productos }) => {
 
   return (
     <Container maxWidth="md">
+      <h1 className="promo"> Favoritos</h1>
+
       <Grid container spacing={4}>
         {productos.map((product, i) => (
           <Grid item key={i} xs={12} sm={6} md={4}>

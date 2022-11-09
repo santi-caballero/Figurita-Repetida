@@ -15,7 +15,7 @@ export default function SingleProduct({ cantidad }) {
     axios.get(`/api/productos/${idProducto.id}`).then((figu) => {
       setProducto(figu.data);
     });
-  }, [producto]);
+  }, []);
 
   return (
     <div className="todo">
