@@ -11,6 +11,16 @@ class favoritosServices {
       include: Productos,
     });
   }
+
+  static async deleteOne(productoId, usuarioId) {
+    Usuarios.findOne({ where: { id: usuarioId } }).then(() => {
+      Favoritos.destroy({ where: { productoId } });
+    });
+  }
+
+  static async deleteAll(usuarioId) {
+    Favoritos.destroy({ where: { usuarioId } });
+  }
 }
 
 module.exports = favoritosServices;
