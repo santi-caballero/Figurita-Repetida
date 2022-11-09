@@ -37,7 +37,7 @@ class Carritos extends S.Model {
       include: Productos,
     }).then((pedidos) => {
       const precioTotal = pedidos.reduce((suma, pedido) => {
-        return suma + pedido.producto.precio;
+        return suma + pedido.producto.precio * pedido.cantidad;
       }, 0);
       carrito.update({ preciototal: precioTotal });
     });
