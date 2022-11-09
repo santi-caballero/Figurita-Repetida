@@ -17,7 +17,8 @@ import ContentRareza from "./components/ContentRareza";
 import ContentBusqueda from "./components/ContentBusqueda";
 import Favoritos from "./components/Favoritos";
 import Carrito from "./components/Carrito";
-import Admin from "./components/Admin";
+import Admin from "./components/Admin/Admin";
+import History from "./components/History";
 
 import SidebarPrueba from "./components/SidebarPrueba";
 import { useDispatch, useSelector } from "react-redux";
@@ -101,6 +102,7 @@ function App() {
           <Route path="/:user/favorites" element={<Favoritos />} />
           <Route path="/:user/cart" element={<Carrito />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/history" element={<History />} />
           <Route path="/:user/favorites" element={<h1>favorites</h1>} />
 
           <Route path="/:user/checkout" element={<h1>checkout</h1>} />
