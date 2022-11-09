@@ -1,17 +1,19 @@
 const { Favoritos, Usuarios, Productos } = require("../db/models/index");
+const favoritosServices = require("../services/favoritosServices");
 class favoritosController {
   static async agregarFavorito(req, res) {
-    Favoritos.create(req.body)
+    const usuarioId = req.body.usuarioId;
+    const productoId = req.body.productoId;
+    favoritosServices
+      .agregarFavoritos(usuarioId, productoId)
       .then((result) => res.status(201).send(result))
       .catch((err) => console.log(err));
   }
 
   static async getAll(req, res) {
     const usuarioId = req.params.id;
-    Favoritos.findAll({
-      where: { usuarioId },
-      include: Productos,
-    })
+    favoritosServices
+      .getAll(usuarioId)
       .then((favorite) => {
         res.status(200).send(favorite);
       })
