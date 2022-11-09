@@ -9,7 +9,7 @@ router.get("/:id", productosController.getId);
 
 router.get("/buscar/:tags", productosController.buscarPorTags);
 
-router.get("/filtrar", productosController.filtrarPorCategorias);
+router.get("/filtrar/categorias", productosController.filtrarPorCategorias);
 
 // Admin:
 
