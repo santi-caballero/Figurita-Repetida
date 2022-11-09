@@ -54,7 +54,8 @@ class usuariosController {
 
   //ADMIN
   static async adminGetAll(req, res) {
-    usuariosServices.adminGetAll
+    usuariosServices
+      .adminGetAll()
       .then((result) => res.status(200).send(result))
       .catch((err) => console.log(err));
   }
