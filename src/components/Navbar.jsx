@@ -62,6 +62,10 @@ const Navbar = () => {
           </Link>
           <form onSubmit={handleSubmit}>
             <TextField
+              sx={{
+                marginLeft: "30%",
+                background: "white",
+              }}
               id="inputito"
               type="search"
               variant="outlined"

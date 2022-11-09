@@ -8,6 +8,8 @@ import { Button } from "@mui/material";
 import axios from "axios";
 import { useState } from "react";
 
+import DeleteIcon from "@mui/icons-material/Delete";
+
 const Img = styled("img")({
   margin: "auto",
   display: "block",
@@ -19,7 +21,7 @@ export default function CardCarrito({ product, cantidad, id }) {
   const [producto, setProducto] = useState({});
   const handleRemove = () => {
     axios
-      .delete(`/api/carritos/borrar_uno/${id}`)
+      .delete(`/api/carritos/borrarUno/${id}`)
       .catch((error) => console.log(error));
   };
   return (
@@ -41,17 +43,26 @@ export default function CardCarrito({ product, cantidad, id }) {
         <Grid item xs={12} sm container>
           <Grid item xs container direction="column" spacing={2}>
             <Grid item xs>
-              <Typography gutterBottom variant="subtitle1" component="div">
+              <Typography
+                fontFamily={"'Bungee Spice', cursive"}
+                gutterBottom
+                variant="h5"
+                component="div"
+              >
                 {product.nombre} {product.apellido}
               </Typography>
-              <Typography variant="subtitle1" gutterBottom>
+              <Typography
+                fontFamily={"'Bungee Spice', cursive"}
+                variant="h5"
+                gutterBottom
+              >
                 Delantero
               </Typography>
-              <Typography variant="subtitle1"> Cantidad {cantidad}</Typography>
+              <Typography variant="h5"> Cantidad {cantidad}</Typography>
             </Grid>
           </Grid>
           <Grid item>
-            <Typography variant="subtitle1" component="div">
+            <Typography variant="h5" component="div">
               ${product.precio}
             </Typography>
           </Grid>
@@ -64,7 +75,9 @@ export default function CardCarrito({ product, cantidad, id }) {
               handleRemove();
             }}
           >
-            {" "}
+            <Grid item xs={8}>
+              <DeleteIcon />
+            </Grid>{" "}
             Eliminar del carrito
           </Button>
         </Typography>

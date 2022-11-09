@@ -4,10 +4,9 @@ import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
-import Alert from "@mui/material/Alert";
+
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
 
 import axios from "axios";
 
@@ -44,7 +43,7 @@ const Comprar = ({ cantidad, producto }) => {
           color={"#03045E"}
           marginLeft="10px"
         >
-          Precio: ${1}
+          Precio: ${producto.precio}
         </Typography>
         <Typography
           fontFamily={"'Anton', sans-serif"}
