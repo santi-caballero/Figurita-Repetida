@@ -7,9 +7,9 @@ router.get("/", productosController.getProductos);
 
 router.get("/:id", productosController.getId);
 
-router.get("/buscar/:nombre", productosController.buscadorPorNombre);
+router.get("/buscar/:tags", productosController.buscarPorTags);
 
-router.get("/filtrar/categorias", productosController.categorias);
+router.get("/filtrar", productosController.filtrarPorCategorias);
 
 // Admin:
 
