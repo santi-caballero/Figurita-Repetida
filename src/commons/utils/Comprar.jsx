@@ -8,16 +8,20 @@ import Stack from "@mui/material/Stack";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { useState, useEffect } from "react";
 
+import { useSelector, useDispatch } from "react-redux";
+import { obtenerFavoritos } from "../../states/user";
 import axios from "axios";
 
 const Comprar = ({ cantidad, producto }) => {
-  const [user, setUser] = useState([]);
-  useEffect(() => {
-    axios
-      .get("/api/usuario/me")
-      .then((result) => setUser(result.data))
-      .catch((error) => console.log(error));
-  }, []);
+  const user = useSelector((store) => store.user);
+  // const [user, setUser] = useState([]);
+  const dispatch = useDispatch();
+  // useEffect(() => {
+  //   axios
+  //     .get("/api/usuario/me")
+  //     .then((result) => setUser(result.data))
+  //     .catch((error) => console.log(error));
+  // }, []);
   const handleAddCarrito = () => {
     if (cantidad) {
       axios.post(`/api/carritos/agregar`, {
@@ -34,6 +38,7 @@ const Comprar = ({ cantidad, producto }) => {
       usuarioId: user.id,
       productoId: producto.id,
     });
+    // dispatch(obtenerFavoritos(user.id));
   };
   return (
     <div className="singleProductRigth">

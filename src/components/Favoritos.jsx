@@ -5,41 +5,25 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
 import GrillaFavs from "./GrillaFavs";
+import { useSelector, useDispatch } from "react-redux";
+import { obtenerFavoritos } from "../states/user";
 const Favoritos = () => {
-  const [user, setUser] = useState([]);
-  const [favoritos, setFavoritos] = useState([]);
+  // const [user, setUser] = useState([]);
+  const user = useSelector((store) => store.user);
+  //const [favoritos, setFavoritos] = useState([]);
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    axios
-      .get("/api/usuario/me")
-      .then((result) => setUser(result.data))
-      .catch((error) => console.log(error));
-  }, []);
-  const handleFavs = () => {
-    axios
-      .get(`/api/favoritos/${user.id}`)
-      .then((result) => {
-        setFavoritos(result.data);
-      })
-      .catch((error) => console.log(error));
-  };
+    dispatch(obtenerFavoritos(user.id));
+  }, [user.id]);
+
   return (
     <div>
-      <Button
-        sx={{
-          marginLeft: "45%",
-          marginTop: "2%",
-
-          borderRadius: 3,
-          background: "#CAF0F8",
-          fontWeight: "bold",
-          color: "#023E8A",
-        }}
-        onClick={() => handleFavs()}
-      >
-        {" "}
-        Mostrar favs
-      </Button>
-      {favoritos.length ? <GrillaFavs productos={favoritos} /> : ""}
+      {user.favoritos ? (
+        <GrillaFavs productos={user.favoritos} />
+      ) : (
+        <h1> Vacio</h1>
+      )}
     </div>
   );
 };
