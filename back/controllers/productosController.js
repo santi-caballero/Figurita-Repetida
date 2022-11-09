@@ -16,23 +16,18 @@ class productosController {
       .catch((err) => console.log(err));
   }
 
-  static async buscadorPorNombre(req, res) {
-    let palabra = req.params.nombre;
-    palabra = palabra.charAt(0).toUpperCase() + palabra.slice(1);
-
+  static async buscarPorTags(req, res) {
+    const tags = req.params.tags;
     Productos.findAll({
       where: {
-        [Op.or]: [
-          { apellido: { [Op.substring]: palabra } },
-          { nombre: { [Op.substring]: palabra } },
-        ],
+        tags: { [Op.substring]: tags },
       },
     })
       .then((result) => res.status(200).send(result))
       .catch((err) => console.log(err));
   }
 
-  static async categorias(req, res) {
+  static async filtrarPorCategorias(req, res) {
     const { tipo, rareza, posicion, pais } = req.body;
     const busqueda = [];
     if (tipo) busqueda.push({ tipo });

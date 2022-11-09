@@ -30,6 +30,14 @@ Usuarios.init(
       type: S.STRING,
       allownull: false,
     },
+    nombreCompleto: {
+      type: S.VIRTUAL,
+      get() {
+        return `${this.getDataValue("nombre")} ${this.getDataValue(
+          "apellido"
+        )}`;
+      },
+    },
     email: {
       type: S.STRING,
       allownull: false,
