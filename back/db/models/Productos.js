@@ -6,6 +6,7 @@ class Productos extends S.Model {
     return producto.stock >= cantidad;
   }
   static generarTagsString(producto) {
+    // Por fuerza bruta, genera un string con todas las propiedades disponibles, las que no tienen valor, no devulven nada.
     return `${producto.tipo.toLowerCase()} ${producto.nombre.toLowerCase()} ${
       producto.apellido ? producto.apellido.toLowerCase() : ""
     } ${producto.posicion ? producto.posicion.toLowerCase() : ""} ${
@@ -64,15 +65,8 @@ Productos.init(
     urlImagen: {
       type: S.STRING,
     },
-    /*tags: {
-      type: S.ARRAY(S.INTEGER),
-      defaultValue: [],
-    },*/
     tags: {
       type: S.STRING,
-      get() {
-        return this.getDataValue("tags").split(" ");
-      },
     },
   },
   {
