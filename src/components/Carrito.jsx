@@ -7,6 +7,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import SendIcon from "@mui/icons-material/Send";
 import { useSelector, useDispatch } from "react-redux";
 import { calcularTotal, obtenerItems } from "../states/cart";
+import { Typography } from "@mui/material";
 const Carrito = () => {
   // const [user, setUser] = useState([]);
   // const [carrito, setCarrito] = useState([]);
@@ -51,21 +52,6 @@ const Carrito = () => {
   };
   return (
     <div className="carrito">
-      <Button
-        sx={{
-          marginLeft: "40%",
-          marginTop: "2%",
-          marginBottom: "2%",
-          borderRadius: 3,
-          background: "#CAF0F8",
-          fontWeight: "bold",
-          color: "#023E8A",
-        }}
-        onClick={() => handleCarrito()}
-      >
-        {" "}
-        Actualizar Carrito
-      </Button>
       {carrito.cartItems ? <GrillaCarrito productos={carrito.cartItems} /> : ""}
       <Typography mr="3%" mb="3%" align="right" variant="h4" component="h4">
         Total a pagar: ${carrito.total}
