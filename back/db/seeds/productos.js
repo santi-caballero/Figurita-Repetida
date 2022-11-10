@@ -261,15 +261,15 @@ const productosFalsos = [
   },
   {
     tipo: "jugador",
-    nombre: "Jasper",
-    apellido: "Cillessen",
+    nombre: "Jordan",
+    apellido: "Pickford",
     posicion: "portero",
     pais: "Inglaterra",
     stock: 500,
     precio: 200,
     rareza: 1,
     urlImagen:
-      "https://figuritasqatar.com.ar/wp-content/uploads/jasper-cillessen.png",
+      "https://figuritasqatar.com.ar/wp-content/uploads/jodran-pickford.png",
   },
   {
     tipo: "jugador",
