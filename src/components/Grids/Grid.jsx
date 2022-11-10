@@ -1,7 +1,5 @@
 import React from "react";
-import Card from "../commons/Card";
-
-import "../style/componentClass.css";
+import Card from "../../commons/Cards/Card";
 
 import { Container, Grid } from "@mui/material";
 

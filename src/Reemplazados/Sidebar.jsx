@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useNavigate } from "react-router";
-import Grid from "../components/Grid";
+import Grid from "../components/Grids/Grid";
 import { Link } from "react-router-dom";
 import {
   Drawer,

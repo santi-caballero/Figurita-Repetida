@@ -1,10 +1,8 @@
 import React from "react";
-import Grilla from "./Grid";
-import Carrousel from "./Carrousel";
-import axios from "axios";
-import { useState, useEffect } from "react";
-import Button from "@mui/material/Button";
-import GrillaFavs from "./GrillaFavs";
+
+import { useEffect } from "react";
+
+import GrillaFavs from "../components/Grids/GrillaFavs";
 import { useSelector, useDispatch } from "react-redux";
 import { obtenerFavoritos } from "../states/user";
 const Favoritos = () => {

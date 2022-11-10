@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
-import GrillaCarrito from "./GridCarrito";
+import GrillaCarrito from "./Grids/GridCarrito";
 import DeleteIcon from "@mui/icons-material/Delete";
 import SendIcon from "@mui/icons-material/Send";
 import { useSelector, useDispatch } from "react-redux";
