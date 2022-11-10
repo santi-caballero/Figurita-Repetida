@@ -160,7 +160,7 @@ const productosFalsos = [
     precio: 200,
     rareza: 0,
     urlImagen:
-      "https://figuritasqatar.com.ar/wp-content/uploads/alexander-dominguez.png",
+      "https://figuritasqatar.com.ar/wp-content/uploads/enner-valencia.png",
   },
   {
     tipo: "jugador",
