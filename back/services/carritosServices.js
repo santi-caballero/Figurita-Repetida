@@ -1,4 +1,9 @@
-const { Carritos, Pedidos, Productos } = require("../db/models/index");
+const {
+  Carritos,
+  Pedidos,
+  Productos,
+  Usuarios,
+} = require("../db/models/index");
 const emailConfirmacion = require("../config/mailer");
 
 class carritosServices {
@@ -29,9 +34,9 @@ class carritosServices {
   }
 
   static modificarPedido(pedido, carrito, cantidad) {
-    return pedido.update({ cantidad: pedido.cantidad + cantidad }).then(() => {
-      carrito.calcularPrecioTotal(carrito);
-    });
+    return pedido
+      .update({ cantidad: pedido.cantidad + cantidad })
+      .then(() => {});
   }
 
   static crearPedido(productoId, carrito, cantidad) {
@@ -39,8 +44,8 @@ class carritosServices {
       productoId,
       carritoId: carrito.id,
       cantidad,
-    }).then(() => {
-      carrito.calcularPrecioTotal(carrito);
+    }).then((result) => {
+      res.status(204).send(result);
     });
   }
 
@@ -51,18 +56,14 @@ class carritosServices {
   static borrarUnPedido(pedidoId) {
     return Pedidos.findByPk(pedidoId).then((pedido) => {
       Carritos.findByPk(pedido.carritoId).then((carrito) => {
-        Pedidos.destroy({ where: { id: pedidoId } }).then(() => {
-          carrito.calcularPrecioTotal(carrito);
-        });
+        Pedidos.destroy({ where: { id: pedidoId } });
       });
     });
   }
 
   static borrarTodosLosPedidos(carritoId) {
     return Pedidos.destroy({ where: { carritoId } }).then(() =>
-      Carritos.findByPk(carritoId).then((carrito) => {
-        carrito.calcularPrecioTotal(carrito);
-      })
+      Carritos.findByPk(carritoId)
     );
   }
 
@@ -86,17 +87,23 @@ class carritosServices {
         producto.update({ stock: producto.stock - pedido.cantidad });
       });
     });
-    emailConfirmacion(carrito);
+    Usuarios.findByPk(carrito.usuarioId).then((usuario) => {
+      emailConfirmacion(carrito, usuario);
+    });
     return carrito.crearCarrito(carrito);
   }
 
-  static comprobarStock(carrito) {
+  static async comprobarStock(carrito) {
     return carrito.pedidos.reduce((acc, pedido) => {
       if (!acc) {
         return false;
       }
       return pedido.producto.stock >= pedido.cantidad;
     }, true);
+  }
+
+  static getHistorialComprados() {
+    return Carritos.findAll({ where: { comprado: true } });
   }
 }
 

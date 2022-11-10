@@ -10,7 +10,9 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const emailConfirmacion = function (carrito) {
+const emailConfirmacion = function (carrito, usuario) {
+  console.log(usuario.nombreCompleto);
+  const { email, nombreCompleto } = usuario;
   const tabla =
     carrito.pedidos
       .map(
@@ -22,10 +24,10 @@ const emailConfirmacion = function (carrito) {
       .join(" ") + `el precio total es${carrito.preciototal}`;
 
   transporter.sendMail({
-    from: '"Figurita Repetida" <figuritarepetidaecommerce@gmai.com>', // sender address
-    to: "franciscoalvarezraineri@gmail.com", // list of receivers
-    subject: "Compra realizada", // Subject line
-    html: `<b> Ya te van a llegar tus figus ${tabla}</b>`, // html body
+    from: '"Figurita Repetida" <figuritarepetidaecommerce@gmai.com>',
+    to: email,
+    subject: "Compra realizada",
+    html: `<b>Hola ${nombreCompleto}: <br> Ya están en camino tus figus. Este es el detalle de tu compra: <br> ${tabla} <br> Saludos, el equipo de Figurita Repetida </b>`,
   });
 };
 

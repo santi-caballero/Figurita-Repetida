@@ -1,7 +1,5 @@
 const express = require("express");
-const { Usuarios } = require("../db/models/index");
 const router = express.Router();
-const { generarToken } = require("../config/token");
 const { validarAuth, validarRol } = require("../middleware/auth");
 const usuariosController = require("../controllers/usuariosController");
 

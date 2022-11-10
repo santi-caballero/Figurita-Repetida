@@ -1,10 +1,10 @@
+const Carritos = require("./Carritos");
 const Usuarios = require("./Usuarios");
 const Productos = require("./Productos");
-const Pedidos = require("./Pedidos");
-const Carritos = require("./Carritos");
 const Favoritos = require("./Favoritos");
 const Tags = require("./Tags");
 const TagsProductos = require("./TagsProductos");
+const Pedidos = require("./Pedidos");
 
 Carritos.belongsTo(Usuarios); //Carrito solo puede pertenecer a un usuario
 Usuarios.hasMany(Carritos); //Usuario tiene varios carritos
@@ -29,4 +29,4 @@ TagsProductos.belongsTo(Productos);
 Tags.hasMany(TagsProductos);
 TagsProductos.belongsTo(Tags);
 
-module.exports = { Usuarios, Productos, Pedidos, Carritos, Favoritos, Tags };
+module.exports = { Carritos, Usuarios, Productos, Pedidos, Favoritos, Tags };

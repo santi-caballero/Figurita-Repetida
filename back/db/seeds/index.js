@@ -9,8 +9,8 @@ module.exports = function () {
     .then(() =>
       productosSeed().then(() => {
         setTimeout(() => {
-          pedidosSeed();
           carritosSeed();
+          pedidosSeed();
           favoritosSeed();
         }, 1); //Este timeout es para darle tiempo a los hooks asincronicos de la tabla productos.
       })
