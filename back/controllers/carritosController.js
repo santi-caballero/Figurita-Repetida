@@ -7,7 +7,7 @@ class carritosController {
     carritosServices
       .getCarritoDelUsuario(usuarioId)
       .then((carritos) => {
-        res.status(200).send(carritos[0]); // esto es necesario porque está implementado con Model.findAll()
+        res.status(200).send(carritos); // esto es necesario porque está implementado con Model.findAll()
       })
       .catch((err) => res.status(400).send(err));
   }
