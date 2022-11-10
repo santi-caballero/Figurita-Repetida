@@ -403,6 +403,60 @@ const productosFalsos = [
     urlImagen:
       "https://figuritasqatar.com.ar/wp-content/uploads/christian-pulisic.png",
   },
+  {
+    tipo: "equipo",
+    nombre: "Italia 1938",
+    stock: 500,
+    precio: 200,
+    rareza: 1,
+    urlImagen:
+      "https://figuritasqatar.com.ar/wp-content/uploads/italia-1938.png",
+  },
+  {
+    tipo: "equipo",
+    nombre: "Uruguay 1930",
+    stock: 500,
+    precio: 800,
+    rareza: 1,
+    urlImagen:
+      "https://figuritasqatar.com.ar/wp-content/uploads/uruguay-1930.png",
+  },
+  {
+    tipo: "equipo",
+    nombre: "Argentina 1978",
+    stock: 500,
+    precio: 800,
+    rareza: 1,
+    urlImagen:
+      "https://figuritasqatar.com.ar/wp-content/uploads/argentina-1978.png",
+  },
+  {
+    tipo: "equipo",
+    nombre: "Francia 1998",
+    stock: 500,
+    precio: 800,
+    rareza: 1,
+    urlImagen:
+      "https://figuritasqatar.com.ar/wp-content/uploads/francia-1998.png",
+  },
+  {
+    tipo: "equipo",
+    nombre: "Brasil 1958",
+    stock: 500,
+    precio: 800,
+    rareza: 1,
+    urlImagen:
+      "https://figuritasqatar.com.ar/wp-content/uploads/brasil-1958.png",
+  },
+  {
+    tipo: "equipo",
+    nombre: "Alemania 1990",
+    stock: 500,
+    precio: 800,
+    rareza: 1,
+    urlImagen:
+      "https://figuritasqatar.com.ar/wp-content/uploads/alemania-1990.png",
+  },
 ];
 
 module.exports = function () {
