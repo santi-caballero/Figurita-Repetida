@@ -1,7 +1,7 @@
 const carritosServices = require("../services/carritosServices");
 
 class carritosController {
-  static async getCarrito(req, res) {
+  static getCarrito(req, res) {
     const usuarioId = req.params.usuarioId;
     carritosServices
       .getCarritoDelUsuario(usuarioId)
@@ -11,7 +11,7 @@ class carritosController {
       .catch((err) => console.log(err));
   }
 
-  static async historial(req, res) {
+  static historial(req, res) {
     const usuarioId = req.params.usuarioId;
     carritosServices
       .getHistorial(usuarioId)
@@ -19,7 +19,7 @@ class carritosController {
       .catch((err) => console.log(err));
   }
 
-  static async agregar(req, res) {
+  static agregar(req, res) {
     const { usuarioId, productoId, cantidad } = req.body;
     carritosServices.buscarProducto(productoId).then((producto) => {
       if (producto.stock > cantidad) {
@@ -48,19 +48,19 @@ class carritosController {
     });
   }
 
-  static async borrarUno(req, res) {
+  static borrarUno(req, res) {
     const pedidoId = req.params.pedidoId;
     carritosServices.borrarUnPedido(pedidoId).then(() => res.sendStatus(204));
   }
 
-  static async borrarTodos(req, res) {
+  static borrarTodos(req, res) {
     const carritoId = req.params.carritoId;
     carritosServices
       .borrarTodosLosPedidos(carritoId)
       .then(() => res.sendStatus(204));
   }
 
-  static async aumentarCantidad(req, res) {
+  static aumentarCantidad(req, res) {
     const pedidoId = req.params.pedidoId;
     const cantidad = parseInt(req.params.cantidad);
     carritosServices
@@ -70,7 +70,7 @@ class carritosController {
       });
   }
 
-  static async disminuirCantidad(req, res) {
+  static disminuirCantidad(req, res) {
     const pedidoId = req.params.pedidoId;
     const cantidad = parseInt(req.params.cantidad);
     carritosServices
@@ -80,7 +80,7 @@ class carritosController {
       });
   }
 
-  static async comprar(req, res) {
+  static comprar(req, res) {
     const carritoId = req.params.carritoId;
     carritosServices.getCarrito(carritoId).then((carrito) => {
       if (carrito.pedidos.length && !carrito.comprado) {

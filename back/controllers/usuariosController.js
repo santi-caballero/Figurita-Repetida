@@ -2,7 +2,7 @@ const usuariosServices = require("../services/usuariosServices");
 const { generarToken } = require("../config/token");
 
 class usuariosController {
-  static async me(req, res) {
+  static me(req, res) {
     const email = req.usuario.email;
     usuariosServices
       .me(email)
@@ -10,7 +10,7 @@ class usuariosController {
       .catch((err) => console.log(err));
   }
 
-  static async registro(req, res) {
+  static registro(req, res) {
     const body = req.body;
     usuariosServices
       .registro(body)
@@ -18,7 +18,7 @@ class usuariosController {
       .catch((err) => console.log(err));
   }
 
-  static async login(req, res) {
+  static login(req, res) {
     const { email, password } = req.body;
     usuariosServices.login(email).then((usuario) => {
       if (!usuario) return res.status(401).send("Usuario Inexistente");
@@ -36,11 +36,11 @@ class usuariosController {
     });
   }
 
-  static async logout(req, res) {
+  static logout(req, res) {
     res.clearCookie("token").status(204).send({});
   }
 
-  static async editarUsuario(req, res) {
+  static editarUsuario(req, res) {
     const id = req.params.id;
     const body = req.body;
     if (req.body.password) {
@@ -53,14 +53,14 @@ class usuariosController {
   }
 
   //ADMIN
-  static async adminGetAll(req, res) {
+  static adminGetAll(req, res) {
     usuariosServices
       .adminGetAll()
       .then((result) => res.status(200).send(result))
       .catch((err) => console.log(err));
   }
 
-  static async adminDeleteOne(req, res) {
+  static adminDeleteOne(req, res) {
     const id = req.params.id;
     if (id === req.usuario.id) {
       res.status(200).send("El usuario no puede eliminarse a si mismo");
@@ -68,7 +68,7 @@ class usuariosController {
       usuariosServices.adminDeleteOne(id).then(() => res.sendStatus(204));
     }
   }
-  static async adminPromoverUsuario(req, res) {
+  static adminPromoverUsuario(req, res) {
     const id = req.params.id;
     usuariosServices
       .adminPromoverUsuarioRol(id)
@@ -80,7 +80,7 @@ class usuariosController {
       .catch((err) => console.log(err));
   }
 
-  static async adminRevocarUsuario(req, res) {
+  static adminRevocarUsuario(req, res) {
     const id = req.params.id;
     // Comprobar si la id del usuario logueado que está en la cookie es la misma que la que llegó por parametro. Lleva solo dos iguales porque uno es string y el otro numero y no me fije cual es cual.
     if (id === req.usuario.id) {

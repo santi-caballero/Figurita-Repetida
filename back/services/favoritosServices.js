@@ -1,24 +1,24 @@
 const { Favoritos, Usuarios, Productos } = require("../db/models/index");
 
 class favoritosServices {
-  static async agregarFavoritos(usuarioId, productoId) {
+  static agregarFavoritos(usuarioId, productoId) {
     return Favoritos.create({ usuarioId, productoId });
   }
 
-  static async getAll(usuarioId) {
+  static getAll(usuarioId) {
     return Favoritos.findAll({
       where: { usuarioId },
       include: Productos,
     });
   }
 
-  static async deleteOne(productoId, usuarioId) {
+  static deleteOne(productoId, usuarioId) {
     Usuarios.findOne({ where: { id: usuarioId } }).then(() => {
       Favoritos.destroy({ where: { productoId } });
     });
   }
 
-  static async deleteAll(usuarioId) {
+  static deleteAll(usuarioId) {
     Favoritos.destroy({ where: { usuarioId } });
   }
 }
