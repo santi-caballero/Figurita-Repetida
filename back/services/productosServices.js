@@ -1,6 +1,5 @@
-const { Productos } = require("../db/models/index");
+const { Productos, Tags } = require("../db/models/index");
 const { Op } = require("sequelize");
-
 
 class productosServices {
   //obtener todos los productos
@@ -11,12 +10,12 @@ class productosServices {
   static async getProductById(id) {
     return Productos.findOne({ where: { id } });
   }
+
   //buscar un producto por tag
   static async buscarPorTags(tags) {
     return Productos.findAll({
-      where: {
-        tags: { [Op.substring]: tags },
-      },
+      where: { "$tags.valor$": { [Op.any]: tags } },
+      include: Tags,
     });
   }
   //filtrar productos por categorias
@@ -34,8 +33,8 @@ class productosServices {
     return Productos.update(valoresActualizados, { where: { id } });
   }
   //admin borra un producto
-  static async eliminarProducto(id){
-    return Productos.destroy({ where: { id } })
+  static async eliminarProducto(id) {
+    return Productos.destroy({ where: { id } });
   }
 }
 

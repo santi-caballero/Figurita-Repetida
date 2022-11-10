@@ -1,16 +1,9 @@
 const db = require("../index");
 const S = require("sequelize");
+const Tags = require("./Tags");
 
 class Productos extends S.Model {
-  static generarTagsString(producto) {
-    // Por fuerza bruta, genera un string con todas las propiedades disponibles, las que no tienen valor, no devulven nada.
-    return `${producto.tipo.toLowerCase()} ${producto.nombre.toLowerCase()} ${
-      producto.apellido ? producto.apellido.toLowerCase() : ""
-    } ${producto.posicion ? producto.posicion.toLowerCase() : ""} ${
-      producto.pais ? producto.pais.toLowerCase() : ""
-    }`;
-  }
-  /*static generarTagsArray(producto) {
+  static generarTagsArray(producto) {
     let tags = [];
     tags.push(producto.tipo.toLowerCase());
     tags.push(producto.nombre.toLowerCase());
@@ -18,7 +11,17 @@ class Productos extends S.Model {
     if (producto.posicion) tags.push(producto.posicion.toLowerCase());
     if (producto.pais) tags.push(producto.pais.toLowerCase());
     return tags;
-  }*/
+  }
+
+  agregarTags(producto, valores) {
+    const buscarTags = valores.map((valor) =>
+      Tags.findOne({ where: { valor } })
+    );
+    Promise.all(buscarTags).then((tags) => {
+      const tagsIds = tags.map((tag) => tag.id);
+      producto.setTags(tagsIds);
+    });
+  }
 }
 
 Productos.init(
@@ -62,21 +65,29 @@ Productos.init(
     urlImagen: {
       type: S.STRING,
     },
-    tags: {
+    /*tags: {
       type: S.STRING,
-    },
+    },*/
   },
   {
     sequelize: db,
     modelName: "producto",
     hooks: {
-      beforeCreate: (producto) => {
-        return (producto.tags = Productos.generarTagsString(producto));
+      afterCreate: (producto) => {
+        const tags = Productos.generarTagsArray(producto);
+        Tags.crearTags(tags);
+        producto.agregarTags(producto);
       },
-      beforeBulkCreate: (productos) => {
-        productos.forEach(
-          (producto) => (producto.tags = Productos.generarTagsString(producto))
-        );
+      afterBulkCreate: (productos) => {
+        const tagsLista = productos.flatMap((producto) => {
+          return Productos.generarTagsArray(producto);
+        });
+        Tags.crearTags(tagsLista).then(() => {
+          productos.forEach((producto) => {
+            const valores = Productos.generarTagsArray(producto);
+            producto.agregarTags(producto, valores);
+          });
+        });
       },
     },
   }
