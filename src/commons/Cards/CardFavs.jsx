@@ -34,6 +34,7 @@ export default function CardFavs({ product }) {
     // axios
     //   .delete(`/api/favoritos/borrar_uno/${user.id}/${product.id}`)
     //   .catch((error) => console.log(error));
+    window.location.reload(false);
     Swal.fire({
       icon: "success",
       title: "Adios...",
