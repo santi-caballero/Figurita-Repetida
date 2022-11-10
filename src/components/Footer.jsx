@@ -2,6 +2,7 @@ import { Box, Grid, Typography, Stack, Link } from "@mui/material";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import FacebookIcon from "@mui/icons-material/Facebook";
+import img from "../utils/fr_logo.png";
 
 const Footer = () => {
   return (
@@ -11,7 +12,7 @@ const Footer = () => {
         py: 3,
         px: 3,
         mt: "10%",
-        background: "#90E0EF",
+        background: "#F6AA38",
       }}
     >
       <Box>
@@ -28,9 +29,9 @@ const Footer = () => {
           </Grid>
           <Grid item xs={6} md={3}>
             <Stack spacing={2}>
-              <Typography variant="caption" href="#">
-                Logo
-              </Typography>
+              <a href="/">
+                <img src={img} height="150px" width="250px" alt="logo"></img>
+              </a>
             </Stack>
           </Grid>
           <Grid item xs={6} md={3}>
@@ -51,7 +52,7 @@ const Footer = () => {
             <Stack spacing={1}>
               <Typography variant="h6">NUESTRAS REDES SOCIALES</Typography>
               <Link
-                href="https://es-la.facebook.com/"
+                href="https://m.facebook.com/PlataformaCinco/?locale2=en_GB"
                 underline="none"
                 color="inherit"
                 target="_blank"
@@ -73,7 +74,7 @@ const Footer = () => {
                 </Typography>
               </Link>
               <Link
-                href="https://www.instagram.com/"
+                href="https://www.instagram.com/plataforma5/?hl=es"
                 underline="none"
                 color="inherit"
                 target="_blank"
