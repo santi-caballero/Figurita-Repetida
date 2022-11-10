@@ -1,6 +1,6 @@
 const { Usuarios } = require("../db/models/index");
 class usuariosServices {
-  static me(email) {
+  static getMe(email) {
     return Usuarios.findOne({
       where: {
         email: email,
@@ -23,27 +23,15 @@ class usuariosServices {
     return Usuarios.findAll();
   }
 
-  static adminEditarUsuario(body, id) {
-    return Usuarios.update(body, { where: { id } });
-  }
-
   static adminDeleteOne(id) {
     return Usuarios.destroy({ where: { id } });
   }
 
-  static adminPromoverUsuarioRol(id) {
-    return Usuarios.update({ rol: "admin" }, { where: { id } });
-  }
-
-  static adminPromoverUsuario(id) {
-    return Usuarios.findOne({ where: { id } });
-  }
-
-  static adminRevocarUsuarioRol(id) {
-    return Usuarios.update({ rol: "usuario" }, { where: { id } });
-  }
-  static adminRevocarUsuario(id) {
-    return Usuarios.findOne({ where: { id } });
+  static adminAdministrarPermisos(id, rol) {
+    return Usuarios.update(
+      { rol },
+      { where: { id }, returning: true, plain: true }
+    );
   }
 }
 

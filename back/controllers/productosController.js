@@ -53,7 +53,7 @@ class productosController {
     const valoresActualizados = req.body;
     productosServices
       .actualizarProducto(valoresActualizados, id)
-      .then((result) => res.status(202).send(result))
+      .then((result) => res.status(202).send(result[1]))
       .catch((err) => console.log(err));
   }
 
@@ -61,7 +61,7 @@ class productosController {
     const id = req.params.id;
     productosServices
       .eliminarProducto(id)
-      .then(res.sendStatus(202))
+      .then(res.status(202).send({}))
       .catch((err) => console.log(err));
   }
 }

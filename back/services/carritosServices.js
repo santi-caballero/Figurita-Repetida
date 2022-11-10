@@ -44,8 +44,6 @@ class carritosServices {
       productoId,
       carritoId: carrito.id,
       cantidad,
-    }).then((result) => {
-      res.status(204).send(result);
     });
   }
 

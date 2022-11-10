@@ -30,7 +30,11 @@ class productosServices {
   }
   //admin actualiza un producto
   static actualizarProducto(valoresActualizados, id) {
-    return Productos.update(valoresActualizados, { where: { id } });
+    return Productos.update(valoresActualizados, {
+      where: { id },
+      returning: true,
+      plain: true,
+    });
   }
   //admin borra un producto
   static eliminarProducto(id) {
