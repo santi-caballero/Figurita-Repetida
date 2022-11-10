@@ -23,6 +23,8 @@ import { Link } from "react-router-dom";
 import ArrowCircleRightSharpIcon from "@mui/icons-material/ArrowCircleRightSharp";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import logofr from "../../utils/fr_logo.png";
+import { height } from "@mui/system";
 
 const drawerWidth = 240;
 
@@ -91,12 +93,19 @@ const MenuLateral = () => {
         position="static"
         sx={{
           display: "flex",
-          justifyContent: "space-between",
+          // justifyContent: "space-between",
           flexDirection: "row",
           marginBottom: "150px",
+          backgroundColor: "#F6AA38",
         }}
       >
-        <Toolbar sx={{ width: "20%" }} id="izquierda">
+        <Toolbar
+          sx={{
+            justifyContent: "flex-start",
+            width: "33%",
+          }}
+          id="izquierda"
+        >
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -108,22 +117,31 @@ const MenuLateral = () => {
           >
             <MenuIcon />
           </IconButton>
-          <Button
-            href={"/"}
-            sx={{ marginRight: "20px", textDecoration: "none" }}
-            variant="contained"
-            color="secondary"
-          >
-            Home
-          </Button>
+
+          <Link href="/">
+            <img height="75px" src={logofr} />
+          </Link>
+
           {user.id ? (
             <Typography color="inherit">Hola {user.nombre}!</Typography>
           ) : null}
         </Toolbar>
-        <Toolbar sx={{ width: "30%" }} id="centro">
+        <Toolbar
+          sx={{
+            justifyContent: "center",
+            width: "33%",
+          }}
+          id="centro"
+        >
           <Buscador />
         </Toolbar>
-        <Toolbar sx={{ marginRight: "15px", width: "25%" }} id="derecha">
+        <Toolbar
+          sx={{
+            justifyContent: "flex-end",
+            width: "33%",
+          }}
+          id="derecha"
+        >
           <Botonera />
         </Toolbar>
       </AppBar>

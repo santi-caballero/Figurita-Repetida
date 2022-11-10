@@ -10,9 +10,10 @@ import Typography from "@mui/material/Typography";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useEffect } from "react";
 import axios from "axios";
-
+import { Paper } from "@mui/material";
 import { useNavigate } from "react-router";
 import { useState } from "react";
+import Swal from "sweetalert2";
 
 export default function CardFavs({ product }) {
   const [user, setUser] = useState([]);
@@ -29,50 +30,68 @@ export default function CardFavs({ product }) {
     axios
       .delete(`/api/favoritos/borrar_uno/${user.id}/${product.id}`)
       .catch((error) => console.log(error));
+    Swal.fire({
+      icon: "success",
+      title: "Adios...",
+      text: "Favorito eliminado!",
+      footer: '<a href="/">Volver al inicio</a>',
+    });
+  };
+
+  const paperStyle = {
+    display: "flex",
+    flexDirection: "column",
+    padding: 5,
+    width: "85%",
+    margin: "auto",
+    borderRadius: 3,
+    borderRadius: "10px",
   };
 
   return (
-    <Card sx={{ maxWidth: 345 }} className="cardContainer">
-      <CardMedia
-        sx={{ paddingTop: "0.1px", marginTop: "20px" }}
-        onClick={() => navigate(`/productos/${product.id}`)}
-        component="img"
-        image={product.urlImagen}
-        alt="Foto Figu"
-      />
-      <CardContent>
-        <Typography
-          fontFamily={"'Anton', sans-serif"}
-          variant="body2"
-          color="text.secondary"
-        >
-          {product.nombre} {product.apellido}
-        </Typography>
-        <Typography
-          fontFamily={"'Anton', sans-serif"}
-          variant="body2"
-          color="text.secondary"
-        >
-          {product.pais}
-        </Typography>
-        <Typography
-          fontFamily={"'Anton', sans-serif"}
-          variant="body2"
-          color="text.secondary"
-        >
-          {product.posicion}
-        </Typography>
-        <IconButton
-          onClick={() => {
-            handleRemove();
-          }}
-          sx={{ marginLeft: "80%" }}
-          aria-label="delete"
-          size="large"
-        >
-          <DeleteIcon fontSize="inherit" />
-        </IconButton>
-      </CardContent>
-    </Card>
+    <Paper elevation={10} style={paperStyle}>
+      <Card sx={{ maxWidth: 345 }} className="cardContainer">
+        <CardMedia
+          sx={{ paddingTop: "0.1px", marginTop: "20px" }}
+          onClick={() => navigate(`/productos/${product.id}`)}
+          component="img"
+          image={product.urlImagen}
+          alt="Foto Figu"
+        />
+        <CardContent>
+          <Typography
+            fontFamily={"'Anton', sans-serif"}
+            variant="body2"
+            color="text.secondary"
+          >
+            {product.nombre} {product.apellido}
+          </Typography>
+          <Typography
+            fontFamily={"'Anton', sans-serif"}
+            variant="body2"
+            color="text.secondary"
+          >
+            {product.pais}
+          </Typography>
+          <Typography
+            fontFamily={"'Anton', sans-serif"}
+            variant="body2"
+            color="text.secondary"
+          >
+            {product.posicion}
+          </Typography>
+          <IconButton
+            onClick={() => {
+              handleRemove();
+            }}
+            sx={{ marginLeft: "80%" }}
+            aria-label="delete"
+            size="large"
+          >
+            <DeleteIcon fontSize="inherit" />
+          </IconButton>
+        </CardContent>
+      </Card>
+    </Paper>
   );
 }

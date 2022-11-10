@@ -22,7 +22,7 @@ const Buscador = () => {
     <form onSubmit={handleSubmit}>
       <TextField
         sx={{
-          width: "250%",
+          width: "400px",
           margin: "10px",
           borderRadius: "5px",
           backgroundColor: "white",

@@ -21,7 +21,7 @@ const Admin = () => {
 
   const paperStyle = {
     padding: 20,
-    width: 320,
+    width: "320px",
     margin: "auto",
     borderRadius: 3,
     borderRadius: "10px",

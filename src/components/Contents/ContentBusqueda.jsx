@@ -12,7 +12,7 @@ const ContentBusqueda = () => {
     axios
       .get(`/api/productos/buscar/${nombre.nombre}`)
       .then((res) => setProductos(res.data));
-  }, []);
+  }, [productos]);
 
   return <Grilla productos={productos} />;
 };
