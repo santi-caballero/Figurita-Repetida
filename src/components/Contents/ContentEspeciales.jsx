@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { Button } from "@mui/material";
-import Grid from "./Grid";
+import Grid from "../Grids/Grid";
 import { Box } from "@mui/system";
 
-const ContentPaises = ({ Todas }) => {
+const ContentEspeciales = ({ Todas }) => {
   const [productos, setProductos] = useState([]);
 
-  const productosArgentina = [];
-  const productosUruguay = [];
+  const productosPelota = [];
+  const productosEstadio = [];
   const mapeadas = Todas.map((producto) => {
-    if (producto.pais == "Argentina") productosArgentina.push(producto);
-    if (producto.pais == "Uruguay") productosUruguay.push(producto);
+    if (producto.tipo == "pelota") productosPelota.push(producto);
+    if (producto.tipo == "estadio") productosEstadio.push(producto);
   });
 
   return (
@@ -24,11 +24,11 @@ const ContentPaises = ({ Todas }) => {
             color: "#023E8A",
           }}
           onClick={() => {
-            setProductos(productosArgentina);
+            setProductos(productosPelota);
           }}
           variant="outlined"
         >
-          Argentina
+          Pelota
         </Button>
         <Button
           sx={{
@@ -38,11 +38,11 @@ const ContentPaises = ({ Todas }) => {
             color: "#023E8A",
           }}
           onClick={() => {
-            setProductos(productosUruguay);
+            setProductos(productosEstadio);
           }}
           variant="outlined"
         >
-          Uruguay
+          Estadios
         </Button>
       </Box>
       <Grid productos={productos} />
@@ -50,4 +50,4 @@ const ContentPaises = ({ Todas }) => {
   );
 };
 
-export default ContentPaises;
+export default ContentEspeciales;

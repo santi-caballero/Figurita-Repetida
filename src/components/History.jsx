@@ -2,23 +2,33 @@ import React from "react";
 import { Paper, Button, Grid, Typography } from "@mui/material";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useSelector } from "react-redux";
+
+import GrillaCarrito from "./Grids/GridCarrito";
+import CardHistorial from "../commons/Cards/CardHistorial";
 
 const History = () => {
-  const [user, setUser] = useState("");
+  const user = useSelector((store) => store.user);
   const [historial, setHistorial] = useState([]);
 
   useEffect(() => {
-    axios.get("/api/usuario/me").then((res) => setUser(res.data));
-  }, []);
-
-  useEffect(() => {
     axios
-      .get(`/api/carritos/historial/1`)
+      .get(`/api/carritos/historial/${user.id}`)
       .then((res) => setHistorial(res.data));
-  }, []);
+  }, [user]);
 
   return (
     <>
+      <Typography
+        className="promo"
+        fontFamily={"'Bungee Spice', cursive"}
+        gutterBottom
+        variant="h4"
+        component="div"
+        marginTop="3%"
+      >
+        Historial de compras de {user.nombre}
+      </Typography>
       <Paper
         sx={{
           //   display: "flex",
@@ -32,13 +42,22 @@ const History = () => {
         }}
         elevation={10}
       >
-        <Button onClick={console.log(historial)}>PULSAME</Button>
+        {/* <Button
+          onClick={() => {
+            console.log(historial);
+          }}
+        >
+          PULSAME
+        </Button> */}
         <Grid>
-          CLIENTE ID 1 (2 carritos)
           {historial.length
             ? historial.map((compra, i) => (
                 <>
-                  <Grid key={i}>
+                  <Grid item key={i} xs={12} sm={6} md={4}>
+                    <CardHistorial carrito={compra} />
+                  </Grid>
+                  {/* <GrillaCarrito productos={compra.pedidos} /> */}
+                  {/* <Grid key={i}>
                     <Grid>
                       <Grid>
                         Compra ID- {compra.id}- 3 pedidos
@@ -59,7 +78,7 @@ const History = () => {
                       </Grid>
                       <hr />
                     </Grid>
-                  </Grid>
+                  </Grid> */}
                 </>
               ))
             : null}

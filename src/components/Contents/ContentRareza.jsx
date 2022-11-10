@@ -1,16 +1,15 @@
 import React, { useState } from "react";
-import { Button } from "@mui/material";
-import Grid from "./Grid";
+import { Button, colors } from "@mui/material";
+import Grid from "../Grids/Grid";
 import { Box } from "@mui/system";
-
-const ContentEspeciales = ({ Todas }) => {
+const ContentRareza = ({ Todas }) => {
   const [productos, setProductos] = useState([]);
 
-  const productosPelota = [];
-  const productosEstadio = [];
+  const productosRarezaCero = [];
+  const productosRareza1 = [];
   const mapeadas = Todas.map((producto) => {
-    if (producto.tipo == "pelota") productosPelota.push(producto);
-    if (producto.tipo == "estadio") productosEstadio.push(producto);
+    if (producto.rareza == 0) productosRarezaCero.push(producto);
+    if (producto.rareza == 1) productosRareza1.push(producto);
   });
 
   return (
@@ -24,11 +23,11 @@ const ContentEspeciales = ({ Todas }) => {
             color: "#023E8A",
           }}
           onClick={() => {
-            setProductos(productosPelota);
+            setProductos(productosRarezaCero);
           }}
           variant="outlined"
         >
-          Pelota
+          Normales
         </Button>
         <Button
           sx={{
@@ -38,11 +37,11 @@ const ContentEspeciales = ({ Todas }) => {
             color: "#023E8A",
           }}
           onClick={() => {
-            setProductos(productosEstadio);
+            setProductos(productosRareza1);
           }}
           variant="outlined"
         >
-          Estadios
+          Dorados
         </Button>
       </Box>
       <Grid productos={productos} />
@@ -50,4 +49,4 @@ const ContentEspeciales = ({ Todas }) => {
   );
 };
 
-export default ContentEspeciales;
+export default ContentRareza;

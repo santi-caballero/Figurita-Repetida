@@ -6,15 +6,15 @@ import axios from "axios";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Sidebar from "./Reemplazados/Sidebar";
-import Grid from "./components/Grid";
+import Grid from "./components/Grids/Grid";
 import SingleProduct from "./commons/SingleProduct";
-import CardProduct from "./commons/Card";
+import CardProduct from "./commons/Cards/Card";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
-import ContentPaises from "./components/ContentPaises";
-import ContentEspeciales from "./components/ContentEspeciales";
-import ContentRareza from "./components/ContentRareza";
-import ContentBusqueda from "./components/ContentBusqueda";
+import ContentPaises from "./components/Contents/ContentPaises";
+import ContentEspeciales from "./components/Contents/ContentEspeciales";
+import ContentRareza from "./components/Contents/ContentRareza";
+import ContentBusqueda from "./components/Contents/ContentBusqueda";
 import Favoritos from "./components/Favoritos";
 import Carrito from "./components/Carrito";
 import Admin from "./components/Admin/Admin";
@@ -74,6 +74,8 @@ function App() {
 
         <Routes>
           <Route path="/" element={<Home productos={allProducts} />} />
+          <Route path="/historialCarrito" element={<History />} />
+
           <Route
             path="/search/Todas"
             element={<Grid productos={allProducts} />}
@@ -102,7 +104,6 @@ function App() {
           <Route path="/:user/favorites" element={<Favoritos />} />
           <Route path="/:user/cart" element={<Carrito />} />
           <Route path="/admin" element={<Admin />} />
-          <Route path="/history" element={<History />} />
           <Route path="/:user/favorites" element={<h1>favorites</h1>} />
 
           <Route path="/:user/checkout" element={<h1>checkout</h1>} />

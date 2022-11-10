@@ -1,15 +1,16 @@
 import React, { useState } from "react";
-import { Button, colors } from "@mui/material";
-import Grid from "./Grid";
+import { Button } from "@mui/material";
+import Grid from "../Grids/Grid";
 import { Box } from "@mui/system";
-const ContentRareza = ({ Todas }) => {
+
+const ContentPaises = ({ Todas }) => {
   const [productos, setProductos] = useState([]);
 
-  const productosRarezaCero = [];
-  const productosRareza1 = [];
+  const productosArgentina = [];
+  const productosUruguay = [];
   const mapeadas = Todas.map((producto) => {
-    if (producto.rareza == 0) productosRarezaCero.push(producto);
-    if (producto.rareza == 1) productosRareza1.push(producto);
+    if (producto.pais == "Argentina") productosArgentina.push(producto);
+    if (producto.pais == "Uruguay") productosUruguay.push(producto);
   });
 
   return (
@@ -23,11 +24,11 @@ const ContentRareza = ({ Todas }) => {
             color: "#023E8A",
           }}
           onClick={() => {
-            setProductos(productosRarezaCero);
+            setProductos(productosArgentina);
           }}
           variant="outlined"
         >
-          Normales
+          Argentina
         </Button>
         <Button
           sx={{
@@ -37,11 +38,11 @@ const ContentRareza = ({ Todas }) => {
             color: "#023E8A",
           }}
           onClick={() => {
-            setProductos(productosRareza1);
+            setProductos(productosUruguay);
           }}
           variant="outlined"
         >
-          Dorados
+          Uruguay
         </Button>
       </Box>
       <Grid productos={productos} />
@@ -49,4 +50,4 @@ const ContentRareza = ({ Todas }) => {
   );
 };
 
-export default ContentRareza;
+export default ContentPaises;

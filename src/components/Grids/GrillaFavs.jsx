@@ -1,10 +1,7 @@
 import React from "react";
-import Card from "../commons/Card";
-
-import "../style/componentClass.css";
 
 import { Container, Grid } from "@mui/material";
-import CardFavs from "../commons/CardFavs";
+import CardFavs from "../../commons/Cards/CardFavs";
 
 const GrillaFavs = ({ productos }) => {
   if (!productos) return <p>Recargar su carrito</p>;

@@ -1,5 +1,5 @@
 import React from "react";
-import Grilla from "./Grid";
+import Grilla from "./Grids/Grid";
 import Carrousel from "./Carrousel";
 
 const Home = ({ productos }) => {
