@@ -8,7 +8,7 @@ const productosFalsos = [
     posicion: "delantero",
     pais: "Argentina",
     stock: 1,
-    precio: 2000000000,
+    precio: 2000,
     rareza: 1,
     urlImagen:
       "https://www.cronista.com/files/image/479/479650/632c94d41dc87.jpg",
@@ -78,7 +78,8 @@ const productosFalsos = [
     rareza: 1,
     urlImagen:
       "https://figuritasqatar.com.ar/wp-content/uploads/karim-boudiaf.png",
-  },{
+  },
+  {
     tipo: "jugador",
     nombre: "Musaab",
     apellido: "Khidir",
@@ -401,7 +402,7 @@ const productosFalsos = [
     rareza: 1,
     urlImagen:
       "https://figuritasqatar.com.ar/wp-content/uploads/christian-pulisic.png",
-  }
+  },
 ];
 
 module.exports = function () {

@@ -98,6 +98,13 @@ class carritosController {
       }
     });
   }
+
+  static historialComprados(req, res) {
+    carritosServices
+      .getHistorialComprados()
+      .then((result) => res.status(200).send(result))
+      .catch((err) => console.log(err));
+  }
 }
 
 module.exports = carritosController;
