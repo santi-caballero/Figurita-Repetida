@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Paper, Button, Grid } from "@mui/material";
+import { Paper, Button, Grid, Typography } from "@mui/material";
 
 import AddProd from "./AddProd";
 import EditProd from "./EditProd";
@@ -18,49 +18,58 @@ const Admin = () => {
   const toggleUserBtn = () => {
     userBtn ? setUserBtn(false) : setUserBtn(true);
   };
+
+  const paperStyle = {
+    padding: 20,
+    width: 320,
+    margin: "auto",
+    borderRadius: 3,
+    borderRadius: "10px",
+  };
+
   return (
     <>
-      <Paper
-        sx={{
-          margin: "auto",
-          marginTop: "100px",
-          width: "50%",
-          padding: 4,
-          maxWidth: "900px",
-          minWidth: "360px",
-          borderRadius: 3,
-        }}
-        elevation={10}
-      >
-        {" "}
+      <Paper elevation={10} style={paperStyle}>
+        <Typography
+          variant="h4"
+          sx={{ textAlign: "center", marginBottom: "25px" }}
+        >
+          Opciones de Administrador
+        </Typography>
         <Grid>
+          <hr />
           <Button
             onClick={toggleAdd}
+            sx={{ marginBottom: "15px", marginTop: "10px" }}
             type="button"
             variant="contained"
-            sx={{ m: 1, width: 300 }}
+            fullWidth
           >
             Agregar Producto
           </Button>
         </Grid>
         {addBtn ? <AddProd /> : null}
         <Grid>
+          <hr />
           <Button
             onClick={toggleEdit}
+            sx={{ marginBottom: "15px", marginTop: "10px" }}
             type="button"
             variant="contained"
-            sx={{ m: 1, width: 300 }}
+            fullWidth
           >
             Editar Producto
           </Button>
         </Grid>
         {editBtn ? <EditProd /> : null}
         <Grid>
+          <hr />
           <Button
             onClick={toggleUserBtn}
+            sx={{ marginBottom: "15px", marginTop: "10px" }}
             type="button"
             variant="contained"
-            sx={{ m: 1, width: 300 }}
+            fullWidth
           >
             Editar Usuarios
           </Button>

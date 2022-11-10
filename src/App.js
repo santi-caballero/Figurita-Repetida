@@ -19,8 +19,8 @@ import Favoritos from "./components/Favoritos";
 import Carrito from "./components/Carrito";
 import Admin from "./components/Admin/Admin";
 import History from "./components/History";
+import MenuLateral from "./components/NavBar/MenuLateral";
 
-import SidebarPrueba from "./components/SidebarPrueba";
 import { useDispatch, useSelector } from "react-redux";
 import { calcularTotal, obtenerItems } from "./states/cart";
 import { useSelect } from "@mui/base";
@@ -70,9 +70,8 @@ function App() {
   return (
     <div className="todo">
       <div className="content">
+        <MenuLateral />
         {/* <Navbar /> */}
-        <SidebarPrueba />
-
         <Routes>
           <Route path="/" element={<Home productos={allProducts} />} />
           <Route path="/historialCarrito" element={<History />} />
@@ -81,7 +80,6 @@ function App() {
             path="/search/Todas"
             element={<Grid productos={allProducts} />}
           />
-
           <Route
             path="/search/Selecciones"
             element={<ContentPaises Todas={allProducts} />}

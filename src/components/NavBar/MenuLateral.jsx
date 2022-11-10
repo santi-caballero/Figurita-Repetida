@@ -16,11 +16,13 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
-import Navbar from "./Navbar";
+import { Button } from "@mui/material";
+import Buscador from "./Buscador";
+import Botonera from "./Botonera";
 import { Link } from "react-router-dom";
 import ArrowCircleRightSharpIcon from "@mui/icons-material/ArrowCircleRightSharp";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 const drawerWidth = 240;
 
@@ -69,9 +71,11 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-end",
 }));
 
-export default function SidebarPrueba() {
+const MenuLateral = () => {
+  const user = useSelector((state) => state.user);
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+
+  const [open, setOpen] = useState(false);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -80,30 +84,47 @@ export default function SidebarPrueba() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-
   return (
-    <Box sx={{ display: "flex" }}>
-      <CssBaseline />
-      <AppBar sx={{ background: "#0077B6" }} position="fixed" open={open}>
-        <Navbar />
-        <Toolbar>
+    <>
+      <AppBar
+        open={open}
+        position="static"
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          flexDirection: "row",
+          marginBottom: "150px",
+        }}
+      >
+        <Toolbar sx={{ width: "20%" }} id="izquierda">
           <IconButton
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
-            sx={{ mr: 2, ...(open && { display: "none" }) }}
+            sx={{
+              ...(open && { display: "none" }),
+            }}
           >
             <MenuIcon />
           </IconButton>
-          <Typography
-            fontFamily={"'Bungee Spice', cursive"}
-            variant="h6"
-            noWrap
-            component="div"
+          <Button
+            href={"/"}
+            sx={{ marginRight: "20px", textDecoration: "none" }}
+            variant="contained"
+            color="secondary"
           >
-            FILTROS
-          </Typography>
+            Home
+          </Button>
+          {user.id ? (
+            <Typography color="inherit">Hola {user.nombre}!</Typography>
+          ) : null}
+        </Toolbar>
+        <Toolbar sx={{ width: "30%" }} id="centro">
+          <Buscador />
+        </Toolbar>
+        <Toolbar sx={{ marginRight: "15px", width: "25%" }} id="derecha">
+          <Botonera />
         </Toolbar>
       </AppBar>
       <Drawer
@@ -147,6 +168,8 @@ export default function SidebarPrueba() {
       <Main open={open}>
         <DrawerHeader />
       </Main>
-    </Box>
+    </>
   );
-}
+};
+
+export default MenuLateral;

@@ -1,21 +1,17 @@
 import React from "react";
 import {
   Container,
-
   FormControl,
-
   InputLabel,
   Typography,
   Button,
   Grid,
   Select,
   MenuItem,
-
 } from "@mui/material";
 import { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
-
 
 const EditUser = () => {
   const [usuarios, setUsuarios] = useState([]);
@@ -50,76 +46,50 @@ const EditUser = () => {
 
   return (
     <>
-      <Container
-        maxWidth="md"
-        sx={{
-          display: "flex",
+      <Typography sx={{ textAlign: "center" }} variant="h5" gutterBottom>
+        Admin / eliminar usuario
+      </Typography>
 
-          marginTop: "50px",
-          backgroundColor: "#ffffff",
-          borderRadius: "10px",
-        }}
-      >
-        <Grid container>
-          <Typography variant="h4" gutterBottom>
-            Editar usuarios
-          </Typography>
-        </Grid>
-      </Container>
-      <Container
-        maxWidth="md"
-        sx={{
-          display: "flex",
-          flexWrap: "wrap",
-          marginTop: "30px",
-          backgroundColor: "#ffffff",
-          borderRadius: "10px",
-        }}
-      >
-        <Grid>
-          <FormControl sx={{ m: 1, width: 300 }}>
-            <InputLabel>Seleccionar usuario</InputLabel>
-            <Select
-              labelId="usuarios-select"
-              id="usuarios-select"
-              label="Seleccionar Usuario"
-              value={user}
-              displayEmpty
-              onChange={handleUser}
-            >
-              {usuarios.length
-                ? usuarios.map((usuario, i) => (
-                    <MenuItem key={i} value={usuario.id}>
-                      {usuario.nombreCompleto}
-                    </MenuItem>
-                  ))
-                : null}
-            </Select>
-          </FormControl>
-        </Grid>
-        
-        <Grid>
-          <Grid>
-            <Button
-              onClick={() => handleAdminize()}
-              variant="contained"
-              sx={{ m: 1, width: 140 }}
-            >
-              ADMINIZAR
-            </Button>
-          </Grid>
-          <Grid>
-            <Button
-              onClick={() => {
-                handleDelete();
-              }}
-              variant="contained"
-              sx={{ m: 1, width: 140 }}
-            >
-              ELIMINAR
-            </Button>
-          </Grid>
-        </Grid>
+      <Container>
+        <FormControl sx={{ width: "272px", marginTop: "15px" }}>
+          <InputLabel>Seleccionar usuario</InputLabel>
+          <Select
+            labelId="usuarios-select"
+            id="usuarios-select"
+            label="Seleccionar Usuario"
+            value={user}
+            displayEmpty
+            onChange={handleUser}
+          >
+            {usuarios.length
+              ? usuarios.map((usuario, i) => (
+                  <MenuItem key={i} value={usuario.id}>
+                    {usuario.nombreCompleto}
+                  </MenuItem>
+                ))
+              : null}
+          </Select>
+        </FormControl>
+
+        <Button
+          onClick={() => handleAdminize()}
+          variant="contained"
+          fullWidth
+          sx={{ marginTop: "15px" }}
+        >
+          ADMINIZAR
+        </Button>
+
+        <Button
+          onClick={() => {
+            handleDelete();
+          }}
+          variant="contained"
+          fullWidth
+          sx={{ marginTop: "15px" }}
+        >
+          ELIMINAR
+        </Button>
       </Container>
     </>
   );

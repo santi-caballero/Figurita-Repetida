@@ -36,30 +36,27 @@ const Login = () => {
 
   const paperStyle = {
     padding: 20,
-    height: "40vh",
-    width: 280,
-    margin: "20px auto ",
-    marginTop: "50px",
+    width: 320,
+    margin: "auto",
+    borderRadius: 3,
+    borderRadius: "10px",
   };
+
 
   const avatarStyle = { backgroundColor: "#ff9f1c" };
   const btnstyle = { margin: "8px 0" };
   return (
     <Grid>
-      <Paper
-        sx={{
-          borderRadius: 3,
-        }}
-        elevation={10}
-        style={paperStyle}
-      >
+      <Paper elevation={10} style={paperStyle}>
         <Grid align="center">
           <Avatar style={avatarStyle}>
             <LockOutlinedIcon />
           </Avatar>
           <h2>Iniciar sesión en Figurita Repetida</h2>
         </Grid>
+
         <TextField
+          sx={{ marginTop: "15px" }}
           label="E-mail"
           placeholder="Enter E-Mail"
           fullWidth
@@ -68,6 +65,7 @@ const Login = () => {
         />
 
         <TextField
+          sx={{ marginTop: "15px" }}
           label="Contraseña"
           placeholder="Enter password"
           type="password"
@@ -77,24 +75,28 @@ const Login = () => {
         />
 
         <Button
+          sx={{ marginTop: "20px" }}
           type="submit"
           color="primary"
           variant="contained"
-          style={btnstyle}
           fullWidth
+          //onclick = {handleDispatch => dispatch, navigate("/")}
           onClick={handleLogin}
-          sx={{
-            borderRadius: 3,
-            background: "#CAF0F8",
-            fontWeight: "bold",
-            color: "#023E8A",
-          }}
         >
           Iniciar sesión
         </Button>
         <Typography>
           <Link href="#">Olvidaste tu contraseña?</Link>
         </Typography>
+        <Button
+          sx={{ marginTop: "20px" }}
+          type="button"
+          variant="contained"
+          href="/register"
+          fullWidth
+        >
+          Registrate
+        </Button>
       </Paper>
     </Grid>
   );
