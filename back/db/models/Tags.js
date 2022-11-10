@@ -19,6 +19,7 @@ Tags.init(
     valor: {
       type: S.STRING,
       defaultValue: 1,
+      unique: true,
     },
   },
   {

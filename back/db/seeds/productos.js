@@ -43,8 +43,7 @@ const productosFalsos = [
     stock: 10,
     precio: 2000,
     rareza: 1,
-    urlImagen:
-      "https://figuritasqatar.com.ar/wp-content/uploads/futbol.png",
+    urlImagen: "https://figuritasqatar.com.ar/wp-content/uploads/futbol.png",
   },
   {
     tipo: "estadio",
@@ -460,5 +459,5 @@ const productosFalsos = [
 ];
 
 module.exports = function () {
-  return Productos.bulkCreate(productosFalsos);
+  return Productos.bulkCreate(productosFalsos, { validate: true });
 };

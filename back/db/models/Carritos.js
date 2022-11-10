@@ -2,8 +2,8 @@ const db = require("../index");
 const S = require("sequelize");
 
 class Carritos extends S.Model {
-  crearCarrito(carrito) {
-    carrito.update({ comprado: true });
+  comprarCarrito(carrito) {
+    carrito.update({ comprado: true, fecha: new Date() });
     return Carritos.create({ usuarioId: carrito.usuarioId });
   }
 }
@@ -23,6 +23,7 @@ Carritos.init(
     },
     fecha: {
       type: S.DATE,
+      validate: { isDate: true },
     },
   },
   {
