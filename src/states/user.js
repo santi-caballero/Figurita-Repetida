@@ -69,6 +69,17 @@ export const agregarFavorito = createAsyncThunk(
   }
 );
 
+export const eliminarFav = createAsyncThunk(
+  "user/eliminarFav",
+  async (data, thunkAPI) => {
+    const { idUser, idProducto } = data;
+    try {
+      await axios.delete(`/api/favoritos/borrar_uno/${idUser}/${idProducto}`);
+      return idProducto;
+    } catch (error) {}
+  }
+);
+
 const userSlice = createSlice({
   name: "user",
   initialState,
@@ -106,6 +117,12 @@ const userSlice = createSlice({
       state.nombre = action.payload.nombre;
       state.apellido = action.payload.apellido;
       state.id = action.payload.id;
+    },
+    [eliminarFav.fulfilled]: (state, action) => {
+      console.log("action al borrar favoritos", action.payload);
+      const id = action.payload; //recibe un ID como payload desde React
+      state.favoritos = state.favoritos.filter((item) => item.id !== id); //devuelvo todos los items que no tienen ese id
+      console.log("mi state al terminar delete fav", state.user);
     },
   },
 });

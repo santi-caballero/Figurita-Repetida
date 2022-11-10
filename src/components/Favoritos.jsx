@@ -14,7 +14,7 @@ const Favoritos = () => {
 
   useEffect(() => {
     dispatch(obtenerFavoritos(user.id));
-  }, [user]);
+  }, [user.id]);
 
   const paperStyle = {
     display: "flex",

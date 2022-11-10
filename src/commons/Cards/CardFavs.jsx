@@ -13,23 +13,27 @@ import axios from "axios";
 import { Paper } from "@mui/material";
 import { useNavigate } from "react-router";
 import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Swal from "sweetalert2";
+import { eliminarFav } from "../../states/user";
 
 export default function CardFavs({ product }) {
-  const [user, setUser] = useState([]);
-  useEffect(() => {
-    axios
-      .get("/api/usuario/me")
-      .then((result) => setUser(result.data))
-      .catch((error) => console.log(error));
-  }, []);
-
+  const user = useSelector((store) => store.user);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  // useEffect(() => {
+  //   axios
+  //     .get("/api/usuario/me")
+  //     .then((result) => setUser(result.data))
+  //     .catch((error) => console.log(error));
+  // }, []);
+
   const handleRemove = () => {
-    axios
-      .delete(`/api/favoritos/borrar_uno/${user.id}/${product.id}`)
-      .catch((error) => console.log(error));
+    dispatch(eliminarFav({ idUser: user.id, idProducto: product.id }));
+    // axios
+    //   .delete(`/api/favoritos/borrar_uno/${user.id}/${product.id}`)
+    //   .catch((error) => console.log(error));
     Swal.fire({
       icon: "success",
       title: "Adios...",

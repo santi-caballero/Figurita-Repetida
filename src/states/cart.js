@@ -50,6 +50,18 @@ export const eliminarItem = createAsyncThunk(
   }
 );
 
+export const limpiarCart = createAsyncThunk(
+  "cart/limpiarCart",
+  async (idCart, thunkAPI) => {
+    try {
+      await axios.delete(`/api/carritos/borrarTodos/${idCart}`);
+      return idCart;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
 //* Tenemos que tener cuidado con nuestro manejo de estados en los reducers
 //* Meaning? si nosotros retornamos un estado, nuestro estado total se convierte en eso que retornamos
 //* Por ejemplo, si para limpiar el carrito usamos por ej: return { cartItems: []}
@@ -110,6 +122,9 @@ const cartSlice = createSlice({
     },
     [eliminarItem.rejected]: (state, action) => {
       console.log("mi action al borrar y fallar es", action);
+    },
+    [limpiarCart.fulfilled]: (state, action) => {
+      state.cartItems = [];
     },
   },
 });

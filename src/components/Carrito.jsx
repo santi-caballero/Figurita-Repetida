@@ -6,7 +6,7 @@ import GrillaCarrito from "./Grids/GridCarrito";
 import DeleteIcon from "@mui/icons-material/Delete";
 import SendIcon from "@mui/icons-material/Send";
 import { useSelector, useDispatch } from "react-redux";
-import { calcularTotal, obtenerItems } from "../states/cart";
+import { calcularTotal, limpiarCart, obtenerItems } from "../states/cart";
 import { Typography } from "@mui/material";
 import { useNavigate } from "react-router";
 const Carrito = () => {
@@ -47,10 +47,12 @@ const Carrito = () => {
   //   }
   // };
   const handleLimpiar = () => {
-    axios
-      .delete(`/api/carritos/borrarTodos/${carrito.id}`)
+    dispatch(limpiarCart(carrito.id));
+    window.location.reload(false);
+    // axios
+    //   .delete(`/api/carritos/borrarTodos/${carrito.id}`)
 
-      .catch((error) => console.log(error));
+    //   .catch((error) => console.log(error));
   };
   return (
     <div className="carrito">

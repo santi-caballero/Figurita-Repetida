@@ -3,7 +3,6 @@ import Grilla from "./Grids/Grid";
 import Carrousel from "./Carrousel";
 import { Paper, Typography } from "@mui/material";
 
-
 const Home = ({ productos }) => {
   const paperStyle = {
     display: "flex",
@@ -20,9 +19,8 @@ const Home = ({ productos }) => {
     <Paper elevation={10} style={paperStyle}>
       {/* <Carrousel /> */}
 
-      <Typography>
-        <h1 className="promo"> Las mas vendidas</h1>
-      </Typography>
+      <h1 className="promo"> Las mas vendidas</h1>
+
       <Grilla productos={productos} />
     </Paper>
   );
