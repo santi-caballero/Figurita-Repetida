@@ -1,4 +1,5 @@
 const { Usuarios } = require("../db/models/index");
+
 class usuariosServices {
   // buscar un usuario por email.
   static buscarPorEmail(email) {

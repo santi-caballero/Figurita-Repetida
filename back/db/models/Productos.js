@@ -1,36 +1,28 @@
 const db = require("../index");
 const S = require("sequelize");
 const Tags = require("./Tags");
+const { Op } = require("sequelize");
 
 class Productos extends S.Model {
-  static generarTagsArray(producto) {
-    let tags = [];
-    tags.push(producto.tipo.toLowerCase());
-    tags.push(producto.nombre.toLowerCase());
-    if (producto.apellido) tags.push(producto.apellido.toLowerCase());
-    if (producto.posicion) tags.push(producto.posicion.toLowerCase());
-    if (producto.pais) tags.push(producto.pais.toLowerCase());
-    return tags;
+  // Generar un array de tags a partir de las propiedades que tenga el producto
+  static generarTags(producto) {
+    let valores = [];
+    valores.push(producto.tipo.toLowerCase());
+    valores.push(producto.nombre.toLowerCase());
+    if (producto.apellido) valores.push(producto.apellido.toLowerCase());
+    if (producto.posicion) valores.push(producto.posicion.toLowerCase());
+    if (producto.pais) valores.push(producto.pais.toLowerCase());
+    return valores;
   }
 
-  /* agregarTags(producto, valores) {
-    const buscarTags = valores.map((valor) =>
-      Tags.findOne({ where: { valor } })
-    );
-    Promise.all(buscarTags).then((tags) => {
-      const tagsIds = tags.map((tag) => tag.id);
-      producto.setTags(tagsIds);
-    });
-  }*/
-
   agregarTags(producto, valores) {
-    const buscarTags = valores.map((valor) =>
-      Tags.findOne({ where: { valor } })
-    );
-    Promise.all(buscarTags).then((tags) => {
-      const tagsIds = tags.map((tag) => tag.id);
-      producto.setTags(tagsIds);
-    });
+    // vincular un producto con sus tags
+    Tags.findAll({ where: { valor: { [Op.any]: valores } } })
+      .then((tags) => {
+        const tagsIds = tags.map((tag) => tag.id);
+        producto.setTags(tagsIds);
+      })
+      .catch((err) => console.log(err));
   }
 }
 
@@ -85,22 +77,28 @@ Productos.init(
     modelName: "producto",
     hooks: {
       afterCreate: (producto) => {
-        const valores = Productos.generarTagsArray(producto);
+        const valores = Productos.generarTags(producto);
         Tags.crearTags(valores);
         producto.agregarTags(producto, valores);
       },
       afterBulkCreate: (productos) => {
+        productos.forEach((producto) => {
+          const valores = Productos.generarTags(producto);
+          Tags.crearTags(valores);
+          producto.agregarTags(producto, valores);
+        });
+        // Si hay problemas con tags repetidos desde el seed, volver a esta version:
+        /*
         // Generar un array con todos los tags de todos los productos creados
         const tagsLista = productos.flatMap((producto) => {
-          return Productos.generarTagsArray(producto);
+          return Productos.generarTags(producto);
         });
-        // Crear los tags inexistentes
         Tags.crearTags(tagsLista).then(() => {
           productos.forEach((producto) => {
-            const valores = Productos.generarTagsArray(producto);
+            const valores = Productos.generarTags(producto);
             producto.agregarTags(producto, valores);
           });
-        });
+        });*/
       },
     },
   }
