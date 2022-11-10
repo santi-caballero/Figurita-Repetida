@@ -3,8 +3,12 @@ const { Favoritos, Productos } = require("../db/models/index");
 class favoritosServices {
   // agregar una figurita a favoritos de un usuario
   static agregarFavoritos(usuarioId, productoId) {
-    return Favoritos.create({ usuarioId, productoId });
+    return Favoritos.findOrCreate({
+      where: { usuarioId, productoId },
+      defaults: { usuarioId, productoId },
+    });
   }
+  //{ where: { valor }, defaults: { valor } }
 
   // obtener todos los favoritos de un usuario
   static getAll(usuarioId) {
