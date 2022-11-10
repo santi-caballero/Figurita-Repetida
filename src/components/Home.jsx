@@ -13,7 +13,7 @@ const Home = ({ productos }) => {
   // useEffect(() => {
   //   setProducts(productos);
   // },[products]);
-  console.log("PRODUCTOS", products)
+  console.log("PRODUCTOS", products);
   const indexOfLastPost = currentPage * postPerPage;
   const indexOfFirstPost = indexOfLastPost - postPerPage;
   const currentPosts = productos.slice(indexOfFirstPost, indexOfLastPost);

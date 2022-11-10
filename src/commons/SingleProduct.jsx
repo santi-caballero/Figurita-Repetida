@@ -53,7 +53,7 @@ export default function SingleProduct({ cantidad }) {
               variant="h5"
               color={"#03045E"}
             >
-              DESCRIPCION:
+              Stock: {producto.stock} unidades
             </Typography>
             <div>
               {producto.tipo === "jugador" ? (

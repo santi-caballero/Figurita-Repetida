@@ -1,7 +1,13 @@
 import { Button, Stack, Toolbar, Typography } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import React from "react";
-import ShoppingCartSharpIcon from "@mui/icons-material/ShoppingCartSharp";
+
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import LogoutIcon from "@mui/icons-material/Logout";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import PersonIcon from "@mui/icons-material/Person";
+import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
+import FeedIcon from "@mui/icons-material/Feed";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,48 +25,48 @@ const Botonera = () => {
 
   return (
     <>
-      <Stack direction="row" spacing={2}>
+      <Stack direction="row" spacing={-3}>
         {user.rol == "admin" ? (
-          <Button href={"/admin"} variant="contained" color="secondary">
-            ADMIN
+          <Button href={"/admin"} underline="none" color="secondary">
+            <SupervisorAccountIcon
+              sx={{ color: "#B21515", width: 25, height: 25 }}
+            />
           </Button>
         ) : null}
         {user.id ? (
           <>
             <Button
               href={"/:user/favorites"}
-              variant="contained"
+              underline="none"
               color="secondary"
             >
-              FAVS
+              <FavoriteIcon sx={{ color: "#B21515", width: 25, height: 25 }} />
             </Button>
 
             <Button
               href={"/historialCarrito"}
-              variant="contained"
+              underline="none"
               color="secondary"
             >
-              HISTORIAL
+              <FeedIcon sx={{ color: "#B21515", width: 25, height: 25 }} />
             </Button>
           </>
         ) : null}
-        <Link to={"/:user/cart"} underline="none" color="secondary">
-          <ShoppingCartSharpIcon
-            sx={{ color: "secondary", width: 30, height: 30 }}
-          />
-        </Link>
+        <Button href={"/:user/cart"} underline="none" color="secondary">
+          <ShoppingCartIcon sx={{ color: "#B21515", width: 25, height: 25 }} />
+        </Button>
         {user.id ? (
           <Button
-            href={"/"}
-            variant="contained"
             onClick={() => handleLogOut()}
+            href={"/"}
+            underline="none"
             color="secondary"
           >
-            LOGOUT
+            <LogoutIcon sx={{ color: "#B21515", width: 25, height: 25 }} />
           </Button>
         ) : (
-          <Button href={"/login"} variant="contained" color="secondary">
-            LOGIN
+          <Button href={"/login"} underline="none" color="secondary">
+            <PersonIcon sx={{ color: "#B21515", width: 25, height: 25 }} />
           </Button>
         )}
       </Stack>

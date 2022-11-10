@@ -29,9 +29,8 @@ const Favoritos = () => {
 
   return (
     <Paper elevation={10} style={paperStyle}>
-      <Typography>
-        <h1 className="promo"> Favoritos</h1>
-      </Typography>
+      <h1 className="promo"> Favoritos</h1>
+
       {user.favoritos ? (
         <GrillaFavs productos={user.favoritos} />
       ) : (

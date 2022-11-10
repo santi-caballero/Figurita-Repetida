@@ -93,7 +93,7 @@ const MenuLateral = () => {
         position="static"
         sx={{
           display: "flex",
-          // justifyContent: "space-between",
+          justifyContent: "space-between",
           flexDirection: "row",
           marginBottom: "150px",
           backgroundColor: "#F6AA38",
@@ -118,7 +118,7 @@ const MenuLateral = () => {
             <MenuIcon />
           </IconButton>
 
-          <Link href="/">
+          <Link to="/">
             <img height="75px" src={logofr} />
           </Link>
 
