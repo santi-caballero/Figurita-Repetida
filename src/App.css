@@ -46,16 +46,18 @@
   min-height: 100vh;
   display: flex;
   flex-direction: row;
-  background: #1c92d2; /* fallback for old browsers */
+  background: #2980b9; /* fallback for old browsers */
   background: -webkit-linear-gradient(
-    to right,
-    #f2fcfe,
-    #1c92d2
+    to bottom,
+    #ffffff,
+    #6dd5fa,
+    #2980b9
   ); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(
-    to right,
-    #f2fcfe,
-    #1c92d2
+    to bottom,
+    #ffffff,
+    #6dd5fa,
+    #2980b9
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 .side {
@@ -70,3 +72,48 @@
   font-family: "Bungee Spice", cursive;
   font-size: 300%;
 }
+.pagination {
+  display: inline-block;
+  padding: 8px 16px;
+  align-items: center;
+  justify-content: center;
+  border-color: #101010;
+  border-radius: 6px;
+}
+.ull {
+  text-align: center;
+  padding-left: 0%;
+}
+.link {
+  text-decoration: none;
+  color: #2980b9;
+  font-weight: 700;
+  font-size: 25px;
+  padding: 100%;
+  border-radius: 10px;
+}
+.link:hover {
+  background-color: #caf0f8;
+}
+
+/* .pagination button {
+  width: 40px;
+  height: 40px;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 16px;
+  margin: 0 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: transparent;
+  color: #eee;
+  border-color: #eee;
+}
+
+.pagination button.active {
+  font-weight: 900;
+  border-color: #101010;
+  background: #ffe400;
+  color: #101010;
+} */
