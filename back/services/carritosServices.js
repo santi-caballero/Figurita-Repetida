@@ -39,10 +39,11 @@ class carritosServices {
       .then(() => {});
   }
 
-  static crearPedido(productoId, carrito, cantidad) {
+  // crea un pedido de una cantidad de un producto para un carrito
+  static crearPedido(productoId, carritoId, cantidad) {
     return Pedidos.create({
       productoId,
-      carritoId: carrito.id,
+      carritoId,
       cantidad,
     });
   }

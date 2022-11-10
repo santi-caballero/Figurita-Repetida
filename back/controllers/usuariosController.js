@@ -5,7 +5,7 @@ class usuariosController {
   static me(req, res) {
     const email = req.usuario.email;
     usuariosServices
-      .getMe(email)
+      .buscarPorEmail(email)
       .then((result) => res.status(200).send(result))
       .catch(() => res.status(400).send(err));
   }
@@ -21,7 +21,7 @@ class usuariosController {
   static login(req, res) {
     const { email, password } = req.body;
     usuariosServices
-      .login(email)
+      .buscarPorEmail(email)
       .then((usuario) => {
         if (!usuario) return res.status(401).send("Usuario Inexistente");
         usuario.validarPassword(password).then((isValid) => {

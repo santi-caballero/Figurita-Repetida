@@ -6,9 +6,10 @@ class productosServices {
   static getAllProducts() {
     return Productos.findAll();
   }
+
   //obtener un producto por id
   static getProductById(id) {
-    return Productos.findOne({ where: { id } });
+    return Productos.findByPk(id);
   }
 
   //buscar un producto por tag
@@ -18,24 +19,28 @@ class productosServices {
       include: Tags,
     });
   }
+
   //filtrar productos por categorias
-  static filtrarPorCategorias(busqueda) {
+  static filtrarPorCategorias(filtro) {
     return Productos.findAll({
-      where: { [Op.and]: busqueda },
+      where: { [Op.and]: filtro },
     });
   }
+
   //admin crea un producto
-  static crearProducto(productoCompleto) {
-    return Productos.create(productoCompleto);
+  static crearProducto(productoNuevo) {
+    return Productos.create(productoNuevo);
   }
+
   //admin actualiza un producto
-  static actualizarProducto(valoresActualizados, id) {
-    return Productos.update(valoresActualizados, {
+  static actualizarProducto(productoActualizado, id) {
+    return Productos.update(productoActualizado, {
       where: { id },
-      returning: true,
-      plain: true,
+      returning: true, // Este código y
+      plain: true, // este código son necesarios para que el Model.update() devuelva la instancia modificada
     });
   }
+
   //admin borra un producto
   static eliminarProducto(id) {
     return Productos.destroy({ where: { id } });
