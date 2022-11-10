@@ -51,6 +51,7 @@ class carritosController {
             });
         });
       } else {
+        // si no hay stock, devuelve un mensaje
         res.status(200).send("NO HAY MAS STOCK");
       }
     });

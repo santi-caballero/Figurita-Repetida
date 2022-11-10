@@ -16,12 +16,12 @@ class favoritosServices {
 
   // borrar un favorito de un usuario
   static deleteOne(productoId, usuarioId) {
-    Favoritos.destroy({ where: { productoId, usuarioId } });
+    return Favoritos.destroy({ where: { productoId, usuarioId } });
   }
 
   // borrar todos los favoritos de un usuario
   static deleteAll(usuarioId) {
-    Favoritos.destroy({ where: { usuarioId } });
+    return Favoritos.destroy({ where: { usuarioId } });
   }
 }
 
