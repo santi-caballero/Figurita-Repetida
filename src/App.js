@@ -19,7 +19,10 @@ import Favoritos from "./components/Favoritos";
 import Carrito from "./components/Carrito";
 import Admin from "./components/Admin/Admin";
 import History from "./components/History";
+
 import MenuLateral from "./components/NavBar/MenuLateral";
+
+import Footer from "./components/Footer";
 
 import { useDispatch, useSelector } from "react-redux";
 import { calcularTotal, obtenerItems } from "./states/cart";
@@ -107,6 +110,7 @@ function App() {
 
           <Route path="/:user/checkout" element={<Checkout />} />
         </Routes>
+        <Footer />
       </div>
     </div>
   );
