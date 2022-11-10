@@ -9,7 +9,6 @@ import Sidebar from "./Reemplazados/Sidebar";
 import Grid from "./components/Grids/Grid";
 import SingleProduct from "./commons/SingleProduct";
 import CardProduct from "./commons/Cards/Card";
-
 import Home from "./components/Home";
 import ContentPaises from "./components/Contents/ContentPaises";
 import ContentEspeciales from "./components/Contents/ContentEspeciales";

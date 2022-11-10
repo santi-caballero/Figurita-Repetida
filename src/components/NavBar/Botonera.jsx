@@ -19,8 +19,6 @@ const Botonera = () => {
 
   return (
     <>
-
-
       <Stack direction="row" spacing={2}>
         {user.rol == "admin" ? (
           <Button href={"/admin"} variant="contained" color="secondary">
@@ -37,7 +35,11 @@ const Botonera = () => {
               FAVS
             </Button>
 
-            <Button href={"/history"} variant="contained" color="secondary">
+            <Button
+              href={"/historialCarrito"}
+              variant="contained"
+              color="secondary"
+            >
               HISTORIAL
             </Button>
           </>

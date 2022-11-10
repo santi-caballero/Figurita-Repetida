@@ -9,14 +9,6 @@ import BasicSelect from "./utils/cantidadPrueba";
 import { Paper } from "@mui/material";
 
 export default function SingleProduct({ cantidad }) {
-  const paperStyle = {
-    display: "flex",
-    padding: 20,
-    width: 500,
-    margin: "auto",
-    borderRadius: 3,
-    borderRadius: "10px",
-  };
   const idProducto = useParams();
   const [producto, setProducto] = useState({});
 
@@ -25,59 +17,69 @@ export default function SingleProduct({ cantidad }) {
       setProducto(figu.data);
     });
   }, []);
+  const paperStyle = {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    padding: 20,
+    width: "60%",
+    margin: "auto",
+    borderRadius: 3,
+    borderRadius: "10px",
+    marginBottom: "100px",
+  };
 
   return (
     <Paper elevation={10} style={paperStyle}>
-      <div>
-        <div className="singleProductGeneral">
-          <div className="singleProductLeft">
+      <div className="singleProductGeneral">
+        <div className="singleProductLeft">
+          <Typography
+            fontFamily={"'Bungee Spice', cursive"}
+            variant="h4"
+            color={"#03045E"}
+          >
+            {producto.nombreCompleto}
+          </Typography>
+          <img
+            width="100%"
+            src={producto.urlImagen}
+            alt="Foto de producto"
+            // className="singleProductLeftImagen"
+          />
+          {/* ACA EN VEZ DE CARD VA LA IMAGEN DE LA FIGU NO LA CARD, SIMPLEMENTE PARA VER COMO QUEDA ESTA LA CARD */}
+          <div className="singleProductDescription">
             <Typography
-              fontFamily={"'Bungee Spice', cursive"}
-              variant="h4"
+              fontFamily={"'Anton', sans-serif"}
+              variant="h5"
               color={"#03045E"}
             >
-              {producto.nombre} {producto.apellido}
+              DESCRIPCION:
             </Typography>
-            <img
-              src={producto.urlImagen}
-              alt="Foto de producto"
-              className="singleProductLeftImagen"
-            />
-            {/* ACA EN VEZ DE CARD VA LA IMAGEN DE LA FIGU NO LA CARD, SIMPLEMENTE PARA VER COMO QUEDA ESTA LA CARD */}
-            <div className="singleProductDescription">
-              <Typography
-                fontFamily={"'Anton', sans-serif"}
-                variant="h5"
-                color={"#03045E"}
-              >
-                DESCRIPCION:
-              </Typography>
-              <div>
-                {producto.tipo === "jugador" ? (
-                  <>
-                    <Typography
-                      fontFamily={"'Anton', sans-serif"}
-                      variant="h6"
-                      color={"#03045E"}
-                    >
-                      POSICION: {producto.posicion}
-                    </Typography>
-                    <Typography
-                      fontFamily={"'Anton', sans-serif"}
-                      variant="h6"
-                      color={"#03045E"}
-                    >
-                      PAIS: {producto.pais}
-                    </Typography>
-                  </>
-                ) : null}
-              </div>
+            <div>
+              {producto.tipo === "jugador" ? (
+                <>
+                  <Typography
+                    fontFamily={"'Anton', sans-serif"}
+                    variant="h6"
+                    color={"#03045E"}
+                  >
+                    POSICION: {producto.posicion}
+                  </Typography>
+                  <Typography
+                    fontFamily={"'Anton', sans-serif"}
+                    variant="h6"
+                    color={"#03045E"}
+                  >
+                    PAIS: {producto.pais}
+                  </Typography>
+                </>
+              ) : null}
             </div>
           </div>
+        </div>
 
-          <div className="singleProductRigth">
-            <BasicSelect producto={producto} />
-          </div>
+        <div className="singleProductRigth">
+          <BasicSelect producto={producto} />
         </div>
       </div>
     </Paper>
