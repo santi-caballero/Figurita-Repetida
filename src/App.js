@@ -25,6 +25,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { calcularTotal, obtenerItems } from "./states/cart";
 import { useSelect } from "@mui/base";
 import { isLoggedIn, obtenerFavoritos } from "./states/user";
+import Checkout from "./components/Checkout";
 function App() {
   const [allProducts, setAllProducts] = useState([]);
 
@@ -106,7 +107,7 @@ function App() {
           <Route path="/admin" element={<Admin />} />
           <Route path="/:user/favorites" element={<h1>favorites</h1>} />
 
-          <Route path="/:user/checkout" element={<h1>checkout</h1>} />
+          <Route path="/:user/checkout" element={<Checkout />} />
         </Routes>
       </div>
     </div>

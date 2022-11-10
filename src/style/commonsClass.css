@@ -3,7 +3,7 @@
 }
 
 .singleProductGeneral {
-  display: grid;
+  display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   margin: auto;
@@ -30,6 +30,7 @@
 
 .singleProductLeftImagen {
   margin: 40px;
+  max-width: 10px;
 }
 
 .singleProductRigth {

@@ -8,7 +8,9 @@ import SendIcon from "@mui/icons-material/Send";
 import { useSelector, useDispatch } from "react-redux";
 import { calcularTotal, obtenerItems } from "../states/cart";
 import { Typography } from "@mui/material";
+import { useNavigate } from "react-router";
 const Carrito = () => {
+  const navigate = useNavigate();
   // const [user, setUser] = useState([]);
   // const [carrito, setCarrito] = useState([]);
   // let contenedor = [];
@@ -34,16 +36,16 @@ const Carrito = () => {
   //   }
   // }, [cartItems]);
 
-  const handleCompra = () => {
-    if (carrito.id) {
-      axios
-        .put(`/api/carritos/comprar/${carrito.id}`)
+  // const handleCompra = () => {
+  //   if (carrito.id) {
+  //     axios
+  //       .put(`/api/carritos/comprar/${carrito.id}`)
 
-        .catch((error) => console.log(error));
-    } else {
-      alert("Debe ingresar productos en su carrito");
-    }
-  };
+  //       .catch((error) => console.log(error));
+  //   } else {
+  //     alert("Debe ingresar productos en su carrito");
+  //   }
+  // };
   const handleLimpiar = () => {
     axios
       .delete(`/api/carritos/borrarTodos/${carrito.id}`)
@@ -88,10 +90,10 @@ const Carrito = () => {
         variant="contained"
         endIcon={<SendIcon />}
         onClick={() => {
-          handleCompra();
+          navigate("/:user/checkout");
         }}
       >
-        Finalizar Compra
+        Ir al checkout
       </Button>
     </div>
   );
