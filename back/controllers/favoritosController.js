@@ -20,7 +20,7 @@ class favoritosController {
   }
 
   static deleteOne(req, res) {
-    const { usuarioId, productoId } = req.body;
+    const { usuarioId, productoId } = req.params;
     favoritosServices
       .deleteOne(productoId, usuarioId)
       .then(() => {
