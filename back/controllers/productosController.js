@@ -5,7 +5,7 @@ class productosController {
     productosServices
       .getAllProducts()
       .then((result) => res.status(200).send(result))
-      .catch((err) => console.log(err));
+      .catch((err) => res.status(400).send(err));
   }
 
   static getId(req, res) {
@@ -13,7 +13,7 @@ class productosController {
     productosServices
       .getProductById(id)
       .then((result) => res.status(200).send(result))
-      .catch((err) => console.log(err));
+      .catch((err) => res.status(400).send(err));
   }
 
   static buscarPorTags(req, res) {
@@ -21,10 +21,9 @@ class productosController {
     productosServices
       .buscarPorTags(tags)
       .then((result) => {
-        console.log(result);
         res.status(200).send(result);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => res.status(400).send(err));
   }
 
   static filtrarPorCategorias(req, res) {
@@ -37,32 +36,32 @@ class productosController {
     productosServices
       .filtrarPorCategorias(busqueda)
       .then((result) => res.status(200).send(result))
-      .catch((err) => console.log(err));
+      .catch((err) => res.status(400).send(err));
   }
 
   static adminPost(req, res) {
-    const productoCompleto = req.body;
+    const productoNuevo = req.body;
     productosServices
-      .crearProducto(productoCompleto)
+      .crearProducto(productoNuevo)
       .then((result) => res.status(201).send(result))
-      .catch((err) => console.log(err));
+      .catch((err) => res.status(400).send(err));
   }
 
   static adminUpdate(req, res) {
     const id = req.params.id;
-    const valoresActualizados = req.body;
+    const productoActualizado = req.body;
     productosServices
-      .actualizarProducto(valoresActualizados, id)
-      .then((result) => res.status(202).send(result))
-      .catch((err) => console.log(err));
+      .actualizarProducto(productoActualizado, id)
+      .then((result) => res.status(202).send(result[1])) // La respuesta de un Model.update() es un array cuyo segundo valor ("1") es el objeto modificado.
+      .catch((err) => res.status(400).send(err));
   }
 
   static adminDelete(req, res) {
     const id = req.params.id;
     productosServices
       .eliminarProducto(id)
-      .then(res.sendStatus(202))
-      .catch((err) => console.log(err));
+      .then(res.status(202).send({}))
+      .catch((err) => res.status(400).send(err));
   }
 }
 

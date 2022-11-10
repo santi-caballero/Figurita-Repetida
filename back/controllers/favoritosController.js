@@ -1,37 +1,42 @@
 const favoritosServices = require("../services/favoritosServices");
+
 class favoritosController {
   static agregarFavorito(req, res) {
-    const usuarioId = req.body.usuarioId;
-    const productoId = req.body.productoId;
+    const { usuarioId, productoId } = req.body;
     favoritosServices
       .agregarFavoritos(usuarioId, productoId)
       .then((result) => res.status(201).send(result))
-      .catch((err) => console.log(err));
+      .catch((err) => res.status(400).send(err));
   }
 
   static getAll(req, res) {
     const usuarioId = req.params.id;
     favoritosServices
       .getAll(usuarioId)
-      .then((favorite) => {
-        res.status(200).send(favorite);
+      .then((favoritos) => {
+        res.status(200).send(favoritos);
       })
-      .catch((error) => console.log(error));
+      .catch((err) => res.status(400).send(err));
   }
 
   static deleteOne(req, res) {
-    const productoId = req.params.productoId;
-    const usuarioId = req.params.usuarioId;
-    favoritosServices.deleteOne(productoId, usuarioId).then(() => {
-      res.sendStatus(204);
-    });
+    const { usuarioId, productoId } = req.body;
+    favoritosServices
+      .deleteOne(productoId, usuarioId)
+      .then(() => {
+        res.status(204).send({});
+      })
+      .catch((err) => res.status(400).send(err));
   }
 
   static deleteAll(req, res) {
     const usuarioId = req.params.usuarioId;
-    favoritosServices.deleteAll(usuarioId).then(() => {
-      res.sendStatus(204);
-    });
+    favoritosServices
+      .deleteAll(usuarioId)
+      .then(() => {
+        res.status(204).send([]);
+      })
+      .catch((err) => res.status(400).send(err));
   }
 }
 

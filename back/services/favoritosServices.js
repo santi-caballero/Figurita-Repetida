@@ -1,10 +1,12 @@
-const { Favoritos, Usuarios, Productos } = require("../db/models/index");
+const { Favoritos, Productos } = require("../db/models/index");
 
 class favoritosServices {
+  // agregar una figurita a favoritos de un usuario
   static agregarFavoritos(usuarioId, productoId) {
     return Favoritos.create({ usuarioId, productoId });
   }
 
+  // obtener todos los favoritos de un usuario
   static getAll(usuarioId) {
     return Favoritos.findAll({
       where: { usuarioId },
@@ -12,12 +14,12 @@ class favoritosServices {
     });
   }
 
+  // borrar un favorito de un usuario
   static deleteOne(productoId, usuarioId) {
-    Usuarios.findOne({ where: { id: usuarioId } }).then(() => {
-      Favoritos.destroy({ where: { productoId } });
-    });
+    Favoritos.destroy({ where: { productoId, usuarioId } });
   }
 
+  // borrar todos los favoritos de un usuario
   static deleteAll(usuarioId) {
     Favoritos.destroy({ where: { usuarioId } });
   }

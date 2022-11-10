@@ -8,37 +8,45 @@ class carritosController {
       .then((carrito) => {
         res.status(200).send(carrito);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => res.status(400).send(err));
   }
 
   static historial(req, res) {
     const usuarioId = req.params.usuarioId;
     carritosServices
       .getHistorial(usuarioId)
-      .then((result) => res.status(200).send(result))
-      .catch((err) => console.log(err));
+      .then((carritos) => res.status(200).send(carritos))
+      .catch((err) => res.status(400).send(err));
   }
 
+  // agrega un pedido a un carrito
   static agregar(req, res) {
     const { usuarioId, productoId, cantidad } = req.body;
     carritosServices.buscarProducto(productoId).then((producto) => {
+      // comprobar si hay stock suficiente del producto
       if (producto.stock > cantidad) {
+        // si existe, continua con la creación del pedido
         carritosServices.getCarritoDelUsuario(usuarioId).then((carrito) => {
+          // comprobar si un pedido de un producto en un carrito ya existe
           carritosServices
             .comprobarPedidoExiste(carrito.id, productoId)
             .then((pedido) => {
               if (pedido) {
+                // si exsite, lo modifica sumándole la nueva cantidad al pedido existente
                 carritosServices
                   .modificarPedido(pedido, carrito, parseInt(cantidad))
                   .then((result) => {
                     res.send(result);
-                  });
+                  })
+                  .catch((err) => res.status(400).send(err));
               } else {
+                // si no, crea un nuevo pedido
                 carritosServices
-                  .crearPedido(productoId, carrito, cantidad)
-                  .then((result) => {
-                    res.send(result);
-                  });
+                  .crearPedido(productoId, carrito.id, cantidad)
+                  .then((pedido) => {
+                    res.send(pedido);
+                  })
+                  .catch((err) => res.status(400).send(err));
               }
             });
         });
