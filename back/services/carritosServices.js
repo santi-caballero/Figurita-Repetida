@@ -43,7 +43,9 @@ class carritosServices {
 
   // sumar a un pedido ya existente la nueva cantidad
   static modificarPedido(pedido, cantidad) {
-    return pedido.update({ cantidad: pedido.cantidad + cantidad });
+    return pedido
+      .update({ cantidad: pedido.cantidad + cantidad })
+      .then((pedido) => Pedidos.findByPk(pedido.id, { include: Productos }));
   }
 
   // crear un pedido de una cantidad de un producto para un carrito
@@ -52,7 +54,7 @@ class carritosServices {
       productoId,
       carritoId,
       cantidad,
-    });
+    }).then((pedido) => Pedidos.findByPk(pedido.id, { include: Productos }));
   }
 
   // borrar un pedido

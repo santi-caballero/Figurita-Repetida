@@ -76,7 +76,9 @@ export const eliminarFav = createAsyncThunk(
     try {
       await axios.delete(`/api/favoritos/borrar_uno/${idUser}/${idProducto}`);
       return idProducto;
-    } catch (error) {}
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
   }
 );
 

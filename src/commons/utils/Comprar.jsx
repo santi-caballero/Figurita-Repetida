@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { useState, useEffect } from "react";
-
+import { agregarItem } from "../../states/cart";
 import { useSelector, useDispatch } from "react-redux";
 import { obtenerFavoritos } from "../../states/user";
 import axios from "axios";
@@ -25,11 +25,18 @@ const Comprar = ({ cantidad, producto }) => {
   // }, []);
   const handleAddCarrito = () => {
     if (cantidad) {
-      axios.post(`/api/carritos/agregar`, {
-        usuarioId: user.id,
-        productoId: producto.id,
-        cantidad: cantidad,
-      });
+      //   axios.post(`/api/carritos/agregar`, {
+      //     usuarioId: user.id,
+      //     productoId: producto.id,
+      //     cantidad: cantidad,
+      // });
+      dispatch(
+        agregarItem({
+          idUser: user.id,
+          cantidad: cantidad,
+          idProducto: producto.id,
+        })
+      );
       Swal.fire("Agregado a carrito!", "", "success");
     } else {
       Swal.fire({

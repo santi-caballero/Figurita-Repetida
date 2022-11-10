@@ -12,10 +12,19 @@ export const agregarItem = createAsyncThunk(
   "cart/agregarItem",
   async (data, thunkAPI) => {
     const { idUser, cantidad, idProducto } = data;
+    // console.log(
+    //   "--------------------------------------",
+    //   idUser,
+    //   cantidad,
+    //   idProducto
+    // );
     try {
-      console.log("me esta llegando", idUser, cantidad, idProducto);
-      const respuesta = await axios.post("/api/carritos/agregar");
-
+      const respuesta = await axios.post("/api/carritos/agregar", {
+        usuarioId: idUser,
+        productoId: idProducto,
+        cantidad: cantidad,
+      });
+      console.log("me esta devolviendo el back", respuesta.data);
       return respuesta.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -38,7 +47,7 @@ export const obtenerItems = createAsyncThunk(
 );
 
 export const eliminarItem = createAsyncThunk(
-  "cart/eliminar",
+  "cart/eliminarItem",
   async (id, thunkAPI) => {
     try {
       const respuesta = await axios.delete(`/api/carritos/borrarUno/${id}`);
@@ -107,7 +116,7 @@ const cartSlice = createSlice({
   extraReducers: {
     [agregarItem.fulfilled]: (state, action) => {
       console.log("Agregar item le llega", action.payload);
-      state.cartItems = action.payload;
+      state.cartItems = action.payload.producto;
     },
     [obtenerItems.fulfilled]: (state, action) => {
       console.log("carrito tiene", action.payload);
@@ -118,10 +127,11 @@ const cartSlice = createSlice({
       console.log("mi action es", action);
     },
     [eliminarItem.fulfilled]: (state, action) => {
-      console.log("mi action al borrar es", action);
+      const id = action.payload; //recibe un ID como payload desde React
+      state.cartItems = state.cartItems.filter((item) => item.id !== id);
     },
     [eliminarItem.rejected]: (state, action) => {
-      console.log("mi action al borrar y fallar es", action);
+      return "fallo al borrar";
     },
     [limpiarCart.fulfilled]: (state, action) => {
       state.cartItems = [];
