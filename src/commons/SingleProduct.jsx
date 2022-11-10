@@ -6,8 +6,17 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
 import BasicSelect from "./utils/cantidadPrueba";
+import { Paper } from "@mui/material";
 
 export default function SingleProduct({ cantidad }) {
+  const paperStyle = {
+    display: "flex",
+    padding: 20,
+    width: 500,
+    margin: "auto",
+    borderRadius: 3,
+    borderRadius: "10px",
+  };
   const idProducto = useParams();
   const [producto, setProducto] = useState({});
 
@@ -18,57 +27,59 @@ export default function SingleProduct({ cantidad }) {
   }, []);
 
   return (
-    <div className="todo">
-      <div className="singleProductGeneral">
-        <div className="singleProductLeft">
-          <Typography
-            fontFamily={"'Bungee Spice', cursive"}
-            variant="h4"
-            color={"#03045E"}
-          >
-            {producto.nombre} {producto.apellido}
-          </Typography>
-          <img
-            src={producto.urlImagen}
-            alt="Foto de producto"
-            className="singleProductLeftImagen"
-          />
-          {/* ACA EN VEZ DE CARD VA LA IMAGEN DE LA FIGU NO LA CARD, SIMPLEMENTE PARA VER COMO QUEDA ESTA LA CARD */}
-          <div className="singleProductDescription">
+    <Paper elevation={10} style={paperStyle}>
+      <div>
+        <div className="singleProductGeneral">
+          <div className="singleProductLeft">
             <Typography
-              fontFamily={"'Anton', sans-serif"}
-              variant="h5"
+              fontFamily={"'Bungee Spice', cursive"}
+              variant="h4"
               color={"#03045E"}
             >
-              DESCRIPCION:
+              {producto.nombre} {producto.apellido}
             </Typography>
-            <div>
-              {producto.tipo === "jugador" ? (
-                <>
-                  <Typography
-                    fontFamily={"'Anton', sans-serif"}
-                    variant="h6"
-                    color={"#03045E"}
-                  >
-                    POSICION: {producto.posicion}
-                  </Typography>
-                  <Typography
-                    fontFamily={"'Anton', sans-serif"}
-                    variant="h6"
-                    color={"#03045E"}
-                  >
-                    PAIS: {producto.pais}
-                  </Typography>
-                </>
-              ) : null}
+            <img
+              src={producto.urlImagen}
+              alt="Foto de producto"
+              className="singleProductLeftImagen"
+            />
+            {/* ACA EN VEZ DE CARD VA LA IMAGEN DE LA FIGU NO LA CARD, SIMPLEMENTE PARA VER COMO QUEDA ESTA LA CARD */}
+            <div className="singleProductDescription">
+              <Typography
+                fontFamily={"'Anton', sans-serif"}
+                variant="h5"
+                color={"#03045E"}
+              >
+                DESCRIPCION:
+              </Typography>
+              <div>
+                {producto.tipo === "jugador" ? (
+                  <>
+                    <Typography
+                      fontFamily={"'Anton', sans-serif"}
+                      variant="h6"
+                      color={"#03045E"}
+                    >
+                      POSICION: {producto.posicion}
+                    </Typography>
+                    <Typography
+                      fontFamily={"'Anton', sans-serif"}
+                      variant="h6"
+                      color={"#03045E"}
+                    >
+                      PAIS: {producto.pais}
+                    </Typography>
+                  </>
+                ) : null}
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="singleProductRigth">
-          <BasicSelect producto={producto} />
+          <div className="singleProductRigth">
+            <BasicSelect producto={producto} />
+          </div>
         </div>
       </div>
-    </div>
+    </Paper>
   );
 }

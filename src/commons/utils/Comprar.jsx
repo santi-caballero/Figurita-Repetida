@@ -4,6 +4,7 @@ import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
+import Swal from "sweetalert2";
 
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { useState, useEffect } from "react";
@@ -29,8 +30,13 @@ const Comprar = ({ cantidad, producto }) => {
         productoId: producto.id,
         cantidad: cantidad,
       });
+      Swal.fire("Agregado a carrito!", "", "success");
     } else {
-      alert("Debe ingresar una cantidad");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Debe seleccionar una cantidad",
+      });
     }
   };
   const handleAddFavorito = () => {
@@ -38,6 +44,7 @@ const Comprar = ({ cantidad, producto }) => {
       usuarioId: user.id,
       productoId: producto.id,
     });
+    Swal.fire("Agregado a favoritos!", "", "success");
     // dispatch(obtenerFavoritos(user.id));
   };
   return (
