@@ -17,10 +17,13 @@ class productosController {
   }
 
   static async buscarPorTags(req, res) {
-    const tags = req.params.tags;
+    const tags = req.params.tags.split("_");
     productosServices
       .buscarPorTags(tags)
-      .then((result) => res.status(200).send(result))
+      .then((result) => {
+        console.log(result);
+        res.status(200).send(result);
+      })
       .catch((err) => console.log(err));
   }
 
@@ -56,7 +59,8 @@ class productosController {
 
   static async adminDelete(req, res) {
     const id = req.params.id;
-    productosServices.eliminarProducto(id)
+    productosServices
+      .eliminarProducto(id)
       .then(res.sendStatus(202))
       .catch((err) => console.log(err));
   }

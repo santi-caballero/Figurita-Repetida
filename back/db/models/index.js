@@ -3,6 +3,8 @@ const Productos = require("./Productos");
 const Pedidos = require("./Pedidos");
 const Carritos = require("./Carritos");
 const Favoritos = require("./Favoritos");
+const Tags = require("./Tags");
+const TagsProductos = require("./TagsProductos");
 
 Carritos.belongsTo(Usuarios); //Carrito solo puede pertenecer a un usuario
 Usuarios.hasMany(Carritos); //Usuario tiene varios carritos
@@ -19,4 +21,12 @@ Usuarios.hasMany(Favoritos);
 Favoritos.belongsTo(Productos);
 Productos.hasMany(Favoritos);
 
-module.exports = { Usuarios, Productos, Pedidos, Carritos, Favoritos };
+// Las seis relaciones de abajo configuran lo que la documentacion de sequelize llama "Super Many-to-Many association"
+Productos.belongsToMany(Tags, { through: TagsProductos });
+Tags.belongsToMany(Productos, { through: TagsProductos });
+Productos.hasMany(TagsProductos);
+TagsProductos.belongsTo(Productos);
+Tags.hasMany(TagsProductos);
+TagsProductos.belongsTo(Tags);
+
+module.exports = { Usuarios, Productos, Pedidos, Carritos, Favoritos, Tags };
