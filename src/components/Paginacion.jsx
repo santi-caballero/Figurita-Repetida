@@ -1,24 +1,28 @@
-import * as React from "react";
-import { Link, useLocation } from "react-router-dom";
-import Pagination from "@mui/material/Pagination";
-import PaginationItem from "@mui/material/PaginationItem";
+import React from "react";
+import { Link } from "react-router-dom";
+import { Pagination } from "@mui/material";
+import { Stack } from "@mui/system";
 
-function Content() {
-  const location = useLocation();
-  const query = new URLSearchParams(location.search);
-  const page = parseInt(query.get("page") || "1", 10);
+const Paginacion = ({ postsPerPage, totalPosts, paginate }) => {
+  const pageNumbers = [];
+
+  for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
+    pageNumbers.push(i);
+  }
+
   return (
-    <Pagination
-      page={page}
-      count={10}
-      renderItem={(item) => (
-        <PaginationItem
-          component={Link}
-          to={`/${item.page === 1 ? "" : `${item.page}`}`}
-          {...item}
-        />
-      )}
-    />
+    <nav>
+      <ul className="ull">
+        {pageNumbers.map((number) => (
+          <li key={number} className="pagination">
+            <Link className="link" onClick={() => paginate(number)}>
+              {number}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </nav>
   );
-}
-export default Content;
+};
+
+export default Paginacion;
