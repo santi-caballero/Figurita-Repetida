@@ -1,14 +1,14 @@
 const productosServices = require("../services/productosServices");
 
 class productosController {
-  static async getProductos(req, res) {
+  static getProductos(req, res) {
     productosServices
       .getAllProducts()
       .then((result) => res.status(200).send(result))
       .catch((err) => console.log(err));
   }
 
-  static async getId(req, res) {
+  static getId(req, res) {
     const id = req.params.id;
     productosServices
       .getProductById(id)
@@ -16,7 +16,7 @@ class productosController {
       .catch((err) => console.log(err));
   }
 
-  static async buscarPorTags(req, res) {
+  static buscarPorTags(req, res) {
     const tags = req.params.tags.split("_");
     productosServices
       .buscarPorTags(tags)
@@ -27,7 +27,7 @@ class productosController {
       .catch((err) => console.log(err));
   }
 
-  static async filtrarPorCategorias(req, res) {
+  static filtrarPorCategorias(req, res) {
     const { tipo, rareza, posicion, pais } = req.body;
     const busqueda = [];
     if (tipo) busqueda.push({ tipo });
@@ -40,7 +40,7 @@ class productosController {
       .catch((err) => console.log(err));
   }
 
-  static async adminPost(req, res) {
+  static adminPost(req, res) {
     const productoCompleto = req.body;
     productosServices
       .crearProducto(productoCompleto)
@@ -48,7 +48,7 @@ class productosController {
       .catch((err) => console.log(err));
   }
 
-  static async adminUpdate(req, res) {
+  static adminUpdate(req, res) {
     const id = req.params.id;
     const valoresActualizados = req.body;
     productosServices
@@ -57,7 +57,7 @@ class productosController {
       .catch((err) => console.log(err));
   }
 
-  static async adminDelete(req, res) {
+  static adminDelete(req, res) {
     const id = req.params.id;
     productosServices
       .eliminarProducto(id)
