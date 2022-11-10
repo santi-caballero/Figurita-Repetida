@@ -14,26 +14,20 @@ class carritosServices {
       include: [{ model: Pedidos, include: [Productos] }],
     });
   }
-  // buscar carritos por usuario. Si comprado es false, devuelve el activo, Si es true, el historial de carritos comrados.
-  static getCarritoDelUsuario(usuarioId, comprado) {
-    return Carritos.findAll({
-      where: { usuarioId, comprado },
-      include: [{ model: Pedidos, include: [Productos] }],
-    });
-  }
-
-  /*static getCarritoDelUsuario(usuarioId) {
+  // buscar carritos por usuario.
+  static getCarritoDelUsuario(usuarioId) {
     return Carritos.findOne({
       where: { usuarioId, comprado: false },
       include: [{ model: Pedidos, include: [Productos] }],
     });
   }
+
   static getHistorial(usuarioId) {
     return Carritos.findAll({
       where: { usuarioId, comprado: true },
       include: [{ model: Pedidos, include: [Productos] }],
     });
-  }*/
+  }
 
   // buscar todos los carritos comprados.
   static getHistorialComprados() {
@@ -49,9 +43,7 @@ class carritosServices {
 
   // sumar a un pedido ya existente la nueva cantidad
   static modificarPedido(pedido, cantidad) {
-    return pedido
-      .update({ cantidad: pedido.cantidad + cantidad })
-      .then(() => {});
+    return pedido.update({ cantidad: pedido.cantidad + cantidad });
   }
 
   // crear un pedido de una cantidad de un producto para un carrito
