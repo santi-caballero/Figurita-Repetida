@@ -11,23 +11,21 @@ const transporter = nodemailer.createTransport({
 });
 
 const emailConfirmacion = function (carrito, usuario) {
-  console.log(usuario.nombreCompleto);
-  const { email, nombreCompleto } = usuario;
-  const tabla =
-    carrito.pedidos
-      .map(
-        (pedido) =>
-          `${pedido.producto.nombreCompleto} ${pedido.cantidad}  ${
-            pedido.producto.precio * pedido.cantidad
-          }<br>`
-      )
-      .join(" ") + `el precio total es${carrito.preciototal}`;
+  const { email, nombreCompleto, direccion } = usuario;
+  const tabla = `Pedido | Cantidad | Precio <br>${carrito.pedidos
+    .map(
+      (pedido) =>
+        `${pedido.producto.nombreCompleto} | ${pedido.cantidad} | $${
+          pedido.producto.precio * pedido.cantidad
+        }<br>`
+    )
+    .join(" ")} <br> Precio Total: $${carrito.preciototal}`;
 
   transporter.sendMail({
     from: '"Figurita Repetida" <figuritarepetidaecommerce@gmai.com>',
     to: email,
     subject: "Compra realizada",
-    html: `<b>Hola ${nombreCompleto}: <br> Ya están en camino tus figus. Este es el detalle de tu compra: <br> ${tabla} <br> Saludos, el equipo de Figurita Repetida </b>`,
+    html: `<b>Hola ${nombreCompleto}: <br> Ya están en camino tus figus a la dirección ${direccion}. <br><br> Este es el detalle de tu compra: <br> ${tabla} <br><br> Saludos, el equipo de Figurita Repetida </b>`,
   });
 };
 

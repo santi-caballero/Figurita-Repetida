@@ -95,7 +95,7 @@ class carritosServices {
       emailConfirmacion(carrito, usuario);
     });
     // llamar al metodo para cambiar el estado del carrito y crear uno nuevo para el usuario.
-    return carrito.crearCarrito(carrito);
+    return carrito.comprarCarrito(carrito);
   }
 
   // comprobar si hay stock de todos los pedidos de un carrito.

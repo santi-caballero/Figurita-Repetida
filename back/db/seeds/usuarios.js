@@ -8,6 +8,7 @@ const usuariosFalsos = [
     email: "santiagocaballero1747@gmail.com",
     password: "UruguayEsElMejorPais",
     rol: "admin",
+    direccion: "Calle Falsa 123",
   },
   {
     username: "GeroZ",
@@ -16,6 +17,7 @@ const usuariosFalsos = [
     email: "geronimo.zamora16@gmail.com",
     password: "MoreLikeZalessa",
     rol: "admin",
+    direccion: "Calle Falsa 123",
   },
   {
     username: "Sr.Etiqueta",
@@ -24,6 +26,7 @@ const usuariosFalsos = [
     email: "carampi@gmail.com",
     password: "HagamosLasMaletas",
     rol: "admin",
+    direccion: "Calle Falsa 123",
   },
   {
     username: "DonRamon",
@@ -32,6 +35,7 @@ const usuariosFalsos = [
     email: "leandro.echezuri@gmail.com",
     password: "password",
     rol: "admin",
+    direccion: "Calle Falsa 123",
   },
   {
     username: "Bautista",
@@ -40,6 +44,7 @@ const usuariosFalsos = [
     email: "bautistagonzalezlazo@gmail.com",
     password: "SilenciosoPeroLetal",
     rol: "admin",
+    direccion: "Calle Falsa 123",
   },
   {
     username: "elPayaso",
@@ -48,6 +53,7 @@ const usuariosFalsos = [
     email: "franciscoalvarezraineri@gmail.com",
     password: "PushAMain",
     rol: "admin",
+    direccion: "Calle Falsa 123",
   },
   {
     username: "1",
@@ -56,6 +62,9 @@ const usuariosFalsos = [
     email: "1@1.com",
     password: "1",
     rol: "usuario",
+    urlPerfil:
+      "https://es.wikipedia.org/wiki/La_1#/media/Archivo:Logo_TVE-1.svg",
+    direccion: "Calle Falsa 123",
   },
   {
     username: "admin",
@@ -64,11 +73,12 @@ const usuariosFalsos = [
     email: "admin@admin.com",
     password: "admin",
     rol: "admin",
+    direccion: "Calle Falsa 123",
     urlPerfil:
       "https://static.wikia.nocookie.net/memes-pedia/images/a/ac/Ahora_tu_eres_admin/revision/latest/scale-to-width-down/250?cb=20210128164325&path-prefix=es",
   },
 ];
 
 module.exports = function () {
-  return Usuarios.bulkCreate(usuariosFalsos);
+  return Usuarios.bulkCreate(usuariosFalsos, { validate: true });
 };

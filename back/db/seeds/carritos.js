@@ -3,9 +3,9 @@ const { Carritos } = require("../models");
 module.exports = function () {
   return Carritos.findByPk(1)
     .then((carrito) => {
-      carrito.crearCarrito(carrito).then((carrito) => {
+      carrito.comprarCarrito(carrito).then((carrito) => {
         setTimeout(() => {
-          carrito.crearCarrito(carrito);
+          carrito.comprarCarrito(carrito);
         }, 10);
       });
     })

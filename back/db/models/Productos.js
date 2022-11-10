@@ -13,6 +13,16 @@ class Productos extends S.Model {
     return tags;
   }
 
+  /* agregarTags(producto, valores) {
+    const buscarTags = valores.map((valor) =>
+      Tags.findOne({ where: { valor } })
+    );
+    Promise.all(buscarTags).then((tags) => {
+      const tagsIds = tags.map((tag) => tag.id);
+      producto.setTags(tagsIds);
+    });
+  }*/
+
   agregarTags(producto, valores) {
     const buscarTags = valores.map((valor) =>
       Tags.findOne({ where: { valor } })
@@ -47,6 +57,9 @@ Productos.init(
     },
     posicion: {
       type: S.STRING,
+      validate: {
+        isIn: [["delantero", "central", "portero", "defensor"]],
+      },
     },
     pais: {
       type: S.STRING,
@@ -64,24 +77,24 @@ Productos.init(
     },
     urlImagen: {
       type: S.STRING,
+      validate: { isUrl: true },
     },
-    /*tags: {
-      type: S.STRING,
-    },*/
   },
   {
     sequelize: db,
     modelName: "producto",
     hooks: {
       afterCreate: (producto) => {
-        const tags = Productos.generarTagsArray(producto);
-        Tags.crearTags(tags);
-        producto.agregarTags(producto);
+        const valores = Productos.generarTagsArray(producto);
+        Tags.crearTags(valores);
+        producto.agregarTags(producto, valores);
       },
       afterBulkCreate: (productos) => {
+        // Generar un array con todos los tags de todos los productos creados
         const tagsLista = productos.flatMap((producto) => {
           return Productos.generarTagsArray(producto);
         });
+        // Crear los tags inexistentes
         Tags.crearTags(tagsLista).then(() => {
           productos.forEach((producto) => {
             const valores = Productos.generarTagsArray(producto);
