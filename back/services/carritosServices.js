@@ -64,7 +64,7 @@ class carritosServices {
   }
 
   // borrar un pedido
-  static borrarUnPedido(pedidoId) {
+  static borrarUnPedido(id) {
     return Pedidos.destroy({ where: { id } });
   }
 
