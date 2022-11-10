@@ -25,12 +25,13 @@ export default function CardCarrito({ product, cantidad, id }) {
   const [producto, setProducto] = useState({});
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const handleRemove = () => {
     // axios
     //   .delete(`/api/carritos/borrarUno/${id}`)
     //   .catch((error) => console.log(error));
     dispatch(eliminarItem(id));
-    navigate("/");
+    window.location.reload(false);
   };
 
   useEffect(() => {
