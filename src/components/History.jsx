@@ -15,7 +15,7 @@ const History = () => {
     axios
       .get(`/api/carritos/historial/${user.id}`)
       .then((res) => setHistorial(res.data));
-  }, [user]);
+  }, [user.id]);
 
   return (
     <>
