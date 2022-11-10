@@ -21,7 +21,7 @@ const productosFalsos = [
     pais: "Argentina",
     stock: 200,
     precio: 100,
-    rareza: 1,
+    rareza: 0,
     urlImagen:
       "https://figuritasqatar.com.ar/wp-content/uploads/franco-armani.png",
   },
@@ -33,7 +33,7 @@ const productosFalsos = [
     pais: "Argentina",
     stock: 10,
     precio: 200,
-    rareza: 1,
+    rareza: 0,
     urlImagen:
       "https://figuritasqatar.com.ar/wp-content/uploads/cristian-romero.png",
   },
@@ -63,7 +63,7 @@ const productosFalsos = [
     pais: "Uruguay",
     stock: 999,
     precio: 1,
-    rareza: 1,
+    rareza: 0,
     urlImagen:
       "https://figuritasqatar.com.ar/wp-content/uploads/darwin-nunez.png",
   },
@@ -75,7 +75,7 @@ const productosFalsos = [
     pais: "Qatar",
     stock: 500,
     precio: 200,
-    rareza: 1,
+    rareza: 0,
     urlImagen:
       "https://figuritasqatar.com.ar/wp-content/uploads/karim-boudiaf.png",
   },
@@ -87,7 +87,7 @@ const productosFalsos = [
     pais: "Qatar",
     stock: 1,
     precio: 200,
-    rareza: 500,
+    rareza: 0,
     urlImagen:
       "https://figuritasqatar.com.ar/wp-content/uploads/musaab-khidir.png",
   },
@@ -99,7 +99,7 @@ const productosFalsos = [
     pais: "Qatar",
     stock: 500,
     precio: 200,
-    rareza: 1,
+    rareza: 0,
     urlImagen:
       "https://figuritasqatar.com.ar/wp-content/uploads/saad-al-sheeb.png",
   },
@@ -111,7 +111,7 @@ const productosFalsos = [
     pais: "Qatar",
     stock: 500,
     precio: 200,
-    rareza: 1,
+    rareza: 0,
     urlImagen:
       "https://figuritasqatar.com.ar/wp-content/uploads/akram-hassan-afif.png",
   },
@@ -123,7 +123,7 @@ const productosFalsos = [
     pais: "Ecuador",
     stock: 500,
     precio: 200,
-    rareza: 1,
+    rareza: 0,
     urlImagen:
       "https://figuritasqatar.com.ar/wp-content/uploads/alexander-dominguez.png",
   },
@@ -135,7 +135,7 @@ const productosFalsos = [
     pais: "Ecuador",
     stock: 500,
     precio: 200,
-    rareza: 1,
+    rareza: 0,
     urlImagen:
       "https://figuritasqatar.com.ar/wp-content/uploads/bryon-castillo-231x300.png",
   },
@@ -147,7 +147,7 @@ const productosFalsos = [
     pais: "Ecuador",
     stock: 500,
     precio: 200,
-    rareza: 1,
+    rareza: 0,
     urlImagen:
       "https://figuritasqatar.com.ar/wp-content/uploads/moises-caicedo.png",
   },
@@ -159,7 +159,7 @@ const productosFalsos = [
     pais: "Ecuador",
     stock: 500,
     precio: 200,
-    rareza: 1,
+    rareza: 0,
     urlImagen:
       "https://figuritasqatar.com.ar/wp-content/uploads/alexander-dominguez.png",
   },
@@ -171,7 +171,7 @@ const productosFalsos = [
     pais: "Senegal",
     stock: 500,
     precio: 200,
-    rareza: 1,
+    rareza: 0,
     urlImagen:
       "https://figuritasqatar.com.ar/wp-content/uploads/edouard-mendy.png",
   },
@@ -183,7 +183,7 @@ const productosFalsos = [
     pais: "Senegal",
     stock: 500,
     precio: 200,
-    rareza: 1,
+    rareza: 0,
     urlImagen:
       "https://figuritasqatar.com.ar/wp-content/uploads/ibrahima-mbaye.png",
   },
@@ -195,7 +195,7 @@ const productosFalsos = [
     pais: "Senegal",
     stock: 500,
     precio: 200,
-    rareza: 1,
+    rareza: 0,
     urlImagen:
       "https://figuritasqatar.com.ar/wp-content/uploads/pape-gueye.png",
   },
@@ -207,7 +207,7 @@ const productosFalsos = [
     pais: "Senegal",
     stock: 500,
     precio: 200,
-    rareza: 1,
+    rareza: 0,
     urlImagen:
       "https://figuritasqatar.com.ar/wp-content/uploads/sadio-mane.png",
   },
@@ -219,7 +219,7 @@ const productosFalsos = [
     pais: "Paises Bajos",
     stock: 500,
     precio: 200,
-    rareza: 1,
+    rareza: 0,
     urlImagen:
       "https://figuritasqatar.com.ar/wp-content/uploads/jasper-cillessen.png",
   },
@@ -231,7 +231,7 @@ const productosFalsos = [
     pais: "Paises Bajos",
     stock: 500,
     precio: 200,
-    rareza: 1,
+    rareza: 0,
     urlImagen:
       "https://figuritasqatar.com.ar/wp-content/uploads/virgil-van-dijk.png",
   },
@@ -243,7 +243,7 @@ const productosFalsos = [
     pais: "Paises Bajos",
     stock: 500,
     precio: 200,
-    rareza: 1,
+    rareza: 0,
     urlImagen:
       "https://figuritasqatar.com.ar/wp-content/uploads/frenkie-de-jong.png",
   },
@@ -255,7 +255,7 @@ const productosFalsos = [
     pais: "Paises Bajos",
     stock: 500,
     precio: 200,
-    rareza: 1,
+    rareza: 0,
     urlImagen:
       "https://figuritasqatar.com.ar/wp-content/uploads/arnaut-danjuma.png",
   },
@@ -267,7 +267,7 @@ const productosFalsos = [
     pais: "Inglaterra",
     stock: 500,
     precio: 200,
-    rareza: 1,
+    rareza: 0,
     urlImagen:
       "https://figuritasqatar.com.ar/wp-content/uploads/jodran-pickford.png",
   },
@@ -279,7 +279,7 @@ const productosFalsos = [
     pais: "Inglaterra",
     stock: 500,
     precio: 200,
-    rareza: 1,
+    rareza: 0,
     urlImagen:
       "https://figuritasqatar.com.ar/wp-content/uploads/kyle-walker.png",
   },
@@ -291,7 +291,7 @@ const productosFalsos = [
     pais: "Inglaterra",
     stock: 500,
     precio: 200,
-    rareza: 1,
+    rareza: 0,
     urlImagen:
       "https://figuritasqatar.com.ar/wp-content/uploads/mason-mount.png",
   },
@@ -303,7 +303,7 @@ const productosFalsos = [
     pais: "Inglaterra",
     stock: 500,
     precio: 200,
-    rareza: 1,
+    rareza: 0,
     urlImagen:
       "https://figuritasqatar.com.ar/wp-content/uploads/harry-kane.png",
   },
@@ -315,7 +315,7 @@ const productosFalsos = [
     pais: "Iran",
     stock: 500,
     precio: 200,
-    rareza: 1,
+    rareza: 0,
     urlImagen:
       "https://figuritasqatar.com.ar/wp-content/uploads/amir-abedzadeh.png",
   },
@@ -327,7 +327,7 @@ const productosFalsos = [
     pais: "Iran",
     stock: 500,
     precio: 200,
-    rareza: 1,
+    rareza: 0,
     urlImagen:
       "https://figuritasqatar.com.ar/wp-content/uploads/milad-mohammadi.png",
   },
@@ -339,7 +339,7 @@ const productosFalsos = [
     pais: "Iran",
     stock: 500,
     precio: 200,
-    rareza: 1,
+    rareza: 0,
     urlImagen:
       "https://figuritasqatar.com.ar/wp-content/uploads/ali-gholizadeh.png",
   },
@@ -351,7 +351,7 @@ const productosFalsos = [
     pais: "Iran",
     stock: 500,
     precio: 200,
-    rareza: 1,
+    rareza: 0,
     urlImagen:
       "https://figuritasqatar.com.ar/wp-content/uploads/saman-ghoddos.png",
   },
@@ -363,7 +363,7 @@ const productosFalsos = [
     pais: "Estados Unidos",
     stock: 500,
     precio: 200,
-    rareza: 1,
+    rareza: 0,
     urlImagen:
       "https://figuritasqatar.com.ar/wp-content/uploads/matt-turner.png",
   },
@@ -375,7 +375,7 @@ const productosFalsos = [
     pais: "Estados Unidos",
     stock: 500,
     precio: 200,
-    rareza: 1,
+    rareza: 0,
     urlImagen:
       "https://figuritasqatar.com.ar/wp-content/uploads/sergino-dest.png",
   },
@@ -387,7 +387,7 @@ const productosFalsos = [
     pais: "Estados Unidos",
     stock: 500,
     precio: 200,
-    rareza: 1,
+    rareza: 0,
     urlImagen:
       "https://figuritasqatar.com.ar/wp-content/uploads/kellyn-acosta.png",
   },
@@ -399,7 +399,7 @@ const productosFalsos = [
     pais: "Estados Unidos",
     stock: 500,
     precio: 200,
-    rareza: 1,
+    rareza: 0,
     urlImagen:
       "https://figuritasqatar.com.ar/wp-content/uploads/christian-pulisic.png",
   },

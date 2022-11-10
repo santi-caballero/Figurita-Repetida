@@ -6,11 +6,13 @@ import { Box } from "@mui/system";
 const ContentEspeciales = ({ Todas }) => {
   const [productos, setProductos] = useState([]);
 
+  const productosEquipo = [];
   const productosPelota = [];
   const productosEstadio = [];
   const mapeadas = Todas.map((producto) => {
     if (producto.tipo == "pelota") productosPelota.push(producto);
     if (producto.tipo == "estadio") productosEstadio.push(producto);
+    if (producto.tipo == "equipo") productosEquipo.push(producto);
   });
 
   return (
@@ -43,6 +45,20 @@ const ContentEspeciales = ({ Todas }) => {
           variant="outlined"
         >
           Estadios
+        </Button>
+        <Button
+          sx={{
+            borderRadius: 3,
+            background: "#CAF0F8",
+            fontWeight: "bold",
+            color: "#023E8A",
+          }}
+          onClick={() => {
+            setProductos(productosEquipo);
+          }}
+          variant="outlined"
+        >
+          Selecciones
         </Button>
       </Box>
       <Grid productos={productos} />
