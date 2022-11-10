@@ -60,7 +60,7 @@ class productosController {
     const id = req.params.id;
     productosServices
       .eliminarProducto(id)
-      .then(res.status(202).send({}))
+      .then(() => res.status(202).send({}))
       .catch((err) => res.status(400).send(err));
   }
 }

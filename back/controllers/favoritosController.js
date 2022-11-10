@@ -5,7 +5,7 @@ class favoritosController {
     const { usuarioId, productoId } = req.body;
     favoritosServices
       .agregarFavoritos(usuarioId, productoId)
-      .then((result) => res.status(201).send(result))
+      .then((result) => res.status(201).send(result[0]))
       .catch((err) => res.status(400).send(err));
   }
 
