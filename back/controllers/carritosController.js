@@ -5,7 +5,7 @@ class carritosController {
   static getCarrito(req, res) {
     const usuarioId = req.params.usuarioId;
     carritosServices
-      .getCarritoDelUsuario(usuarioId, false)
+      .getCarritoDelUsuario(usuarioId)
       .then((carritos) => {
         res.status(200).send(carritos[0]); // esto es necesario porque está implementado con Model.findAll()
       })
@@ -15,7 +15,7 @@ class carritosController {
   static historial(req, res) {
     const usuarioId = req.params.usuarioId;
     carritosServices
-      .getCarritoDelUsuario(usuarioId, true)
+      .getHistorial(usuarioId)
       .then((carritos) => res.status(200).send(carritos))
       .catch((err) => res.status(400).send(err));
   }
