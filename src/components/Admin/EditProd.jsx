@@ -117,273 +117,226 @@ const EditProd = () => {
 
   return (
     <>
-      <Container
-        maxWidth="md"
-        sx={{
-          display: "flex",
+      <Typography sx={{ textAlign: "center" }} variant="h5" gutterBottom>
+        Editar / eliminar producto
+      </Typography>
 
-          marginTop: "50px",
-          backgroundColor: "#ffffff",
-          borderRadius: "10px",
-        }}
-      >
-        <Grid container>
-          <Typography variant="h4" gutterBottom>
-            Editar producto
-          </Typography>
-        </Grid>
-      </Container>
-      <Container
-        maxWidth="md"
-        sx={{
-          display: "flex",
-          marginTop: "30px",
-          backgroundColor: "#ffffff",
-          borderRadius: "10px",
-        }}
-      >
-        <Grid>
-          <FormControl sx={{ m: 1, width: 300 }}>
-            <InputLabel>Producto</InputLabel>
-            <Select
-              labelId="productos-select"
-              id="productos-select"
-              label="Seleccionar Usuario"
-              value={prod}
-              displayEmpty
-              onChange={handleProd}
-            >
-              {productos.length
-                ? productos.map((producto, i) => (
-                    <MenuItem key={i} tipo={producto.tipo} value={producto.id}>
-                      ({producto.tipo}) - {producto.nombreCompleto}
-                    </MenuItem>
-                  ))
-                : null}
-            </Select>
-          </FormControl>
-        </Grid>
+      <Container>
+        <FormControl sx={{ width: "272px", marginTop: "15px" }}>
+          <InputLabel>Producto</InputLabel>
+          <Select
+            labelId="productos-select"
+            id="productos-select"
+            label="Seleccionar Usuario"
+            value={prod}
+            displayEmpty
+            onChange={handleProd}
+          >
+            {productos.length
+              ? productos.map((producto, i) => (
+                  <MenuItem key={i} tipo={producto.tipo} value={producto.id}>
+                    ({producto.tipo}) - {producto.nombreCompleto}
+                  </MenuItem>
+                ))
+              : null}
+          </Select>
+        </FormControl>
       </Container>
       {tipo ? (
-        <Container
-          maxWidth="md"
-          sx={{
-            display: "flex",
-            marginTop: "30px",
-            backgroundColor: "#ffffff",
-            borderRadius: "10px",
-          }}
-        >
+        <Container>
           {tipo !== "jugador" ? (
             <Grid container>
-              <Grid>
-                <TextField
-                  sx={{ m: 1, width: 300 }}
-                  label="Nombre"
-                  id="NOMBRE"
-                  placeholder="Ingresa Nombre"
-                  fullWidth
-                  required
-                  onChange={handleNombre}
-                />
-              </Grid>
+              <TextField
+                sx={{ marginTop: "15px" }}
+                type="text"
+                label="Nombre"
+                id="NOMBRE"
+                placeholder="Ingresa Nombre"
+                fullWidth
+                required
+                onChange={handleNombre}
+              />
 
-              <Grid>
-                <FormControl sx={{ m: 1, width: 300 }}>
-                  <InputLabel>Rareza</InputLabel>
-                  <Select
-                    labelId="rareza-select"
-                    id="rareza-select"
-                    label="Rareza"
-                    value={rareza}
-                    displayEmpty
-                    onChange={handleRareza}
-                  >
-                    <MenuItem value={0}>Normal</MenuItem>
-                    <MenuItem value={1}>Bronce</MenuItem>
-                    <MenuItem value={2}>Plata</MenuItem>
-                    <MenuItem value={3}>Oro</MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
+              <FormControl sx={{ width: "272px", marginTop: "15px" }}>
+                <InputLabel>Rareza</InputLabel>
+                <Select
+                  labelId="rareza-select"
+                  id="rareza-select"
+                  label="Rareza"
+                  value={rareza}
+                  displayEmpty
+                  onChange={handleRareza}
+                >
+                  <MenuItem value={0}>Normal</MenuItem>
+                  <MenuItem value={1}>Bronce</MenuItem>
+                  <MenuItem value={2}>Plata</MenuItem>
+                  <MenuItem value={3}>Oro</MenuItem>
+                </Select>
+              </FormControl>
 
-              <Grid>
-                <TextField
-                  sx={{ m: 1, width: 300 }}
-                  label="Precio"
-                  placeholder="Ingresa Precio"
-                  fullWidth
-                  required
-                  id="PRECIO"
-                  onChange={handlePrecio}
-                />
-              </Grid>
-              <Grid>
-                <TextField
-                  sx={{ m: 1, width: 300 }}
-                  label="Stock"
-                  id="STOCK"
-                  placeholder="Ingresa Stock"
-                  fullWidth
-                  required
-                  onChange={handleStock}
-                />
-              </Grid>
-              <Grid>
-                <Button
-                  sx={{ m: 1, width: 300 }}
-                  variant="contained"
-                  component="label"
-                >
-                  Cargar imagen
-                  <input hidden accept="image/*" multiple type="file" />
-                </Button>
-              </Grid>
-              <Grid>
-                <Button
-                  onClick={handleSendEdit}
-                  type="submit"
-                  variant="contained"
-                  sx={{ m: 1, width: 300 }}
-                >
-                  Guardar cambios
-                </Button>
-              </Grid>
-              <Grid>
-                <Button
-                  onClick={handleDeleteProd}
-                  type="button"
-                  variant="contained"
-                  sx={{ m: 1, width: 300 }}
-                >
-                  Eliminar Producto
-                </Button>
-              </Grid>
+              <TextField
+                sx={{ marginTop: "15px" }}
+                label="Precio"
+                placeholder="Ingresa Precio"
+                fullWidth
+                required
+                id="PRECIO"
+                onChange={handlePrecio}
+              />
+
+              <TextField
+                sx={{ marginTop: "15px" }}
+                label="Stock"
+                id="STOCK"
+                placeholder="Ingresa Stock"
+                fullWidth
+                required
+                onChange={handleStock}
+              />
+
+              <Button
+                sx={{ marginTop: "15px" }}
+                variant="contained"
+                component="label"
+                fullWidth
+              >
+                Cargar imagen
+                <input hidden accept="image/*" multiple type="file" />
+              </Button>
+
+              <Button
+                onClick={handleSendEdit}
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ marginTop: "15px" }}
+              >
+                Guardar cambios
+              </Button>
+
+              <Button
+                onClick={handleDeleteProd}
+                type="button"
+                variant="contained"
+                fullWidth
+                sx={{ marginTop: "15px" }}
+              >
+                Eliminar Producto
+              </Button>
             </Grid>
           ) : (
             <Grid container>
-              <Grid>
-                <TextField
-                  sx={{ m: 1, width: 300 }}
-                  label="Nombre"
-                  id="NOMBRE"
-                  placeholder="Ingresa Nombre"
-                  fullWidth
-                  required
-                  onChange={handleNombre}
-                />
-              </Grid>
-              <Grid>
-                <TextField
-                  sx={{ m: 1, width: 300 }}
-                  label="Apellido"
-                  id="APELLIDO"
-                  placeholder="Ingresa Apellido"
-                  fullWidth
-                  required
-                  onChange={handleApellido}
-                />
-              </Grid>
-              <Grid>
-                <FormControl sx={{ m: 1, width: 300 }}>
-                  <InputLabel>Posicion</InputLabel>
-                  <Select
-                    labelId="posicion-select"
-                    id="posicion-select"
-                    label="Posicion"
-                    value={posicion}
-                    displayEmpty
-                    onChange={handlePosicion}
-                  >
-                    <MenuItem value={"portero"}>Portero</MenuItem>
-                    <MenuItem value={"defensor"}>Defensor</MenuItem>
-                    <MenuItem value={"central"}>Central</MenuItem>
-                    <MenuItem value={"delantero"}>Arquero</MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
-              <Grid>
-                <TextField
-                  sx={{ m: 1, width: 300 }}
-                  label="Pais"
-                  id="PAIS"
-                  placeholder="Ingresa Pais"
-                  fullWidth
-                  required
-                  onChange={handlePais}
-                />
-              </Grid>
-              <Grid>
-                <FormControl sx={{ m: 1, width: 300 }}>
-                  <InputLabel>Rareza</InputLabel>
-                  <Select
-                    labelId="rareza-select"
-                    id="rareza-select"
-                    label="Rareza"
-                    value={rareza}
-                    displayEmpty
-                    onChange={handleRareza}
-                  >
-                    <MenuItem value={0}>Normal</MenuItem>
-                    <MenuItem value={1}>Bronce</MenuItem>
-                    <MenuItem value={2}>Plata</MenuItem>
-                    <MenuItem value={3}>Oro</MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
+              <TextField
+                sx={{ marginTop: "15px" }}
+                label="Nombre"
+                id="NOMBRE"
+                placeholder="Ingresa Nombre"
+                fullWidth
+                required
+                onChange={handleNombre}
+              />
 
-              <Grid>
-                <TextField
-                  sx={{ m: 1, width: 300 }}
-                  label="Precio"
-                  id="PRECIO"
-                  placeholder="Ingresa Precio"
-                  fullWidth
-                  required
-                  onChange={handlePrecio}
-                />
-              </Grid>
-              <Grid>
-                <TextField
-                  sx={{ m: 1, width: 300 }}
-                  label="Stock"
-                  id="STOCK"
-                  placeholder="Ingresa Stock"
-                  fullWidth
-                  required
-                  onChange={handleStock}
-                />
-              </Grid>
-              <Grid>
-                <Button
-                  sx={{ m: 1, width: 300 }}
-                  variant="contained"
-                  component="label"
+              <TextField
+                sx={{ marginTop: "15px" }}
+                label="Apellido"
+                id="APELLIDO"
+                placeholder="Ingresa Apellido"
+                fullWidth
+                required
+                onChange={handleApellido}
+              />
+
+              <TextField
+                sx={{ marginTop: "15px" }}
+                label="Pais"
+                id="PAIS"
+                placeholder="Ingresa Pais"
+                fullWidth
+                required
+                onChange={handlePais}
+              />
+              <FormControl sx={{ width: "272px", marginTop: "15px" }}>
+                <InputLabel>Posicion</InputLabel>
+                <Select
+                  labelId="posicion-select"
+                  id="posicion-select"
+                  label="Posicion"
+                  value={posicion}
+                  displayEmpty
+                  onChange={handlePosicion}
                 >
-                  Cargar imagen
-                  <input hidden accept="image/*" multiple type="file" />
-                </Button>
-              </Grid>
-              <Grid>
-                <Button
-                  onClick={handleSendEdit}
-                  type="submit"
-                  variant="contained"
-                  sx={{ m: 1, width: 300 }}
+                  <MenuItem value={"portero"}>Portero</MenuItem>
+                  <MenuItem value={"defensor"}>Defensor</MenuItem>
+                  <MenuItem value={"central"}>Central</MenuItem>
+                  <MenuItem value={"delantero"}>Arquero</MenuItem>
+                </Select>
+              </FormControl>
+              <FormControl sx={{ width: "272px", marginTop: "15px" }}>
+                <InputLabel>Rareza</InputLabel>
+                <Select
+                  labelId="rareza-select"
+                  id="rareza-select"
+                  label="Rareza"
+                  value={rareza}
+                  displayEmpty
+                  onChange={handleRareza}
                 >
-                  Guardar cambios
-                </Button>
-              </Grid>
-              <Grid>
-                <Button
-                  onClick={handleDeleteProd}
-                  type="button"
-                  variant="contained"
-                  sx={{ m: 1, width: 300 }}
-                >
-                  Eliminar Producto
-                </Button>
-              </Grid>
+                  <MenuItem value={0}>Normal</MenuItem>
+                  <MenuItem value={1}>Bronce</MenuItem>
+                  <MenuItem value={2}>Plata</MenuItem>
+                  <MenuItem value={3}>Oro</MenuItem>
+                </Select>
+              </FormControl>
+
+              <TextField
+                sx={{ marginTop: "15px" }}
+                label="Precio"
+                id="PRECIO"
+                placeholder="Ingresa Precio"
+                fullWidth
+                required
+                onChange={handlePrecio}
+              />
+
+              <TextField
+                sx={{ marginTop: "15px" }}
+                label="Stock"
+                id="STOCK"
+                placeholder="Ingresa Stock"
+                fullWidth
+                required
+                onChange={handleStock}
+              />
+
+              <Button
+                sx={{ marginTop: "15px" }}
+                variant="contained"
+                component="label"
+                fullWidth
+              >
+                Cargar imagen
+                <input hidden accept="image/*" multiple type="file" />
+              </Button>
+
+              <Button
+                onClick={handleSendEdit}
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ marginTop: "15px" }}
+              >
+                Guardar cambios
+              </Button>
+
+              <Button
+                onClick={handleDeleteProd}
+                type="button"
+                fullWidth
+                variant="contained"
+                sx={{ marginTop: "15px" }}
+              >
+                Eliminar Producto
+              </Button>
             </Grid>
           )}
         </Container>

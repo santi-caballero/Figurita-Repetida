@@ -8,6 +8,7 @@ const initialState = {
   apellido: null,
   id: null,
   favoritos: [],
+  rol: null,
 };
 
 //creo la fn async obtenerFavoritos
@@ -88,6 +89,7 @@ const userSlice = createSlice({
       // console.log("me esta llegando", action.payload);
       // state.user = action.payload;
       //return state;
+      state.rol = action.payload.rol;
       state.username = action.payload.username;
       state.email = action.payload.email;
       state.nombre = action.payload.nombre;
@@ -98,6 +100,7 @@ const userSlice = createSlice({
       return state;
     },
     [isLoggedIn.fulfilled]: (state, action) => {
+      state.rol = action.payload.rol;
       state.username = action.payload.username;
       state.email = action.payload.email;
       state.nombre = action.payload.nombre;

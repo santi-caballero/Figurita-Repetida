@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import {
   Paper,
   TextField,
+  TextArea,
   Grid,
   Button,
   Select,
   MenuItem,
   InputLabel,
+  Typography,
 } from "@mui/material";
 import axios from "axios";
 import { useNavigate } from "react-router";
@@ -55,112 +57,80 @@ const Register = () => {
     //Body: Obj {username, tipo, nombre, contraseña, email}
   };
   const handleAlreadyRegister = (event) => {};
+
   const paperStyle = {
     padding: 20,
-    height: "45vh",
-    width: 280,
-    margin: "20px auto",
-    marginTop: "50px",
+    width: 320,
+    margin: "auto",
+    borderRadius: 3,
+    borderRadius: "10px",
   };
 
   const btnstyle = { margin: "8px 0" };
 
   return (
     <Grid>
-      <Paper
-        sx={{
-          borderRadius: 3,
-        }}
-        elevation={10}
-        style={paperStyle}
-      >
-        <InputLabel id="demo-simple-select-standard-label">
-          Tipo de Usuario
-        </InputLabel>
-        <Select
-          labelId="demo-simple-select-standard-label"
-          id="demo-simple-select-standard"
-          fullWidth
-          value={userType}
-          onChange={userTypeOnChange}
-        >
-          <MenuItem value={"user"}>User</MenuItem>
-          <MenuItem value={"admin"}>Admin</MenuItem>
-        </Select>
-
+      <Paper elevation={10} style={paperStyle}>
         <TextField
+          sx={{ marginTop: "5px" }}
           value={username}
           id="outlined-basic-user"
           label="Nombre de Usuario"
-          variant="standard"
           type="text"
           fullWidth
           required
           onChange={usernameOnChange}
         />
-
         <TextField
+          sx={{ marginTop: "15px" }}
           value={name}
           id="outlined-basic-name"
-          label="Nombre completo"
-          variant="standard"
+          label="Nombre Completo"
           type="text"
           fullWidth
           required
           onChange={nameOnChange}
         />
-
         <TextField
+          sx={{ marginTop: "15px" }}
           value={email}
           id="outlined-basic-email"
           label="Email"
-          variant="standard"
           type="text"
           fullWidth
           required
           onChange={emailOnChange}
         />
         <TextField
+          sx={{ marginTop: "15px" }}
           value={password}
           id="outlined-basic-password"
           label="Password"
-          variant="standard"
-          type="password"
+          type="text"
           fullWidth
           required
           onChange={passwordOnChange}
         />
-
         <Button
-          type="submit"
-          color="primary"
-          variant="contained"
-          style={btnstyle}
-          fullWidth
+          sx={{ marginTop: "20px" }}
           onClick={handleSubmit}
-          sx={{
-            borderRadius: 3,
-            background: "#CAF0F8",
-            fontWeight: "bold",
-            color: "#023E8A",
-          }}
+          type="submit"
+          variant="contained"
+          component="label"
+          fullWidth
         >
           Registrarse
         </Button>
-        <label>Ya estas registrado?</label>
+        <Typography sx={{ textAlign: "center", marginTop: "25px" }}>
+          Ya estas registrado?
+        </Typography>
         <Button
-          sx={{
-            borderRadius: 3,
-            background: "#CAF0F8",
-            fontWeight: "bold",
-            color: "#023E8A",
-          }}
-          type="button"
-          color="primary"
-          variant="contained"
-          style={btnstyle}
-          fullWidth
+          sx={{ marginTop: "20px" }}
           onClick={handleAlreadyRegister}
+          type="button"
+          variant="contained"
+          component="label"
+          fullWidth
         >
           Login
         </Button>

@@ -15,7 +15,7 @@ import {
 import ShoppingCartSharpIcon from "@mui/icons-material/ShoppingCartSharp";
 import axios from "axios";
 import { useNavigate } from "react-router";
-import SidebarPrueba from "./SidebarPrueba";
+import SidebarPrueba from "../SidebarPrueba";
 
 const Navbar = () => {
   const [user, setUser] = useState([]);
@@ -30,12 +30,7 @@ const Navbar = () => {
     axios.post("/api/usuario/logout").then((result) => setUser(result.data));
   };
   const navigate = useNavigate();
-  const Search = styled("div")(({ theme }) => ({
-    backgroundColor: "white",
-    padding: "0 50px",
-    borderRadius: theme.shape.borderRadius,
-    width: "40%",
-  }));
+
 
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState("");
