@@ -41,9 +41,9 @@ export const eliminarItem = createAsyncThunk(
   "cart/eliminar",
   async (id, thunkAPI) => {
     try {
-      const respuesta = await axios.delete(`/api/carritos/borrarUno/${id}`);
-      console.log("delete me esta devolviendo", respuesta.data);
-      return respuesta.data;
+      await axios.delete(`/api/carritos/borrarUno/${id}`);
+
+      return id;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -118,7 +118,8 @@ const cartSlice = createSlice({
       console.log("mi action es", action);
     },
     [eliminarItem.fulfilled]: (state, action) => {
-      console.log("mi action al borrar es", action);
+      const id = action.payload;
+      state.cartItems = state.cartItems.filter((item) => item.id !== id);
     },
     [eliminarItem.rejected]: (state, action) => {
       console.log("mi action al borrar y fallar es", action);
