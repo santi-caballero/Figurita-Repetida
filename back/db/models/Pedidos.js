@@ -4,6 +4,7 @@ const Carritos = require("./Carritos");
 const Productos = require("./Productos");
 
 class Pedidos extends S.Model {
+  // Calcula el precio todal de un carrito
   static calcularPrecioTotal(carrito) {
     Pedidos.findAll({
       where: { carritoId: carrito.id },
@@ -15,6 +16,7 @@ class Pedidos extends S.Model {
       carrito.update({ preciototal: precioTotal });
     });
   }
+
   static actualizarPrecio(pedido) {
     Carritos.findByPk(pedido.carritoId)
       .then((carrito) => Pedidos.calcularPrecioTotal(carrito))
@@ -34,10 +36,13 @@ Pedidos.init(
     modelName: "pedidos",
     hooks: {
       afterCreate(pedido) {
-        Pedidos.actualizarPrecio(pedido);
+        return Pedidos.actualizarPrecio(pedido);
       },
       afterUpdate(pedido) {
-        Pedidos.actualizarPrecio(pedido);
+        return Pedidos.actualizarPrecio(pedido);
+      },
+      afterDestroy(pedido) {
+        return Pedidos.actualizarPrecio(pedido);
       },
       afterBulkCreate(pedidos) {
         pedidos.forEach((pedido) => {
