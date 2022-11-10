@@ -7,9 +7,11 @@ import ButtonBase from "@mui/material/ButtonBase";
 import { Button } from "@mui/material";
 import axios from "axios";
 import { useState } from "react";
-
 import DeleteIcon from "@mui/icons-material/Delete";
-
+import { useDispatch, useSelector } from "react-redux";
+import { eliminarItem, obtenerItems } from "../../states/cart";
+import { useEffect } from "react";
+import { useNavigate } from "react-router";
 const Img = styled("img")({
   margin: "auto",
   display: "block",
@@ -18,12 +20,22 @@ const Img = styled("img")({
 });
 
 export default function CardCarrito({ product, cantidad, id }) {
+  const user = useSelector((state) => state.user);
+
   const [producto, setProducto] = useState({});
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const handleRemove = () => {
-    axios
-      .delete(`/api/carritos/borrarUno/${id}`)
-      .catch((error) => console.log(error));
+    // axios
+    //   .delete(`/api/carritos/borrarUno/${id}`)
+    //   .catch((error) => console.log(error));
+    dispatch(eliminarItem(id));
+    navigate("/");
   };
+
+  useEffect(() => {
+    dispatch(obtenerItems(user.id));
+  }, [user.id]);
   return (
     <Paper
       sx={{

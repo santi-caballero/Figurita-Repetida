@@ -27,22 +27,13 @@ const Login = () => {
     setPassword(e.target.value);
   };
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   axios
-  //     .post("/api/usuario/login", { email: email, password: password })
-  //     .then(() => navigate("/"))
-  //     .catch(() => alert("Mail o contraseña incorrectos!"));
-  // };
+  const handleLogin = (e) => {
+    dispatch(login({ email, password }));
+    navigate("/");
+  };
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-  //const { login } = useSelector((state) => state.user);
-  // useEffect(() => {
-  //   if (user.id) navigate("/");
-  //   else navigate("/login");
-  // }, [user]);
 
-  // console.log("mi user es", user);
   const paperStyle = {
     padding: 20,
     height: "40vh",
@@ -91,7 +82,7 @@ const Login = () => {
           variant="contained"
           style={btnstyle}
           fullWidth
-          onClick={() => dispatch(login({ email, password }))}
+          onClick={handleLogin}
           sx={{
             borderRadius: 3,
             background: "#CAF0F8",
