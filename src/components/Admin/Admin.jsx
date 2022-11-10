@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { Paper, Button, Grid, Typography } from "@mui/material";
+import gif from "../../utils/noadmin.gif";
 
 import AddProd from "./AddProd";
 import EditProd from "./EditProd";
@@ -27,55 +29,63 @@ const Admin = () => {
     borderRadius: "10px",
   };
 
+  const user = useSelector((state) => state.user);
+
   return (
     <>
-      <Paper elevation={10} style={paperStyle}>
-        <Typography
-          variant="h4"
-          sx={{ textAlign: "center", marginBottom: "25px" }}
-        >
-          Opciones de Administrador
-        </Typography>
-        <Grid>
-          <hr />
-          <Button
-            onClick={toggleAdd}
-            sx={{ marginBottom: "15px", marginTop: "10px" }}
-            type="button"
-            variant="contained"
-            fullWidth
+      {user.rol !== "admin" ? (
+        <>
+          <img src={gif} />
+        </>
+      ) : (
+        <Paper elevation={10} style={paperStyle}>
+          <Typography
+            variant="h4"
+            sx={{ textAlign: "center", marginBottom: "25px" }}
           >
-            Agregar Producto
-          </Button>
-        </Grid>
-        {addBtn ? <AddProd /> : null}
-        <Grid>
-          <hr />
-          <Button
-            onClick={toggleEdit}
-            sx={{ marginBottom: "15px", marginTop: "10px" }}
-            type="button"
-            variant="contained"
-            fullWidth
-          >
-            Editar Producto
-          </Button>
-        </Grid>
-        {editBtn ? <EditProd /> : null}
-        <Grid>
-          <hr />
-          <Button
-            onClick={toggleUserBtn}
-            sx={{ marginBottom: "15px", marginTop: "10px" }}
-            type="button"
-            variant="contained"
-            fullWidth
-          >
-            Editar Usuarios
-          </Button>
-        </Grid>
-        {userBtn ? <EditUser /> : null}
-      </Paper>
+            Opciones de Administrador
+          </Typography>
+          <Grid>
+            <hr />
+            <Button
+              onClick={toggleAdd}
+              sx={{ marginBottom: "15px", marginTop: "10px" }}
+              type="button"
+              variant="contained"
+              fullWidth
+            >
+              Agregar Producto
+            </Button>
+          </Grid>
+          {addBtn ? <AddProd /> : null}
+          <Grid>
+            <hr />
+            <Button
+              onClick={toggleEdit}
+              sx={{ marginBottom: "15px", marginTop: "10px" }}
+              type="button"
+              variant="contained"
+              fullWidth
+            >
+              Editar Producto
+            </Button>
+          </Grid>
+          {editBtn ? <EditProd /> : null}
+          <Grid>
+            <hr />
+            <Button
+              onClick={toggleUserBtn}
+              sx={{ marginBottom: "15px", marginTop: "10px" }}
+              type="button"
+              variant="contained"
+              fullWidth
+            >
+              Editar Usuarios
+            </Button>
+          </Grid>
+          {userBtn ? <EditUser /> : null}
+        </Paper>
+      )}
     </>
   );
 };
