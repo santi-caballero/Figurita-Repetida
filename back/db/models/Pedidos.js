@@ -4,7 +4,7 @@ const Carritos = require("./Carritos");
 const Productos = require("./Productos");
 
 class Pedidos extends S.Model {
-  // Calcula el precio todal de un carrito
+  // Calcular el precio todal de un carrito
   static calcularPrecioTotal(carrito) {
     const precioTotal = carrito.pedidos.reduce((suma, pedido) => {
       return suma + pedido.producto.precio * pedido.cantidad;
@@ -12,6 +12,7 @@ class Pedidos extends S.Model {
     carrito.update({ preciototal: precioTotal });
   }
 
+  // Tomar un pedido y mandar a calcular el precio total del carrito al que pertenece.
   static actualizarPrecio(pedido) {
     Carritos.findByPk(pedido.carritoId, {
       include: [{ model: Pedidos, include: [Productos] }],
