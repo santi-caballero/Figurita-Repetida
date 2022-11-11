@@ -12,12 +12,12 @@ export const agregarItem = createAsyncThunk(
   "cart/agregarItem",
   async (data, thunkAPI) => {
     const { idUser, cantidad, idProducto } = data;
-    // console.log(
-    //   "--------------------------------------",
-    //   idUser,
-    //   cantidad,
-    //   idProducto
-    // );
+    console.log(
+      "--------------------------------------",
+      idUser,
+      cantidad,
+      idProducto
+    );
     try {
       const respuesta = await axios.post("/api/carritos/agregar", {
         usuarioId: idUser,
@@ -116,7 +116,7 @@ const cartSlice = createSlice({
   extraReducers: {
     [agregarItem.fulfilled]: (state, action) => {
       console.log("Agregar item le llega", action.payload);
-      state.cartItems = action.payload.producto;
+      state.cartItems.push(action.payload);
     },
     [obtenerItems.fulfilled]: (state, action) => {
       console.log("carrito tiene", action.payload);
