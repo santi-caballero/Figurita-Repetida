@@ -88,17 +88,19 @@ const cartSlice = createSlice({
       state.cartItems = state.cartItems.filter((item) => item.id !== id); //devuelvo todos los items que no tienen ese id
     },
     incrementarCarrito: (state, action) => {
+        
       //Incrementar cuantos del mismo item tengo en el carrito
       const itemDelCarrito = state.cartItems.find(
         //busco el item que recibo como payload en el array de items de mi estado
-        (item) => item.id === action.payload.id
+        (item) => item.id === action.payload
       );
+      console.log("=========================================", itemDelCarrito);
       itemDelCarrito.cantidad = itemDelCarrito.cantidad + 1; //le sumo 1 a la cantidad
     },
     decrementarCarrito: (state, action) => {
       //hace lo mismo que incrementar
       const itemDelCarrito = state.cartItems.find(
-        (item) => item.id === action.payload.id
+        (item) => item.id === action.payload
       );
       itemDelCarrito.cantidad = itemDelCarrito.cantidad - 1; //tengo que verificar que no quede negativo, creo que desde el front
     },
