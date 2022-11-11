@@ -66,7 +66,6 @@ class productosServices {
         .sort((a, b) => (a.total > b.total ? 1 : -1))
         .map((producto) => producto.id)
         .slice(0, 6);
-      
       return Productos.findAll({
         where: { id: { [Op.in]: productosIds } },
       });
