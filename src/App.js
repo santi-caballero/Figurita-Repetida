@@ -38,16 +38,14 @@ function App() {
 
   useEffect(() => {
     {
-      user.id == null
-        ? console.log("es null", user)
-        : dispatch(calcularTotal());
+      user.id == null ? console.log("es null") : dispatch(calcularTotal());
     }
   }, [cartItems]);
 
   useEffect(() => {
     {
       user.id == null
-        ? console.log("es null", user)
+        ? console.log("es null")
         : dispatch(obtenerItems(user.id));
     }
   }, [user.id]);
