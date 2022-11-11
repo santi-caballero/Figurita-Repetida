@@ -4,12 +4,13 @@ const Carritos = require("./Carritos");
 const bcrypt = require("bcrypt");
 
 class Usuarios extends S.Model {
+  // hasehar la contraseña
   hash(password, salt) {
     return bcrypt.hash(password, salt);
   }
 
+  // validar la contraseña
   validarPassword(password) {
-    console.log(this.salt);
     return this.hash(password, this.salt).then(
       (newHash) => newHash === this.password
     );
@@ -21,14 +22,48 @@ Usuarios.init(
     username: {
       type: S.STRING,
       allownull: false,
+      unique: true,
+      set(valor) {
+        this.setDataValue("username", valor.toLowerCase());
+      },
     },
     nombre: {
       type: S.STRING,
       allownull: false,
+      set(valor) {
+        this.setDataValue("nombre", valor.toLowerCase());
+      },
+      get() {
+        return this.getDataValue("nombre").replace(
+          /(?<=\b)\w/g,
+          (primeraLetra) => primeraLetra.toUpperCase()
+        );
+      },
     },
     apellido: {
       type: S.STRING,
       allownull: false,
+      set(valor) {
+        this.setDataValue("apellido", valor.toLowerCase());
+      },
+      get() {
+        return this.getDataValue("apellido").replace(
+          /(?<=\b)\w/g,
+          (primeraLetra) => primeraLetra.toUpperCase()
+        );
+      },
+    },
+    nombreCompleto: {
+      type: S.VIRTUAL,
+      get() {
+        return `${this.getDataValue("nombre").replace(
+          /(?<=\b)\w/g,
+          (primeraLetra) => primeraLetra.toUpperCase()
+        )} ${this.getDataValue("apellido").replace(
+          /(?<=\b)\w/g,
+          (primeraLetra) => primeraLetra.toUpperCase()
+        )}`;
+      },
     },
     email: {
       type: S.STRING,
@@ -47,10 +82,12 @@ Usuarios.init(
     },
     rol: {
       type: S.STRING,
+      defaultValue: "usuario",
+      validate: { isIn: [["usuario", "admin"]] },
     },
-    favoritos: {
-      type: S.ARRAY(S.STRING),
-      defaultValue: [],
+    urlPerfil: {
+      type: S.STRING,
+      validate: { isUrl: true },
     },
   },
   {
@@ -65,11 +102,11 @@ Usuarios.init(
         });
       },
       afterCreate: (usuario) => {
-        Carritos.create({ usuarioId: usuario.id });
+        Carritos.create({ usuarioId: usuario.id }); // Crear carrito del usuario
       },
       afterBulkCreate: (res) => {
         res.forEach((usuario) => {
-          Carritos.create({ usuarioId: usuario.id });
+          Carritos.create({ usuarioId: usuario.id }); // Crear carrito del usuario
           const salt = bcrypt.genSaltSync();
           usuario.update({ salt: salt });
           return usuario.hash(usuario.password, salt).then((hash) => {

@@ -11,7 +11,9 @@ import {
 import LockOutlinedIcon from "@mui/icons-material/Person";
 import axios from "axios";
 import { useNavigate } from "react-router";
-
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { login } from "../states/user";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -25,19 +27,22 @@ const Login = () => {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    axios
-      .post("/api/usuario/login", { email: email, password: password })
-      .then(() => navigate("/"))
-      .catch(() => alert("Mail o contraseña incorrectos!"));
+  const handleLogin = (e) => {
+    dispatch(login({ email, password }));
+    navigate("/");
   };
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
 
   const paperStyle = {
-    padding: 20,
-    height: "70vh",
-    width: 280,
-    margin: "20px auto",
+    display: "flex",
+    flexDirection: "column",
+    padding: 30,
+    paddingTop: 40,
+    width: "30%",
+    margin: "auto",
+    borderRadius: 3,
+    borderRadius: "10px",
   };
 
   const avatarStyle = { backgroundColor: "#ff9f1c" };
@@ -51,7 +56,9 @@ const Login = () => {
           </Avatar>
           <h2>Iniciar sesión en Figurita Repetida</h2>
         </Grid>
+
         <TextField
+          sx={{ marginTop: "15px" }}
           label="E-mail"
           placeholder="Enter E-Mail"
           fullWidth
@@ -60,6 +67,7 @@ const Login = () => {
         />
 
         <TextField
+          sx={{ marginTop: "15px" }}
           label="Contraseña"
           placeholder="Enter password"
           type="password"
@@ -69,18 +77,28 @@ const Login = () => {
         />
 
         <Button
+          sx={{ marginTop: "20px" }}
           type="submit"
           color="primary"
           variant="contained"
-          style={btnstyle}
           fullWidth
-          onClick={handleSubmit}
+          //onclick = {handleDispatch => dispatch, navigate("/")}
+          onClick={handleLogin}
         >
           Iniciar sesión
         </Button>
         <Typography>
           <Link href="#">Olvidaste tu contraseña?</Link>
         </Typography>
+        <Button
+          sx={{ marginTop: "20px" }}
+          type="button"
+          variant="contained"
+          href="/register"
+          fullWidth
+        >
+          Registrate
+        </Button>
       </Paper>
     </Grid>
   );

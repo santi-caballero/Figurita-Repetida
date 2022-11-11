@@ -1,16 +1,32 @@
+const Carritos = require("./Carritos");
 const Usuarios = require("./Usuarios");
 const Productos = require("./Productos");
+const Favoritos = require("./Favoritos");
+const Tags = require("./Tags");
+const TagsProductos = require("./TagsProductos");
 const Pedidos = require("./Pedidos");
-const Carritos = require("./Carritos");
 
-Carritos.belongsTo(Usuarios, { as: "usuario" }); //Carrito solo puede tpertenecer a un usuario
-Usuarios.hasMany(Carritos); //Usuario tiene varios carritos
+Carritos.belongsTo(Usuarios); // Carrito solo puede pertenecer a un usuario
+Usuarios.hasMany(Carritos); // Usuario tiene varios carritos
 
-Pedidos.belongsTo(Productos); //Pedido pertenece al producto
-Productos.hasMany(Pedidos);
-//Productos.belongsToMany(Pedidos, { through: "ProductoPedido" }); //Cada producto aparece en multiples pedidos
+Pedidos.belongsTo(Productos); // Pedido pertenece al producto
+Productos.hasMany(Pedidos); //Un producto puede tener varios pedidos
 
 Pedidos.belongsTo(Carritos); // Un pedido solo puede estar en un carrito
-Carritos.hasMany(Pedidos); //Carrito contiene muchos pedidos
+Carritos.hasMany(Pedidos); // Carrito contiene muchos pedidos
 
-module.exports = { Usuarios, Productos, Pedidos, Carritos };
+Favoritos.belongsTo(Usuarios); // Un favorito solo puede pertenecer a un usuario
+Usuarios.hasMany(Favoritos); // Un usuario tiene muchos favoritos
+
+Favoritos.belongsTo(Productos); // Un favorito solo puede pertenecer a un prodcuto
+Productos.hasMany(Favoritos); // Un usuario tiene muchos favoritos
+
+// Las seis relaciones de abajo configuran una "Super Many-to-Many association"
+Productos.belongsToMany(Tags, { through: TagsProductos });
+Tags.belongsToMany(Productos, { through: TagsProductos });
+Productos.hasMany(TagsProductos);
+TagsProductos.belongsTo(Productos);
+Tags.hasMany(TagsProductos);
+TagsProductos.belongsTo(Tags);
+
+module.exports = { Carritos, Usuarios, Productos, Pedidos, Favoritos, Tags };

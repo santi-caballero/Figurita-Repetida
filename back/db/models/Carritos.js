@@ -1,7 +1,15 @@
 const db = require("../index");
 const S = require("sequelize");
 
-class Carritos extends S.Model {}
+class Carritos extends S.Model {
+  // Marcar un carrito como comprado, setear su fecha de compre y crear un nuevo carrito para el usuario.
+  comprarCarrito(carrito) {
+    return carrito
+      .update({ comprado: true, fecha: new Date() })
+      .then(() => Carritos.create({ usuarioId: carrito.usuarioId }))
+      .catch((err) => console.log(err));
+  }
+}
 
 Carritos.init(
   {
@@ -18,6 +26,7 @@ Carritos.init(
     },
     fecha: {
       type: S.DATE,
+      validate: { isDate: true },
     },
   },
   {
@@ -25,10 +34,5 @@ Carritos.init(
     modelName: "carritos",
   }
 );
-
-Carritos.prototype.comprar = function (carrito) {
-  carrito.update({ comprado: true });
-  return Carritos.create({ usuarioId: carrito.usuarioId }).then((res) => res);
-};
 
 module.exports = Carritos;

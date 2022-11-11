@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import {
   Paper,
   TextField,
+  TextArea,
   Grid,
   Button,
   Select,
   MenuItem,
   InputLabel,
+  Typography,
 } from "@mui/material";
 import axios from "axios";
 import { useNavigate } from "react-router";
@@ -16,6 +18,7 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const [name, setName] = useState("");
+  const [apellido, setApellido] = useState("");
   const [userType, setUserType] = useState("");
   const navigate = useNavigate();
 
@@ -27,6 +30,9 @@ const Register = () => {
     setUserType(event.target.value);
   };
 
+  const apellidoOnChange = (event) => {
+    setApellido(event.target.value);
+  };
   const nameOnChange = (event) => {
     setName(event.target.value);
   };
@@ -40,13 +46,11 @@ const Register = () => {
   };
 
   const handleSubmit = (event) => {
-    const nombreYapellido = name.split(" ");
     axios
       .post("/api/usuario/registro", {
         username,
-        rol: userType,
-        nombre: nombreYapellido[0],
-        apellido: nombreYapellido[1],
+        nombre: name,
+        apellido: apellido,
         password,
         email,
       })
@@ -55,11 +59,16 @@ const Register = () => {
     //Body: Obj {username, tipo, nombre, contraseña, email}
   };
   const handleAlreadyRegister = (event) => {};
+
   const paperStyle = {
-    padding: 20,
-    height: "70vh",
-    width: 280,
-    margin: "20px auto",
+    display: "flex",
+    flexDirection: "column",
+    padding: 30,
+    paddingTop: 40,
+    width: "30%",
+    margin: "auto",
+    borderRadius: 3,
+    borderRadius: "10px",
   };
 
   const btnstyle = { margin: "8px 0" };
@@ -67,81 +76,78 @@ const Register = () => {
   return (
     <Grid>
       <Paper elevation={10} style={paperStyle}>
-        <InputLabel id="demo-simple-select-standard-label">
-          Tipo de Usuario
-        </InputLabel>
-        <Select
-          labelId="demo-simple-select-standard-label"
-          id="demo-simple-select-standard"
-          fullWidth
-          value={userType}
-          onChange={userTypeOnChange}
-        >
-          <MenuItem value={"user"}>User</MenuItem>
-          <MenuItem value={"admin"}>Admin</MenuItem>
-        </Select>
-
+        <Typography mt="10px" mb="30px" align="center" variant="h5">
+          Registrate aquí abajo
+        </Typography>
         <TextField
+          sx={{ marginTop: "5px" }}
           value={username}
           id="outlined-basic-user"
           label="Nombre de Usuario"
-          variant="standard"
           type="text"
           fullWidth
           required
           onChange={usernameOnChange}
         />
-
         <TextField
+          sx={{ marginTop: "15px" }}
           value={name}
           id="outlined-basic-name"
-          label="Nombre completo"
-          variant="standard"
+          label="Nombre"
           type="text"
           fullWidth
           required
           onChange={nameOnChange}
         />
-
         <TextField
+          sx={{ marginTop: "15px" }}
+          value={apellido}
+          id="outlined-basic-name"
+          label="Apellido"
+          type="text"
+          fullWidth
+          required
+          onChange={apellidoOnChange}
+        />
+        <TextField
+          sx={{ marginTop: "15px" }}
           value={email}
           id="outlined-basic-email"
           label="Email"
-          variant="standard"
           type="text"
           fullWidth
           required
           onChange={emailOnChange}
         />
         <TextField
+          sx={{ marginTop: "15px" }}
           value={password}
           id="outlined-basic-password"
           label="Password"
-          variant="standard"
-          type="password"
+          type="text"
           fullWidth
           required
           onChange={passwordOnChange}
         />
-
         <Button
-          type="submit"
-          color="primary"
-          variant="contained"
-          style={btnstyle}
-          fullWidth
+          sx={{ marginTop: "20px" }}
           onClick={handleSubmit}
+          type="submit"
+          variant="contained"
+          component="label"
+          fullWidth
         >
           Registrarse
         </Button>
-        <label>Ya estas registrado?</label>
+        <Typography sx={{ textAlign: "center", marginTop: "20px" }}>
+          Ya estas registrado?
+        </Typography>
         <Button
+          sx={{ marginTop: "20px" }}
           type="button"
-          color="primary"
           variant="contained"
-          style={btnstyle}
+          href="/login"
           fullWidth
-          onClick={handleAlreadyRegister}
         >
           Login
         </Button>

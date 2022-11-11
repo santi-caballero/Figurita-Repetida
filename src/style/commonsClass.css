@@ -3,10 +3,11 @@
 }
 
 .singleProductGeneral {
-  display: grid;
+  display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  background-color: #ade8f4;
+  margin: auto;
+
   grid-template-columns: 1fr 1fr;
 }
 
@@ -29,6 +30,7 @@
 
 .singleProductLeftImagen {
   margin: 40px;
+  max-width: 10px;
 }
 
 .singleProductRigth {

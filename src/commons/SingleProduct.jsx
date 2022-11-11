@@ -1,85 +1,81 @@
 import * as React from "react";
-import IconButton from "@mui/material/IconButton";
+
 import Typography from "@mui/material/Typography";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import Button from "@mui/material/Button";
-import Stack from "@mui/material/Stack";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import UnstyledSelectsMultiple from "./utils/cantidadDeProductos";
+
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
+import BasicSelect from "./utils/cantidadPrueba";
+import { Paper, Grid } from "@mui/material";
 
-export default function SingleProduct() {
+export default function SingleProduct({ cantidad }) {
   const idProducto = useParams();
   const [producto, setProducto] = useState({});
-
-  const addProdToCart = () => {};
 
   useEffect(() => {
     axios.get(`/api/productos/${idProducto.id}`).then((figu) => {
       setProducto(figu.data);
     });
-  }, [producto]);
+  }, []);
+  const paperStyle = {
+    display: "flex",
+    flexDirection: "column",
+    padding: 30,
+    paddingTop: 40,
+    width: "40%",
+    margin: "auto",
+    borderRadius: 3,
+    borderRadius: "10px",
+  };
 
   return (
-    <div className="singleProductGeneral">
-      <div className="singleProductLeft">
-        <Typography variant="h4" color={"#03045E"}>
-          Figurita Repetida
-        </Typography>
-        <img
-          src={producto.urlImagen}
-          alt="Foto de producto"
-          className="singleProductLeftImagen"
-        />
-        {/* ACA EN VEZ DE CARD VA LA IMAGEN DE LA FIGU NO LA CARD, SIMPLEMENTE PARA VER COMO QUEDA ESTA LA CARD */}
-        <div className="singleProductDescription">
-          <Typography variant="h5" color={"#03045E"}>
-            DESCRIPCION:
-          </Typography>
-          <div>
-            <Typography variant="h6" color={"#03045E"}>
-              NOMBRE: {producto.nombre}
-            </Typography>
-            {producto.tipo === "jugador" ? (
-              <>
-                <Typography variant="h6" color={"#03045E"}>
-                  APELLIDO: {producto.apellido}
-                </Typography>
-                <Typography variant="h6" color={"#03045E"}>
-                  POSICION: {producto.posicion}
-                </Typography>
-                <Typography variant="h6" color={"#03045E"}>
-                  PAIS: {producto.pais}
-                </Typography>
-              </>
-            ) : null}
-          </div>
-        </div>
-      </div>
-      <div className="singleProductRigth">
-        <Stack spacing={2} className="singleProductButtons">
-          <Typography color={"#03045E"} marginLeft="10px">
-            Precio: ${producto.precio}
-          </Typography>
-          <Typography color={"#03045E"} marginLeft="10px">
-            Añadir al carrito:
-          </Typography>
-          <UnstyledSelectsMultiple />
-          <Button
-            onClick={() => addProdToCart()}
-            variant="contained"
-            endIcon={<AddShoppingCartIcon />}
+    <Paper elevation={10} style={paperStyle}>
+      <Grid
+        container
+        id="tarjeta"
+        sx={{ display: "flex", flexDirection: "row" }}
+      >
+        <Grid
+          id="izq"
+          sx={{
+            width: "50%",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <Typography
+            fontFamily={"'Bungee Spice', cursive"}
+            variant="h5"
+            color={"#03045E"}
+            align="center"
           >
-            <Typography color={"#03045E"}>ADD TO CART</Typography>
-          </Button>
-          <Button variant="contained" startIcon={<FavoriteIcon />}>
-            <Typography color={"#03045E"}>ADD TO FAVORITES</Typography>
-            <IconButton aria-label="add to favorites"></IconButton>
-          </Button>
-        </Stack>
-      </div>
-    </div>
+            {producto.nombreCompleto}
+          </Typography>
+          <img
+            width="90%"
+            src={producto.urlImagen}
+            alt="Foto de producto"
+            // className="singleProductLeftImagen"
+          />
+        </Grid>
+        <Grid
+          id="der"
+          sx={{
+            marginTop: "50px",
+            width: "50%",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <Typography variant="h6">Stock: {producto.stock}</Typography>
+
+          <BasicSelect producto={producto} />
+        </Grid>
+      </Grid>
+
+      {/* ACA EN VEZ DE CARD VA LA IMAGEN DE LA FIGU NO LA CARD, SIMPLEMENTE PARA VER COMO QUEDA ESTA LA CARD */}
+    </Paper>
   );
 }

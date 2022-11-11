@@ -1,12 +1,53 @@
 import React from "react";
-import Grilla from "./Grid";
+import Grilla from "./Grids/Grid";
+import Carrousel from "./Carrousel";
+import { Button, Paper, Typography } from "@mui/material";
+import { useState } from "react";
+import { useEffect } from "react";
+import Paginacion from "./Paginacion";
 
 const Home = ({ productos }) => {
+  const [products, setProducts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postPerPage, setPostsPerPage] = useState(9);
+  // useEffect(() => {
+  //   setProducts(productos);
+  // },[products]);
+  console.log("PRODUCTOS", products);
+  const indexOfLastPost = currentPage * postPerPage;
+  const indexOfFirstPost = indexOfLastPost - postPerPage;
+  const currentPosts = productos.slice(indexOfFirstPost, indexOfLastPost);
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  const paperStyle = {
+    display: "flex",
+    flexDirection: "column",
+    padding: 30,
+    paddingTop: 40,
+    width: "60%",
+    margin: "auto",
+    borderRadius: 3,
+    borderRadius: "10px",
+  };
+  const handleNext = () => {
+    setCurrentPage(currentPage + 1);
+  };
+  const handlePrevious = () => {
+    setCurrentPage(currentPage - 1);
+  };
+
   return (
-    <div>
-      <div className="carrousel">Futuro Carrousel</div>
-      <Grilla productos={productos} />
-    </div>
+    <Paper elevation={10} style={paperStyle}>
+      <h1 className="promo"> Las mas vendidas</h1>
+
+      <Grilla productos={currentPosts} />
+
+      <Paginacion
+        postsPerPage={postPerPage}
+        totalPosts={productos.length}
+        paginate={paginate}
+      />
+    </Paper>
   );
 };
 
