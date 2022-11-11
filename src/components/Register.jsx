@@ -18,6 +18,7 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const [name, setName] = useState("");
+  const [apellido, setApellido] = useState("");
   const [userType, setUserType] = useState("");
   const navigate = useNavigate();
 
@@ -29,6 +30,9 @@ const Register = () => {
     setUserType(event.target.value);
   };
 
+  const apellidoOnChange = (event) => {
+    setApellido(event.target.value);
+  };
   const nameOnChange = (event) => {
     setName(event.target.value);
   };
@@ -42,13 +46,11 @@ const Register = () => {
   };
 
   const handleSubmit = (event) => {
-    const nombreYapellido = name.split(" ");
     axios
       .post("/api/usuario/registro", {
         username,
-        rol: userType,
-        nombre: nombreYapellido[0],
-        apellido: nombreYapellido[1],
+        nombre: name,
+        apellido: apellido,
         password,
         email,
       })
@@ -91,11 +93,21 @@ const Register = () => {
           sx={{ marginTop: "15px" }}
           value={name}
           id="outlined-basic-name"
-          label="Nombre Completo"
+          label="Nombre"
           type="text"
           fullWidth
           required
           onChange={nameOnChange}
+        />
+        <TextField
+          sx={{ marginTop: "15px" }}
+          value={apellido}
+          id="outlined-basic-name"
+          label="Apellido"
+          type="text"
+          fullWidth
+          required
+          onChange={apellidoOnChange}
         />
         <TextField
           sx={{ marginTop: "15px" }}

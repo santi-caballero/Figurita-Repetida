@@ -47,17 +47,17 @@ export default function CardFavs({ product }) {
     display: "flex",
     flexDirection: "column",
     padding: 5,
-    width: "85%",
+    width: "90%",
     margin: "auto",
-    borderRadius: 3,
+
     borderRadius: "10px",
+    marginBottom: "20px",
   };
 
   return (
     <Paper elevation={10} style={paperStyle}>
       <Card sx={{ maxWidth: 345 }} className="cardContainer">
         <CardMedia
-          sx={{ paddingTop: "0.1px", marginTop: "20px" }}
           onClick={() => navigate(`/productos/${product.id}`)}
           component="img"
           image={product.urlImagen}

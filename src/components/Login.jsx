@@ -88,9 +88,7 @@ const Login = () => {
           Iniciar sesión
         </Button>
         <Typography>
-          <Link mt="5px" href="#">
-            Olvidaste tu contraseña?
-          </Link>
+          <Link href="#">Olvidaste tu contraseña?</Link>
         </Typography>
         <Button
           sx={{ marginTop: "20px" }}

@@ -27,11 +27,11 @@ export default function CardProduct({ product }) {
     display: "flex",
     flexDirection: "column",
     padding: 5,
-    width: "85%",
+    width: "90%",
     margin: "auto",
     borderRadius: 3,
     borderRadius: "10px",
-    marginBottom: "100px",
+    marginBottom: "20px",
   };
   return (
     <Paper elevation={10} style={paperStyle}>

@@ -20,7 +20,7 @@ const Botonera = () => {
       .post("/api/usuario/logout")
       .then((result) => console.log(result.data));
   };
-
+  // console.log("prueba")
   const navigate = useNavigate();
 
   return (
