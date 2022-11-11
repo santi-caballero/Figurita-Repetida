@@ -15,8 +15,8 @@ class Productos extends S.Model {
     return valores;
   }
 
+  // Vincular un producto con sus tags
   agregarTags(producto, valores) {
-    // vincular un producto con sus tags
     Tags.findAll({ where: { valor: { [Op.any]: valores } } })
       .then((tags) => {
         const tagsIds = tags.map((tag) => tag.id);

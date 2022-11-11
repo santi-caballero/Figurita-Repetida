@@ -4,10 +4,12 @@ const Carritos = require("./Carritos");
 const bcrypt = require("bcrypt");
 
 class Usuarios extends S.Model {
+  // hasehar la contraseña
   hash(password, salt) {
     return bcrypt.hash(password, salt);
   }
 
+  // validar la contraseña
   validarPassword(password) {
     return this.hash(password, this.salt).then(
       (newHash) => newHash === this.password
