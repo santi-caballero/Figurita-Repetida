@@ -101,15 +101,15 @@ const EditProd = () => {
     if (rareza !== "") newObj.rareza = rareza;
     if (precio !== 0) newObj.precio = precio;
     if (stock !== 0) newObj.stock = stock;
-    console.log("El id del producto es", prod);
-    console.log("Se editarán los siguientes campos", newObj);
+   
+
     axios.put(`/api/productos/${prod}`, newObj).then((res) => console.log(res));
     resetAll();
     navigate("/admin");
   };
   const handleDeleteProd = (e) => {
     e.preventDefault();
-    console.log("Se eliminará el siguiente producto", prod);
+    
     axios.delete(`/api/productos/${prod}`).then((res) => console.log(res));
     resetAll();
     navigate("/admin");

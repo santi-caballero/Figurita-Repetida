@@ -5,7 +5,6 @@ import {
   InputLabel,
   Typography,
   Button,
-  Grid,
   Select,
   MenuItem,
 } from "@mui/material";
@@ -25,8 +24,6 @@ const EditUser = () => {
     setUser(e.target.value);
   };
   const handleAdminize = () => {
-    console.log("Se ha ascendido a admin al user ");
-    console.log(user);
     axios
       .put(`/api/usuario/promover/${user}`)
       .then((res) => console.log(res))
@@ -35,8 +32,6 @@ const EditUser = () => {
   };
 
   const handleDelete = () => {
-    console.log("Se eliminara  ");
-    console.log(user);
     axios
       .delete(`/api/usuario/eliminar/${user}`)
       .then((res) => console.log(res))
