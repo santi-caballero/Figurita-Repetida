@@ -15,7 +15,7 @@ class productosServices {
   //buscar un producto por tag
   static buscarPorTags(tags) {
     return Productos.findAll({
-      where: { "$tags.valor$": { [Op.any]: tags } },
+      where: { "$tags.valor$": { [Op.all]: tags } },
       include: Tags,
     });
   }
