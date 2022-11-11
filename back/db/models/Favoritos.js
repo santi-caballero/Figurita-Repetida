@@ -8,6 +8,7 @@ Favoritos.init(
   {
     sequelize: db,
     modelName: "favoritos",
+    timestamps: false,
   }
 );
 

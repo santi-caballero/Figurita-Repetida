@@ -8,6 +8,7 @@ TagsProductos.init(
   {
     sequelize: db,
     modelName: "tagsproductos",
+    timestamps: false,
   }
 );
 
