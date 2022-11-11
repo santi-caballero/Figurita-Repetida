@@ -76,29 +76,21 @@ Productos.init(
     sequelize: db,
     modelName: "producto",
     hooks: {
+      // crear y asignar los tags correspondientes al producto creado
       afterCreate: (producto) => {
         const valores = Productos.generarTags(producto);
-        Tags.crearTags(valores);
-        producto.agregarTags(producto, valores);
+        Tags.crearTags(valores).then(() =>
+          producto.agregarTags(producto, valores)
+        );
       },
+      // crear y asignar los tags correspondientes a los productos creados
       afterBulkCreate: (productos) => {
         productos.forEach((producto) => {
           const valores = Productos.generarTags(producto);
-          Tags.crearTags(valores);
-          producto.agregarTags(producto, valores);
+          Tags.crearTags(valores).then(() =>
+            producto.agregarTags(producto, valores)
+          );
         });
-        // Si hay problemas con tags repetidos desde el seed, volver a esta version:
-        /*
-        // Generar un array con todos los tags de todos los productos creados
-        const tagsLista = productos.flatMap((producto) => {
-          return Productos.generarTags(producto);
-        });
-        Tags.crearTags(tagsLista).then(() => {
-          productos.forEach((producto) => {
-            const valores = Productos.generarTags(producto);
-            producto.agregarTags(producto, valores);
-          });
-        });*/
       },
     },
   }

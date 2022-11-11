@@ -405,6 +405,7 @@ const productosFalsos = [
   {
     tipo: "equipo",
     nombre: "Italia 1938",
+    pais: "Italia",
     stock: 500,
     precio: 200,
     rareza: 1,
@@ -414,6 +415,7 @@ const productosFalsos = [
   {
     tipo: "equipo",
     nombre: "Uruguay 1930",
+    pais: "Uruguay",
     stock: 500,
     precio: 800,
     rareza: 1,
@@ -423,6 +425,7 @@ const productosFalsos = [
   {
     tipo: "equipo",
     nombre: "Argentina 1978",
+    pais: "Argentina",
     stock: 500,
     precio: 800,
     rareza: 1,
@@ -432,6 +435,7 @@ const productosFalsos = [
   {
     tipo: "equipo",
     nombre: "Francia 1998",
+    pais: "Francia",
     stock: 500,
     precio: 800,
     rareza: 1,
@@ -441,6 +445,7 @@ const productosFalsos = [
   {
     tipo: "equipo",
     nombre: "Brasil 1958",
+    pais: "Brasil",
     stock: 500,
     precio: 800,
     rareza: 1,
@@ -450,6 +455,7 @@ const productosFalsos = [
   {
     tipo: "equipo",
     nombre: "Alemania 1990",
+    pais: "Alemania",
     stock: 500,
     precio: 800,
     rareza: 1,

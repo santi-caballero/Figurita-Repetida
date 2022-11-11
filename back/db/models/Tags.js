@@ -22,6 +22,7 @@ Tags.init(
   {
     sequelize: db,
     modelName: "tags",
+    timestamps: false,
   }
 );
 
