@@ -169,7 +169,7 @@ const MenuLateral = () => {
         </DrawerHeader>
         <Divider />
         <List>
-          {["Todas", "Selecciones", "Rareza", "Especiales"].map((text) => (
+          {["Top", "Selecciones", "Rareza", "Especiales"].map((text) => (
             <ListItem fontWeight="bold" key={text} disablePadding>
               <Link to={`/search/${text}`} style={{ textDecoration: "none" }}>
                 <ListItemButton>
