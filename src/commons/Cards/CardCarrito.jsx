@@ -14,6 +14,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { eliminarItem, obtenerItems } from "../../states/cart";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
+import { incrementarCarrito, decrementarCarrito } from "../../states/cart";
+import Swal from "sweetalert2";
 const Img = styled("img")({
   margin: "auto",
   display: "block",
@@ -28,8 +30,24 @@ export default function CardCarrito({ product, cantidad, id }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleAdd = () => {};
-  const handleRemove = () => {};
+  const handleAdd = () => {
+    if (product.stock > cantidad) dispatch(incrementarCarrito(id));
+    else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "No hay mas stock para agregar",
+      });
+    }
+  };
+  const handleDecrease = () => {
+    if (cantidad > 1) dispatch(decrementarCarrito(id));
+    else {
+      dispatch(eliminarItem(id));
+
+      window.location.reload(false);
+    }
+  };
 
   const handleDelete = () => {
     // axios
@@ -110,7 +128,7 @@ export default function CardCarrito({ product, cantidad, id }) {
           </IconButton>
           <IconButton
             onClick={() => {
-              handleRemove();
+              handleDecrease();
             }}
           >
             <RemoveIcon />
