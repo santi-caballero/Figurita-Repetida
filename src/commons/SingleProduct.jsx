@@ -48,6 +48,7 @@ export default function SingleProduct({ cantidad }) {
             fontFamily={"'Bungee Spice', cursive"}
             variant="h5"
             color={"#03045E"}
+            align="center"
           >
             {producto.nombreCompleto}
           </Typography>

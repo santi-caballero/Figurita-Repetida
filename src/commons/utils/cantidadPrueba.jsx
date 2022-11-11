@@ -16,7 +16,7 @@ export default function BasicSelect({ producto }) {
 
   return (
     <>
-      <Box sx={{ width: "50%" }}>
+      <Box sx={{ width: "60%" }}>
         <FormControl fullWidth>
           <InputLabel id="demo-simple-select-label">Cantidad</InputLabel>
           <Select
