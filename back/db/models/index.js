@@ -21,12 +21,11 @@ Usuarios.hasMany(Favoritos); // Un usuario tiene muchos favoritos
 Favoritos.belongsTo(Productos); // Un favorito solo puede pertenecer a un prodcuto
 Productos.hasMany(Favoritos); // Un usuario tiene muchos favoritos
 
-// Las seis relaciones de abajo configuran una "Super Many-to-Many association"
 Productos.belongsToMany(Tags, { through: TagsProductos });
 Tags.belongsToMany(Productos, { through: TagsProductos });
-Productos.hasMany(TagsProductos);
+/*Productos.hasMany(TagsProductos);
 TagsProductos.belongsTo(Productos);
 Tags.hasMany(TagsProductos);
-TagsProductos.belongsTo(Tags);
+TagsProductos.belongsTo(Tags);*/
 
 module.exports = { Carritos, Usuarios, Productos, Pedidos, Favoritos, Tags };
