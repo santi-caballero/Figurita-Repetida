@@ -51,7 +51,7 @@ const EditUser = () => {
       </Typography>
 
       <Container>
-        <FormControl sx={{ width: "332px", marginTop: "15px" }}>
+        <FormControl sx={{ width: "100%", marginTop: "15px" }}>
           <InputLabel>Seleccionar usuario</InputLabel>
           <Select
             labelId="usuarios-select"

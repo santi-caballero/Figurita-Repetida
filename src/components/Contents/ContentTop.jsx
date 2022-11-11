@@ -6,7 +6,9 @@ import { Box } from "@mui/system";
 
 const ContentTop = () => {
   const [top, setTop] = useState([]);
-  axios.get("/api/productos").then((res) => setTop(res.data));
+  axios
+    .get("/api/productos/filtrar/mas_vendidos")
+    .then((res) => setTop(res.data));
 
   const paperStyle = {
     display: "flex",
@@ -18,7 +20,7 @@ const ContentTop = () => {
     borderRadius: 3,
     borderRadius: "10px",
   };
-  
+
   return (
     <>
       <Paper elevation={10} style={paperStyle}>

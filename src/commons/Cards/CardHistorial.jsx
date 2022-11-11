@@ -8,7 +8,7 @@ import DetallesHistorial from "../../components/DetallesHistorial";
 
 const Img = styled("img")({
   margin: "auto",
-  display: "block",
+  display: "flex",
   maxWidth: "100%",
   maxHeight: "100%",
 });
@@ -21,7 +21,6 @@ export default function CardHistorial({ carrito }) {
         marginBottom: "3%",
         p: 4,
         maxWidth: 500,
-        flexGrow: 1,
         backgroundColor: "lightgray",
       }}
     >
