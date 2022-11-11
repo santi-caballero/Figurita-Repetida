@@ -90,7 +90,7 @@ const AddProd = () => {
     if (rareza !== "") newObj.rareza = rareza;
     if (precio !== 0) newObj.precio = precio;
     if (stock !== 0) newObj.stock = stock;
-    console.log("Se agregará el siguiente producto", newObj);
+
     axios.post("/api/productos", newObj).then((res) => {
       console.log(res);
       Swal.fire({
