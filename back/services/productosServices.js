@@ -1,5 +1,6 @@
-const { Productos, Tags } = require("../db/models/index");
+const { Productos, Tags, Pedidos } = require("../db/models/index");
 const { Op } = require("sequelize");
+const sequelize = require("sequelize");
 
 class productosServices {
   //obtener todos los productos
@@ -44,6 +45,32 @@ class productosServices {
   //admin borra un producto
   static eliminarProducto(id) {
     return Productos.destroy({ where: { id } });
+  }
+
+  static buscarMasVendidos() {
+    return Productos.findAll({
+      attributes: [
+        "id",
+        [sequelize.fn("sum", sequelize.col("pedidos.cantidad")), "total"],
+      ],
+      include: [
+        {
+          model: Pedidos,
+          attributes: [],
+        },
+      ],
+      group: ["producto.id"],
+    }).then((productos) => {
+      const productosIds = productos
+        .filter((producto) => producto.dataValues.total != null)
+        .sort((a, b) => (a.total > b.total ? 1 : -1))
+        .map((producto) => producto.id)
+        .slice(0, 5);
+      console.log(productosIds);
+      return Productos.findAll({
+        where: { id: { [Op.in]: productosIds } },
+      });
+    });
   }
 }
 
