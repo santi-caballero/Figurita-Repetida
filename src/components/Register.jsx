@@ -59,8 +59,11 @@ const Register = () => {
   const handleAlreadyRegister = (event) => {};
 
   const paperStyle = {
-    padding: 20,
-    width: 320,
+    display: "flex",
+    flexDirection: "column",
+    padding: 30,
+    paddingTop: 40,
+    width: "30%",
     margin: "auto",
     borderRadius: 3,
     borderRadius: "10px",
@@ -71,6 +74,9 @@ const Register = () => {
   return (
     <Grid>
       <Paper elevation={10} style={paperStyle}>
+        <Typography mt="10px" mb="30px" align="center" variant="h5">
+          Registrate aquí abajo
+        </Typography>
         <TextField
           sx={{ marginTop: "5px" }}
           value={username}
@@ -121,15 +127,14 @@ const Register = () => {
         >
           Registrarse
         </Button>
-        <Typography sx={{ textAlign: "center", marginTop: "25px" }}>
+        <Typography sx={{ textAlign: "center", marginTop: "20px" }}>
           Ya estas registrado?
         </Typography>
         <Button
           sx={{ marginTop: "20px" }}
-          onClick={handleAlreadyRegister}
           type="button"
           variant="contained"
-          component="label"
+          href="/login"
           fullWidth
         >
           Login

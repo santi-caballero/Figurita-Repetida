@@ -22,8 +22,11 @@ const Admin = () => {
   };
 
   const paperStyle = {
-    padding: 20,
-    width: "320px",
+    display: "flex",
+    flexDirection: "column",
+    padding: 30,
+    paddingTop: 40,
+    width: "30%",
     margin: "auto",
     borderRadius: 3,
     borderRadius: "10px",
@@ -32,13 +35,13 @@ const Admin = () => {
   const user = useSelector((state) => state.user);
 
   return (
-    <>
+    <Paper elevation={10} style={paperStyle}>
       {user.rol !== "admin" ? (
         <>
           <img src={gif} />
         </>
       ) : (
-        <Paper elevation={10} style={paperStyle}>
+        <>
           <Typography
             variant="h4"
             sx={{ textAlign: "center", marginBottom: "25px" }}
@@ -84,9 +87,9 @@ const Admin = () => {
             </Button>
           </Grid>
           {userBtn ? <EditUser /> : null}
-        </Paper>
+        </>
       )}
-    </>
+    </Paper>
   );
 };
 

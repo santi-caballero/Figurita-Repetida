@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
 import BasicSelect from "./utils/cantidadPrueba";
-import { Paper } from "@mui/material";
+import { Paper, Grid } from "@mui/material";
 
 export default function SingleProduct({ cantidad }) {
   const idProducto = useParams();
@@ -20,68 +20,61 @@ export default function SingleProduct({ cantidad }) {
   const paperStyle = {
     display: "flex",
     flexDirection: "column",
-    alignItems: "center",
-    padding: 20,
-    width: "60%",
+    padding: 30,
+    paddingTop: 40,
+    width: "40%",
     margin: "auto",
     borderRadius: 3,
     borderRadius: "10px",
-    marginBottom: "100px",
   };
 
   return (
     <Paper elevation={10} style={paperStyle}>
-      <div className="singleProductGeneral">
-        <div className="singleProductLeft">
+      <Grid
+        container
+        id="tarjeta"
+        sx={{ display: "flex", flexDirection: "row" }}
+      >
+        <Grid
+          id="izq"
+          sx={{
+            width: "50%",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
           <Typography
             fontFamily={"'Bungee Spice', cursive"}
-            variant="h4"
+            variant="h5"
             color={"#03045E"}
           >
             {producto.nombreCompleto}
           </Typography>
           <img
-            width="100%"
+            width="90%"
             src={producto.urlImagen}
             alt="Foto de producto"
             // className="singleProductLeftImagen"
           />
-          {/* ACA EN VEZ DE CARD VA LA IMAGEN DE LA FIGU NO LA CARD, SIMPLEMENTE PARA VER COMO QUEDA ESTA LA CARD */}
-          <div className="singleProductDescription">
-            <Typography
-              fontFamily={"'Anton', sans-serif"}
-              variant="h5"
-              color={"#03045E"}
-            >
-              Stock: {producto.stock} unidades
-            </Typography>
-            <div>
-              {producto.tipo === "jugador" ? (
-                <>
-                  <Typography
-                    fontFamily={"'Anton', sans-serif"}
-                    variant="h6"
-                    color={"#03045E"}
-                  >
-                    POSICION: {producto.posicion}
-                  </Typography>
-                  <Typography
-                    fontFamily={"'Anton', sans-serif"}
-                    variant="h6"
-                    color={"#03045E"}
-                  >
-                    PAIS: {producto.pais}
-                  </Typography>
-                </>
-              ) : null}
-            </div>
-          </div>
-        </div>
+        </Grid>
+        <Grid
+          id="der"
+          sx={{
+            marginTop: "50px",
+            width: "50%",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <Typography variant="h6">Stock: {producto.stock}</Typography>
 
-        <div className="singleProductRigth">
           <BasicSelect producto={producto} />
-        </div>
-      </div>
+        </Grid>
+      </Grid>
+
+      {/* ACA EN VEZ DE CARD VA LA IMAGEN DE LA FIGU NO LA CARD, SIMPLEMENTE PARA VER COMO QUEDA ESTA LA CARD */}
     </Paper>
   );
 }

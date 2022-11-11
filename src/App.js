@@ -64,11 +64,10 @@ function App() {
   useEffect(() => {
     axios
       .get("/api/productos")
-      .then((result) =>setAllProducts(result.data) )
+      .then((result) => setAllProducts(result.data))
       // .then((allFigurites) => setAllProducts(allFigurites))
       .catch((error) => console.error(error));
   }, []);
-
 
   return (
     <div className="todo">

@@ -95,7 +95,7 @@ const MenuLateral = () => {
           display: "flex",
           justifyContent: "space-between",
           flexDirection: "row",
-          marginBottom: "150px",
+          marginBottom: "0px",
           backgroundColor: "#F6AA38",
         }}
       >
