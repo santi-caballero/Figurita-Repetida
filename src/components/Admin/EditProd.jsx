@@ -122,7 +122,7 @@ const EditProd = () => {
       </Typography>
 
       <Container>
-        <FormControl sx={{ width: "332px", marginTop: "15px" }}>
+        <FormControl sx={{ width: "100%", marginTop: "15px" }}>
           <InputLabel>Producto</InputLabel>
           <Select
             labelId="productos-select"
@@ -135,7 +135,7 @@ const EditProd = () => {
             {productos.length
               ? productos.map((producto, i) => (
                   <MenuItem key={i} tipo={producto.tipo} value={producto.id}>
-                    ({producto.tipo}) --    {producto.nombreCompleto}
+                    ({producto.tipo}) -- {producto.nombreCompleto}
                   </MenuItem>
                 ))
               : null}
@@ -157,7 +157,7 @@ const EditProd = () => {
                 onChange={handleNombre}
               />
 
-              <FormControl sx={{ width: "332px", marginTop: "15px" }}>
+              <FormControl sx={{ width: "100%", marginTop: "15px" }}>
                 <InputLabel>Rareza</InputLabel>
                 <Select
                   labelId="rareza-select"
@@ -255,7 +255,7 @@ const EditProd = () => {
                 required
                 onChange={handlePais}
               />
-              <FormControl sx={{ width: "332px", marginTop: "15px" }}>
+              <FormControl sx={{ width: "100%", marginTop: "15px" }}>
                 <InputLabel>Posicion</InputLabel>
                 <Select
                   labelId="posicion-select"
@@ -271,7 +271,7 @@ const EditProd = () => {
                   <MenuItem value={"delantero"}>Arquero</MenuItem>
                 </Select>
               </FormControl>
-              <FormControl sx={{ width: "332px", marginTop: "15px" }}>
+              <FormControl sx={{ width: "100%", marginTop: "15px" }}>
                 <InputLabel>Rareza</InputLabel>
                 <Select
                   labelId="rareza-select"
