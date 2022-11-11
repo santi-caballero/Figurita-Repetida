@@ -18,6 +18,7 @@ import Favoritos from "./components/Favoritos";
 import Carrito from "./components/Carrito";
 import Admin from "./components/Admin/Admin";
 import History from "./components/History";
+import ContentTop from "./components/Contents/ContentTop";
 
 import MenuLateral from "./components/NavBar/MenuLateral";
 
@@ -80,6 +81,7 @@ function App() {
             path="/search/Todas"
             element={<Grid productos={allProducts} />}
           />
+          <Route path="/search/Top" element={<ContentTop />} />
           <Route
             path="/search/Selecciones"
             element={<ContentPaises Todas={allProducts} />}

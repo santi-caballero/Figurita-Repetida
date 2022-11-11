@@ -9,10 +9,10 @@ import {
   Link,
 } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/Person";
-import axios from "axios";
+
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+
 import { login } from "../states/user";
 import Swal from "sweetalert2";
 
@@ -58,7 +58,7 @@ const Login = () => {
   };
 
   const avatarStyle = { backgroundColor: "#ff9f1c" };
-  const btnstyle = { margin: "8px 0" };
+
   return (
     <Grid>
       <Paper elevation={10} style={paperStyle}>
@@ -94,7 +94,6 @@ const Login = () => {
           color="primary"
           variant="contained"
           fullWidth
-          //onclick = {handleDispatch => dispatch, navigate("/")}
           onClick={handleLogin}
         >
           Iniciar sesión

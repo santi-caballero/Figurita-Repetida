@@ -38,7 +38,7 @@ const Home = ({ productos }) => {
 
   return (
     <Paper elevation={10} style={paperStyle}>
-      <h1 className="promo"> Las mas vendidas</h1>
+      <h1 className="promo"> TODOS NUESTROS PRODUCTOS</h1>
 
       <Grilla productos={currentPosts} />
 
