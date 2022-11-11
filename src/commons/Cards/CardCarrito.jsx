@@ -4,10 +4,12 @@ import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import ButtonBase from "@mui/material/ButtonBase";
-import { Button } from "@mui/material";
+import { Stack, Button, IconButton } from "@mui/material";
 import axios from "axios";
 import { useState } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
 import { useDispatch, useSelector } from "react-redux";
 import { eliminarItem, obtenerItems } from "../../states/cart";
 import { useEffect } from "react";
@@ -26,7 +28,10 @@ export default function CardCarrito({ product, cantidad, id }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleRemove = () => {
+  const handleAdd = () => {};
+  const handleRemove = () => {};
+
+  const handleDelete = () => {
     // axios
     //   .delete(`/api/carritos/borrarUno/${id}`)
     //   .catch((error) => console.log(error));
@@ -37,63 +42,88 @@ export default function CardCarrito({ product, cantidad, id }) {
   useEffect(() => {
     dispatch(obtenerItems(user.id));
   }, [user.id]);
+
+  const paperStyle = {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    padding: 6,
+    marginBottom: "10px",
+    width: "100%",
+    borderRadius: 3,
+    borderRadius: "10px",
+  };
+
   return (
-    <Paper
-      sx={{
-        p: 2,
-        maxWidth: 500,
-        flexGrow: 1,
-        backgroundColor: (theme) =>
-          theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-      }}
-    >
-      <Grid container spacing={4}>
-        <Grid item>
-          <ButtonBase sx={{ width: 128, height: 128 }}>
-            <Img alt="complex" src={product.urlImagen} />
-          </ButtonBase>
+    <Paper elevation={6} style={paperStyle}>
+      <Grid
+        container
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "space-around",
+        }}
+        id="izq"
+      >
+        <Grid sx={{ width: 128, height: 128 }}>
+          <Img alt="complex" src={product.urlImagen} />
         </Grid>
-        <Grid item xs={12} sm container>
-          <Grid item xs container direction="column" spacing={2}>
-            <Grid item xs>
-              <Typography
-                fontFamily={"'Bungee Spice', cursive"}
-                gutterBottom
-                variant="h5"
-                component="div"
-              >
-                {product.nombre} {product.apellido}
-              </Typography>
-              <Typography
-                fontFamily={"'Bungee Spice', cursive"}
-                variant="h5"
-                gutterBottom
-              >
-                Delantero
-              </Typography>
-              <Typography variant="h5"> Cantidad {cantidad}</Typography>
-            </Grid>
-          </Grid>
-          <Grid item>
-            <Typography variant="h5" component="div">
-              ${product.precio}
-            </Typography>
-          </Grid>
-        </Grid>
+        <Typography variant="h6">{product.nombreCompleto}</Typography>
       </Grid>
-      <Grid item>
-        <Typography sx={{ textAlign: "Right" }} variant="body2">
-          <Button
+      <Grid
+        container
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+        id="der"
+      >
+        <Grid
+          sx={{
+            width: "45%",
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-around",
+          }}
+          id="datos"
+        >
+          <Typography variant="h6">x {cantidad} </Typography>
+          <Typography variant="h5">$ {product.precio}</Typography>
+        </Grid>
+        <Grid
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "flex-end",
+          }}
+          id="botones"
+        >
+          <IconButton
+            onClick={() => {
+              handleAdd();
+            }}
+          >
+            <AddIcon />
+          </IconButton>
+          <IconButton
             onClick={() => {
               handleRemove();
             }}
           >
-            <Grid item xs={8}>
-              <DeleteIcon />
-            </Grid>{" "}
-            Eliminar del carrito
-          </Button>
-        </Typography>
+            <RemoveIcon />
+          </IconButton>
+
+          <IconButton
+            onClick={() => {
+              handleDelete();
+            }}
+          >
+            <DeleteIcon />
+          </IconButton>
+        </Grid>
       </Grid>
     </Paper>
   );

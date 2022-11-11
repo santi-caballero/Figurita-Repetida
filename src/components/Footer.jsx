@@ -19,24 +19,15 @@ const Footer = () => {
         <Grid container spacing={4}>
           <Grid item xs={6} md={3}>
             <Stack spacing={2}>
-              <Typography variant="h6">SOBRE NOSOTROS</Typography>
-              <a>
-                Somos <a href="/">Figurita Repetida &reg;</a> el primer
-                ecommerce en vender figuritas del mundial de 2022 en Argentina y
-                Uruguay
-              </a>
-            </Stack>
-          </Grid>
-          <Grid item xs={6} md={3}>
-            <Stack spacing={2}>
               <a href="/">
                 <img src={img} height="150px" width="250px" alt="logo"></img>
               </a>
             </Stack>
           </Grid>
+
           <Grid item xs={6} md={3}>
             <Stack spacing={2}>
-              <Typography variant="h6">NAVEGA POR NUESTRA PAGINA</Typography>
+              <Typography variant="h6">Navega por nuestro sitio</Typography>
               <Link href="/register" color="inherit">
                 <Typography>Registrate</Typography>
               </Link>
@@ -48,9 +39,19 @@ const Footer = () => {
               </Link>
             </Stack>
           </Grid>
+          <Grid item xs={6} md={3}>
+            <Stack spacing={2}>
+              <Typography variant="h6">Sobre nosotros</Typography>
+              <a>
+                Somos <a href="/">Figurita Repetida &reg;</a> el primer
+                ecommerce en vender figuritas del mundial de 2022 en Argentina y
+                Uruguay
+              </a>
+            </Stack>
+          </Grid>
           <Grid item xs={5} md={3}>
             <Stack spacing={1}>
-              <Typography variant="h6">NUESTRAS REDES SOCIALES</Typography>
+              <Typography variant="h6">Nuestras redes sociales</Typography>
               <Link
                 href="https://m.facebook.com/PlataformaCinco/?locale2=en_GB"
                 underline="none"
@@ -58,7 +59,7 @@ const Footer = () => {
                 target="_blank"
               >
                 <Typography>
-                  <FacebookIcon sx={{ fontSize: 35 }}> </FacebookIcon>
+                  <FacebookIcon sx={{ fontSize: 30 }}> </FacebookIcon>
                   FACEBOOK
                 </Typography>
               </Link>
@@ -69,7 +70,7 @@ const Footer = () => {
                 target="_blank"
               >
                 <Typography>
-                  <GitHubIcon sx={{ fontSize: 35 }}></GitHubIcon>
+                  <GitHubIcon sx={{ fontSize: 30 }}></GitHubIcon>
                   GITHUB
                 </Typography>
               </Link>
@@ -80,7 +81,7 @@ const Footer = () => {
                 target="_blank"
               >
                 <Typography>
-                  <InstagramIcon sx={{ fontSize: 35 }}></InstagramIcon>{" "}
+                  <InstagramIcon sx={{ fontSize: 30 }}></InstagramIcon>{" "}
                   INSTAGRAM
                 </Typography>
               </Link>

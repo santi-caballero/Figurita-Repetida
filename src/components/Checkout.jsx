@@ -32,10 +32,13 @@ const Checkout = ({ productos }) => {
   };
   const carrito = useSelector((store) => store.cart);
   const user = useSelector((store) => store.user);
+
   const paperStyle = {
     display: "flex",
-    padding: 20,
-    width: 500,
+    flexDirection: "column",
+    padding: 30,
+    paddingTop: 40,
+    width: "60%",
     margin: "auto",
     borderRadius: 3,
     borderRadius: "10px",
@@ -45,6 +48,7 @@ const Checkout = ({ productos }) => {
       <div>
         {console.log(carrito)}
         <Typography
+          sx={{ textAlign: "center", marginBottom: "25px" }}
           fontFamily={"'Bungee Spice', cursive"}
           variant="h4"
           color={"#03045E"}
@@ -58,14 +62,11 @@ const Checkout = ({ productos }) => {
 
         <DetallesHistorial detalles={carrito.cartItems} />
         <h1>Precio final: ${carrito.total}</h1>
+
         <Button
           sx={{
-            marginRight: "3%",
-            marginLeft: "80%",
-            borderRadius: 3,
-            background: "#CAF0F8",
-            fontWeight: "bold",
-            color: "#023E8A",
+            height: "60px",
+            width: "220px",
           }}
           variant="contained"
           endIcon={<SendIcon />}

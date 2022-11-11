@@ -104,7 +104,7 @@ const AddProd = () => {
       </Container>
       <Container>
         <Grid>
-          <FormControl sx={{ width: "272px", marginTop: "15px" }}>
+          <FormControl sx={{ width: "332px", marginTop: "15px" }}>
             <InputLabel>Tipo de producto</InputLabel>
             <Select
               labelId="tipo-select"
@@ -144,7 +144,7 @@ const AddProd = () => {
                 onChange={handlePrecio}
               />
 
-              <FormControl sx={{ width: "272px", marginTop: "15px" }}>
+              <FormControl sx={{ width: "332px", marginTop: "15px" }}>
                 <InputLabel>Rareza</InputLabel>
                 <Select
                   labelId="rareza-select"
@@ -211,7 +211,7 @@ const AddProd = () => {
                 onChange={handleApellido}
               />
 
-              <FormControl sx={{ width: "272px", marginTop: "15px" }}>
+              <FormControl sx={{ width: "332px", marginTop: "15px" }}>
                 <InputLabel>Posicion</InputLabel>
                 <Select
                   labelId="posicion-select"
@@ -224,7 +224,7 @@ const AddProd = () => {
                   <MenuItem value={"portero"}>Portero</MenuItem>
                   <MenuItem value={"defensor"}>Defensor</MenuItem>
                   <MenuItem value={"central"}>Central</MenuItem>
-                  <MenuItem value={"delantero"}>Arquero</MenuItem>
+                  <MenuItem value={"delantero"}>Delantero</MenuItem>
                 </Select>
               </FormControl>
 
@@ -238,7 +238,7 @@ const AddProd = () => {
                 onChange={handlePais}
               />
 
-              <FormControl sx={{ width: "272px", marginTop: "15px" }}>
+              <FormControl sx={{ width: "332px", marginTop: "15px" }}>
                 <InputLabel>Rareza</InputLabel>
                 <Select
                   labelId="rareza-select"

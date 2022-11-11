@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Grid } from "@mui/material";
+import { Grid, Paper } from "@mui/material";
 import ButtonBase from "@mui/material/ButtonBase";
 import { styled } from "@mui/material/styles";
 
@@ -13,6 +13,7 @@ const DetallesHistorial = ({ detalles }) => {
 
   return (
     <>
+      {" "}
       {detalles.map((product, i) => (
         <div>
           <h4> Producto: {product.producto.nombreCompleto} </h4>

@@ -50,50 +50,23 @@ const Comprar = ({ cantidad, producto }) => {
   return (
     <div className="singleProductRigth">
       <Stack spacing={2} className="singleProductButtons">
-        <Typography
-          fontFamily={"'Anton', sans-serif"}
-          color={"#03045E"}
-          marginLeft="10px"
-        >
+        <Typography variant="h6" align="center">
           Precio: ${producto.precio}
         </Typography>
-        <Typography
-          fontFamily={"'Anton', sans-serif"}
-          color={"#03045E"}
-          marginLeft="10px"
-        >
-          Añadir al carrito:
-        </Typography>
-        <Button
-          sx={{
-            borderRadius: 3,
-            background: "#CAF0F8",
 
-            color: "#023E8A",
-          }}
+        <Button
           onClick={() => handleAddCarrito()}
           variant="contained"
           endIcon={<AddShoppingCartIcon />}
         >
-          <Typography fontWeight="bold" color={"#03045E"}>
-            ADD TO CART
-          </Typography>
+          <Typography align="center">Al Carrito</Typography>
         </Button>
         <Button
-          sx={{
-            borderRadius: 3,
-            background: "#CAF0F8",
-            fontWeight: "bold",
-            color: "#023E8A",
-          }}
           onClick={() => handleAddFavorito()}
           variant="contained"
-          startIcon={<FavoriteIcon />}
+          endIcon={<FavoriteIcon />}
         >
-          <Typography fontWeight="bold" color={"#03045E"}>
-            ADD TO FAVORITES
-          </Typography>
-          <IconButton aria-label="add to favorites"></IconButton>
+          <Typography align="center">Favoritos </Typography>
         </Button>
       </Stack>
     </div>

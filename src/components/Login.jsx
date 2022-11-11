@@ -35,13 +35,15 @@ const Login = () => {
   const user = useSelector((state) => state.user);
 
   const paperStyle = {
-    padding: 20,
-    width: 320,
+    display: "flex",
+    flexDirection: "column",
+    padding: 30,
+    paddingTop: 40,
+    width: "30%",
     margin: "auto",
     borderRadius: 3,
     borderRadius: "10px",
   };
-
 
   const avatarStyle = { backgroundColor: "#ff9f1c" };
   const btnstyle = { margin: "8px 0" };
@@ -86,7 +88,9 @@ const Login = () => {
           Iniciar sesión
         </Button>
         <Typography>
-          <Link href="#">Olvidaste tu contraseña?</Link>
+          <Link mt="5px" href="#">
+            Olvidaste tu contraseña?
+          </Link>
         </Typography>
         <Button
           sx={{ marginTop: "20px" }}

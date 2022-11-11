@@ -19,12 +19,12 @@ const Favoritos = () => {
   const paperStyle = {
     display: "flex",
     flexDirection: "column",
-    padding: 20,
+    padding: 30,
+    paddingTop: 40,
     width: "60%",
     margin: "auto",
     borderRadius: 3,
     borderRadius: "10px",
-    marginBottom: "100px",
   };
 
   return (

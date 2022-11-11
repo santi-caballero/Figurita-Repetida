@@ -25,11 +25,11 @@ const Botonera = () => {
 
   return (
     <>
-      <Stack direction="row" spacing={-3}>
+      <Stack direction="row" spacing={-2}>
         {user.rol == "admin" ? (
           <Button href={"/admin"} underline="none" color="secondary">
             <SupervisorAccountIcon
-              sx={{ color: "#B21515", width: 25, height: 25 }}
+              sx={{ color: "#B21515", width: 30, height: 30 }}
             />
           </Button>
         ) : null}
@@ -40,7 +40,7 @@ const Botonera = () => {
               underline="none"
               color="secondary"
             >
-              <FavoriteIcon sx={{ color: "#B21515", width: 25, height: 25 }} />
+              <FavoriteIcon sx={{ color: "#B21515", width: 30, height: 30 }} />
             </Button>
 
             <Button
@@ -48,12 +48,12 @@ const Botonera = () => {
               underline="none"
               color="secondary"
             >
-              <FeedIcon sx={{ color: "#B21515", width: 25, height: 25 }} />
+              <FeedIcon sx={{ color: "#B21515", width: 30, height: 30 }} />
             </Button>
           </>
         ) : null}
         <Button href={"/:user/cart"} underline="none" color="secondary">
-          <ShoppingCartIcon sx={{ color: "#B21515", width: 25, height: 25 }} />
+          <ShoppingCartIcon sx={{ color: "#B21515", width: 30, height: 30 }} />
         </Button>
         {user.id ? (
           <Button
@@ -62,11 +62,11 @@ const Botonera = () => {
             underline="none"
             color="secondary"
           >
-            <LogoutIcon sx={{ color: "#B21515", width: 25, height: 25 }} />
+            <LogoutIcon sx={{ color: "#B21515", width: 30, height: 30 }} />
           </Button>
         ) : (
           <Button href={"/login"} underline="none" color="secondary">
-            <PersonIcon sx={{ color: "#B21515", width: 25, height: 25 }} />
+            <PersonIcon sx={{ color: "#B21515", width: 30, height: 30 }} />
           </Button>
         )}
       </Stack>

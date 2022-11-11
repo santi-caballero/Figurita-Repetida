@@ -16,48 +16,60 @@ const History = () => {
       .get(`/api/carritos/historial/${user.id}`)
       .then((res) => setHistorial(res.data));
   }, [user.id]);
+  const paperStyle = {
+    display: "flex",
+    flexDirection: "column",
+    padding: 30,
+    paddingTop: 40,
+    width: "60%",
+    margin: "auto",
+    borderRadius: 3,
+    borderRadius: "10px",
+  };
 
   return (
     <>
-      <Typography
-        className="promo"
-        fontFamily={"'Bungee Spice', cursive"}
-        gutterBottom
-        variant="h4"
-        component="div"
-        marginTop="3%"
-      >
-        Historial de compras de {user.nombre}
-      </Typography>
-      <Paper
-        sx={{
-          //   display: "flex",
-          margin: "auto",
-          marginTop: "100px",
-          width: "50%",
-          padding: 4,
-          maxWidth: "900px",
-          minWidth: "360px",
-          borderRadius: 3,
-        }}
-        elevation={10}
-      >
-        {/* <Button
+      {" "}
+      <Paper elevation={10} style={paperStyle}>
+        <Typography
+          className="promo"
+          fontFamily={"'Bungee Spice', cursive"}
+          gutterBottom
+          variant="h4"
+          component="div"
+          marginTop="3%"
+        >
+          Historial de compras de {user.nombre}
+        </Typography>
+        <Paper
+          sx={{
+            //   display: "flex",
+            margin: "auto",
+            marginTop: "100px",
+            width: "50%",
+            padding: 4,
+            maxWidth: "900px",
+            minWidth: "360px",
+            borderRadius: 3,
+          }}
+          elevation={10}
+        >
+          {/* <Button
           onClick={() => {
             console.log(historial);
           }}
         >
           PULSAME
         </Button> */}
-        <Grid>
-          {historial.length
-            ? historial.map((compra, i) => (
-                <>
-                  <Grid item key={i} xs={12} sm={6} md={4}>
-                    <CardHistorial carrito={compra} />
-                  </Grid>
-                  {/* <GrillaCarrito productos={compra.pedidos} /> */}
-                  {/* <Grid key={i}>
+          <Grid>
+            {historial.length
+              ? historial.map((compra, i) => (
+                  <>
+                    <Grid item key={i} xs={12} sm={6} md={4}>
+                      <CardHistorial carrito={compra} />
+                    </Grid>
+                    {/* <GrillaCarrito productos={compra.pedidos} /> */}
+                    {/* <Grid key={i}>
                     <Grid>
                       <Grid>
                         Compra ID- {compra.id}- 3 pedidos
@@ -79,10 +91,11 @@ const History = () => {
                       <hr />
                     </Grid>
                   </Grid> */}
-                </>
-              ))
-            : null}
-        </Grid>
+                  </>
+                ))
+              : null}
+          </Grid>
+        </Paper>
       </Paper>
     </>
   );
