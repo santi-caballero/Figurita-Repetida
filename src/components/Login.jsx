@@ -14,7 +14,11 @@ import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { login } from "../states/user";
+import Swal from "sweetalert2";
+
 const Login = () => {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -28,11 +32,19 @@ const Login = () => {
   };
 
   const handleLogin = (e) => {
-    dispatch(login({ email, password }));
-    navigate("/");
+    dispatch(login({ email, password })).then((respuesta) => {
+      if (respuesta.payload.codigo === 401) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Credenciales incorrectas",
+        });
+      } else {
+        Swal.fire("Logged", "", "success");
+        navigate("/");
+      }
+    });
   };
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
 
   const paperStyle = {
     display: "flex",

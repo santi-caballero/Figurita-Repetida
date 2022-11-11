@@ -26,7 +26,10 @@ export const login = createAsyncThunk("user/login", async (user, thunkAPI) => {
     console.log(respuesta.data);
     return respuesta.data;
   } catch (error) {
-    return thunkAPI.rejectWithValue("Credenciales incorrectas");
+    return thunkAPI.rejectWithValue({
+      msg: "Credenciales incorrectas",
+      codigo: 401,
+    });
   }
 });
 
@@ -110,6 +113,7 @@ const userSlice = createSlice({
       state.id = action.payload.id;
     },
     [login.rejected]: (state) => {
+      state = initialState;
       return state;
     },
     [isLoggedIn.fulfilled]: (state, action) => {
